@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="block">
-    <span class="demonstration"></span>
+    <span class="demonstration">Date Range<br/></span>
     <el-date-picker
       v-model="value2"
       type="datetimerange"

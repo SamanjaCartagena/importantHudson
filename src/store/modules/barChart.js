@@ -1,10 +1,9 @@
 import axios from "axios"
 import moment from "moment"
-
+import store from '../../store'
 const state ={
    barData:[],
-   startDate:moment().format('DD-MM-YYYY'),
-   endDate:moment().format('DD-MM-YYYY')
+  
 }
 const getters ={
     allBarData:(state) => state.barData,
@@ -12,7 +11,15 @@ const getters ={
 const actions={
 async fetchBarData({commit}){
          
-       const response= await axios.get(`/api`)
+    
+      
+      const response= await axios.get(`/api`,{
+        withCredentials:true,
+       
+      })
+    
+    
+    
 
 
   // console.log("Bar chart data looks like")

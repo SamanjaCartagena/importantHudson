@@ -36,6 +36,9 @@ components:{
     NavBar,
     DateComponent,
     GaugeChart, LineChart, BarChart, BreadCrumb
+},
+created(){
+  console.log(this.$store.state.start)
 }
 }
 

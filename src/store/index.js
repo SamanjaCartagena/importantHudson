@@ -12,13 +12,11 @@ const store=createStore({
   },
     state:{
     
-      
-          startingDate:moment().format('DD-MM-YY'),
-          endingDate:moment().format('MMMM D, YYYY'),
-          startDate:moment(),
-          endDate:moment(),
-          start:moment().format('YYYY-MM-DD'),
-                  end:moment().format('YYYY-MM-DD')
+           
+         
+          start:moment(),
+                  end:moment(),
+                  
 
        
 

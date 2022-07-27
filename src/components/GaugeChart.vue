@@ -8,7 +8,7 @@
       class="box-card" 
       style="width:250px;height:250px">
     
-        <router-link :to="`/${this.finalNames[index]}`">
+  <router-link :to="`/${this.finalNames[index]}`"> 
           <div class="card-header">
             
                         <span style="font-size:20px; position: relative;
@@ -26,7 +26,7 @@
          </center>
           </div>
         
-        </router-link>
+        </router-link> 
         
       </el-card>
     </el-space>
@@ -74,7 +74,7 @@ for(let j=0; j<this.arr[i].dates.length; j++){
  // if((moment(this.arr[i].dates[j]).format('DD-MM-YYYY') >=this.$store.state.startDate )
    // && (moment(this.arr[i].dates[j]).format('DD-MM-YYYY') <= this.$store.state.endDate ))
   //{
-console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
+//console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
 
   //}
 }
@@ -104,8 +104,10 @@ console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
      this.fetchGaugeData();
 
      setInterval(()=>{this.fetchGaugeData()},300000)
-    console.log("The date is "+this.$store.startingDate)
-    console.log("The end date is "+this.$store.endingDate)
+     this.$store.state.start=moment().format('YYYY-MM-DD')
+     this.$store.state.end=moment().format('YYYY-MM-DD')
+    console.log("The start date is "+this.$store.state.start)
+    console.log("The end date is "+this.$store.state.end)
    //  console.table(this.allGaugeData)
     //console.log("The dates passed from props are "+this.daterange)
      this.newArr=Object.entries(this.allGaugeData)

@@ -1,5 +1,6 @@
 import axios from "axios"
 import moment from "moment"
+import store from "../../store"
 
 
  const state ={
@@ -15,22 +16,19 @@ const getters ={
 
 const actions={
    async fetchGaugeData({commit}){
-    try{
-        
-    const response= await axios.get(`/api`,{
-  
-    })
+    
+      const response= await axios.get(`/api`,{
+        withCredentials:true,
+      
+      })
     
   //  console.log('fetching gauge data two million times')
     console.table(response.data.apexGaugeChartData)
     commit('setGaugeData', response.data.apexGaugeChartData)
    }
-   catch(err){
-    
-      router.replace({ name: 'NotFound' })       
-   }
+
 }
-}
+
 
 
 const mutations={

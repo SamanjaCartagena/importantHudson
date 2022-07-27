@@ -1,6 +1,6 @@
 import axios from "axios"
-
-
+import moment from 'moment'
+import store from '../../store'
 const state ={
    lineData:[],
    lineDates:[],
@@ -16,9 +16,11 @@ const getters ={
 const actions={
 async fetchLineData({commit}){
   
- 
-    
-    const response= await axios.get(`/api`);
+        
+      const response= await axios.get(`/api`,{
+        withCredentials:true,
+     
+      })
    // console.table(response.data.apexLineChartData.data)
 
     commit('setLineDates',response.data.apexLineChartData.dates)
