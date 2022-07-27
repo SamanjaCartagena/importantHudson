@@ -6,9 +6,9 @@
     <el-space :fill="fill" wrap>
       <el-card v-for="(item, index) in arr" :key="index" 
       class="box-card" 
-      style="width:250px;height:250px">
+      style="width:35%;height:250px">
+    
         
-           <template #header>
           <div class="card-header">
             
                         <span style="font-size:20px; position: relative;
@@ -19,14 +19,15 @@
         type="radialBar" width="100%" height="250px" 
         :options="this.radialChartOptions.chartOptions"
       
-         :series="[this.percent[index]]" ></apexchart><span v-if="this.percent[index]>100" style="color:#FD354A">{{this.lastValues[index]}}</span>
+         :series="[this.percent[index]]" ></apexchart>
+         <center>
+         <span v-if="this.percent[index]>100" style="color:#FD354A">{{this.lastValues[index]}}</span>
           <span v-else style="color:#009AF9">{{this.lastValues[index]}}</span>
-          
+         </center>
           </div>
-        </template>
-          
         
-       
+        
+        
       </el-card>
     </el-space>
   
