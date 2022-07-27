@@ -15,10 +15,11 @@
     <el-sub-menu index="2">
       <template #title>Power Meters</template>
       <el-menu-item index="2-1">Main Meters</el-menu-item>
-      <el-sub-menu index="2-2">
+      <el-sub-menu index="2-2" @click="selected(event.target.value)">
         <template #title>PM1</template>
-        <el-menu-item index="2-4-1">Submenu PM 1</el-menu-item>
-        <el-menu-item index="2-4-2">Submenu PM 1</el-menu-item>
+ <el-sub-menu index="2-6">
+        <template #title>Sub menu PM 1</template>        <el-menu-item index="2-4-2">Submenu PM 2</el-menu-item>
+ </el-sub-menu>
         <el-menu-item index="2-4-3">Submenu PM 1</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="2-3">
@@ -52,4 +53,5 @@ const activeIndex2 = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
 </script>

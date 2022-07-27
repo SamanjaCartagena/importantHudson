@@ -19,10 +19,12 @@ const actions={
    async fetchGaugeData({commit}){
     try{
         
-    const response= await axios.get(`/api${router.currentRoute.value.path}?startDate=${store.state.startingDate}&endDate=${store.state.endingDate}`)
+    const response= await axios.get(`/api${router.currentRoute.value.path}`,{
+  
+    })
     
   //  console.log('fetching gauge data two million times')
-   // console.table(response.data.apexGaugeChartData)
+    console.table(response.data.apexGaugeChartData)
     commit('setGaugeData', response.data.apexGaugeChartData)
    }
    catch(err){

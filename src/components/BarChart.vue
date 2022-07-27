@@ -1,10 +1,12 @@
 <template>
  
     <div >
+                         <el-card class="box-card" style="width:100%">
+
          <apexchart @click="barChartClicked"  id="barChartData" type="bar" height="380" :options="this.barChart.chartOptions" :series="this.barChart.series">
 
          </apexchart>
-       
+                         </el-card>
   </div>
    
   

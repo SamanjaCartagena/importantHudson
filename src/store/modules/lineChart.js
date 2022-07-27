@@ -2,7 +2,6 @@ import axios from "axios"
 import moment from "moment"
 import router from '../../router'
 
-
 router.push('/')
 const state ={
    lineData:[],
@@ -23,7 +22,8 @@ async fetchLineData({commit}){
  
     
         
-        const response= await axios.get(`/api${router.currentRoute.value.path}?startDate=${store.state.startingDate}&endDate=${store.state.endingDate}`)
+        const response= await axios.get(`/api${router.currentRoute.value.path}`)
+        
 
 
    commit('setLineData', response.data.apexLineChartData.data)
@@ -33,9 +33,9 @@ async fetchLineData({commit}){
 
 async fetchLineDates({commit}){
          
-       const response= await axios.get(`/api${router.currentRoute.value.path}?startDate=${store.state.startingDate}&endDate=${store.state.endingDate}`)
+       const response= await axios.get(`/api${router.currentRoute.value.path}`)
 
-  //  console.table("The dates are "+response.data.apexLineChartData.dates)
+    console.table("The dates are "+response.date.apexLineChartData.dates)
     commit('setLineDates', response.data.apexLineChartData.dates)
 },
 

@@ -15,7 +15,7 @@ const getters ={
 const actions={
 async fetchBarData({commit}){
          
-       const response= await axios.get(`/api${router.currentRoute.value.path}?startDate=${store.state.startingDate}&endDate=${store.state.endingDate}`)
+       const response= await axios.get(`/api${router.currentRoute.value.path}`)
 
 
   // console.log("Bar chart data looks like")

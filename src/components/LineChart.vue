@@ -2,7 +2,8 @@
   <div>
    
     
-     <div>
+                        <el-card class="box-card" style="width:100%">
+
     
        <apexchart
         width="100%" height="500px" type="area" 
@@ -10,7 +11,7 @@
       </apexchart>
       
     
-    </div>
+                        </el-card>
  
   </div>
 </template>

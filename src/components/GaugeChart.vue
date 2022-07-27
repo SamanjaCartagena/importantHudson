@@ -1,36 +1,20 @@
 <template>
   <div>
 <div style="width:100%;" > 
-    <table class="table" style="width:100%;table-layout: auto;  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;" >
- 
-      <thead>
-      </thead>
-      <tbody>
-       <tr v-for="(item, index) in arr" :key="index" class="meter"
-      
-        style="box-shadow: 1px 1px 1px 1px grey;  
-       display:inline-block;
-        flex-wrap:wrap;
-       margin:10px;  
-       postion:relative;
-    "  @click="clicked(this.finalNames[index])">
+                   <el-card class="box-card" style="width:100%">
 
-              <div >
-                 
+    <el-space :fill="fill" wrap>
+      <el-card v-for="(item, index) in arr" :key="index" 
+      class="box-card" 
+      style="width:250px;height:250px">
+        
+           <template #header>
+          <div class="card-header">
+            
+                        <span style="font-size:20px; position: relative;
+                        top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
 
-           <th style="display:grid; justify-content:left; padding:10px; "  >{{item.name.slice(6,11).split('_').join(' ')}}
-           
-
-           </th>
-
-             <td style="justify-content:center; justify-items:center; text-align:center" > 
-              
-                         <div>
-                      
-          <apexchart id="gaugeChartApex" 
+            <apexchart id="gaugeChartApex" 
           
         type="radialBar" width="100%" height="250px" 
         :options="this.radialChartOptions.chartOptions"
@@ -38,20 +22,17 @@
          :series="[this.percent[index]]" ></apexchart><span v-if="this.percent[index]>100" style="color:#FD354A">{{this.lastValues[index]}}</span>
           <span v-else style="color:#009AF9">{{this.lastValues[index]}}</span>
           
-                         </div>
-         
-         </td>
-                         
-
+          </div>
+        </template>
           
-              </div>
-          
-       </tr>
+        
        
-      </tbody>
- 
-    </table>
-   
+      </el-card>
+    </el-space>
+  
+                      </el-card >
+                      
+
  </div>
   </div>
 </template>
@@ -89,12 +70,12 @@ export default {
      for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
 {
-  if((moment(this.arr[i].dates[j]).format('DD-MM-YYYY') >=this.$store.state.startDate )
-    && (moment(this.arr[i].dates[j]).format('DD-MM-YYYY') <= this.$store.state.endDate ))
-  {
+ // if((moment(this.arr[i].dates[j]).format('DD-MM-YYYY') >=this.$store.state.startDate )
+   // && (moment(this.arr[i].dates[j]).format('DD-MM-YYYY') <= this.$store.state.endDate ))
+  //{
 console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
 
-  }
+  //}
 }
  
 }
@@ -105,7 +86,6 @@ console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
 
  
 
-    window.location.href=`/${val}?startDate=${this.$store.state.startingDate}&endDate=${this.$store.state.endingDate}`
 
   
   }
@@ -180,7 +160,25 @@ for(let i=0; i<this.arr.length; i++){
       this.percent.push((this.lastValues[i] *100/400).toFixed())
      }
     // console.log(this.percent)
-
+ this.$watch(
+      () => this.$route.params.pageName,
+      () => {
+             this.fetchGaugeData();
+       if (localStorage.getItem('reloaded')) {
+        // The page was just reloaded. Clear the value from local storage
+        // so that it will reload the next time this page is visited.
+        localStorage.removeItem('reloaded');
+    } else {
+        // Set a flag so that we know not to reload the page twice.
+        localStorage.setItem('reloaded', '1');
+        location.reload();
+    }
+        console.log("The params have changed")
+      },
+      // fetch the data when the view is created and the data is
+      // already being observed
+      { immediate: true }
+    )
    
     // console.log("The last values are "+this.lastValues)
       //   console.log("The value of arr's length is "+this.arr.length)

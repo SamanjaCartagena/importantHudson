@@ -11,14 +11,16 @@ const store=createStore({
      gaugeChart, lineChart, barChart
   },
     state:{
-       data(){
-        return{
+    
+      
           startingDate:moment().format('DD-MM-YY'),
           endingDate:moment().format('MMMM D, YYYY'),
           startDate:moment(),
-          endDate:moment()
-        }
-       }
+          endDate:moment(),
+          start:moment().format('DD-MM-YY'),
+                  end:moment().format('DD-MM-YY')
+
+       
 
     },
     getters:{
