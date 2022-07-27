@@ -1,7 +1,5 @@
 import axios from "axios"
 import moment from "moment"
-import router from '../../router'
-import store from '../../store'
 
 
  const state ={
@@ -19,7 +17,7 @@ const actions={
    async fetchGaugeData({commit}){
     try{
         
-    const response= await axios.get(`/api${router.currentRoute.value.path}`,{
+    const response= await axios.get(`/api`,{
   
     })
     

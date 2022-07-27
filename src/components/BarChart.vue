@@ -2,10 +2,11 @@
  
     <div >
                          <el-card class="box-card" style="width:100%">
-
-         <apexchart @click="barChartClicked"  id="barChartData" type="bar" height="380" :options="this.barChart.chartOptions" :series="this.barChart.series">
+             
+         <apexchart  id="barChartData" type="bar" height="380" :options="this.barChart.chartOptions" :series="this.barChart.series">
 
          </apexchart>
+      
                          </el-card>
   </div>
    
@@ -38,8 +39,8 @@ export default {
   },
    methods:{
     ...mapActions(['fetchBarData']),
-    barChartClicked(){
-
+    barChartClicked(val){
+      console.log("The value clicked was "+val)
     }
     
   },
@@ -49,7 +50,7 @@ export default {
    created(){
     // console.log("The date range is "+this.daterange)
      this.fetchBarData();
-           setInterval(()=>{this.fetchBarData()},5000)
+           setInterval(()=>{this.fetchBarData()},300000)
       this.arr=Object.entries(this.allBarData)
 
     

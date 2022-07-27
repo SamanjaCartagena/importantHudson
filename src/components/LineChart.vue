@@ -52,9 +52,7 @@ export default {
   
      created(){
      this.fetchLineData();
-     this.fetchLineDates();
-          setInterval(()=>{this.fetchLineData()},5000)
-          setInterval(()=>{this.fetchLineDates()},5000)
+          setInterval(()=>{this.fetchLineData()},300000)
   // console.log(this.dataValue)
       for(let i=0; i<this.allLineData.length; i++){
       //  console.table(this.allLineData[i])
@@ -80,6 +78,7 @@ export default {
         }
         
 
+   
        
        // const m = moment(this.dates[0])
            //  console.log(m.format('ddd MMM  YYY'))
@@ -145,10 +144,23 @@ this.lineCharts={
           
             xaxis: {
               type: 'datetime',
+               offsetX: 0,
+          offsetY: 0,
               labels: {
                     datetimeUTC: false,
                     format: 'MMM dd HH:mm',
-                    style:{
+                    offsetX: 0,
+          offsetY: 0,     
+          axisTicks: {
+          show: true,
+          borderType: 'solid',
+          color: '#78909C',
+          height: 6,
+          offsetX: 0,
+          offsetY: 0
+      },
+                    
+          style:{
                       fontSize:'12px'
                     },
                   },

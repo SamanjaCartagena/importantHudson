@@ -2,8 +2,9 @@
   <div class="common-layout">
     <el-container>
       <el-header>
-
         <nav-bar></nav-bar>
+        <br/>
+        <bread-crumb></bread-crumb>
       </el-header>
       <br/>
     <el-main  style="height:auto;width:100%;position:relative;top:100px;">
@@ -25,6 +26,7 @@
 
 <script>
 import NavBar from './NavBar.vue';
+import BreadCrumb from './BreadCrumb.vue';
 import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
@@ -33,7 +35,7 @@ export default{
 components:{
     NavBar,
     DateComponent,
-    GaugeChart, LineChart, BarChart
+    GaugeChart, LineChart, BarChart, BreadCrumb
 }
 }
 

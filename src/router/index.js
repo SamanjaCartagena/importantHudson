@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import HomePage from '../components/HomePage.vue';
+import store from '../store'
 const router=createRouter({
     history: createWebHistory(),
     routes:[{
@@ -14,14 +15,13 @@ const router=createRouter({
         path:'/:pageName',
         name:'pageName',
         component:HomePage,
-     children:[
-        {
-         path:'/pageName/:daterange',
-         name:'daterange',
-         component:HomePage,
-         
-        }
-     ] 
+      params:{
+        startDate:store.state.start,
+        endDate:store.state.end
+     }
+     
+     
+     
     
     },
 

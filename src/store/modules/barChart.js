@@ -1,8 +1,5 @@
 import axios from "axios"
 import moment from "moment"
-import router from '../../router'
-
-router.push('/')
 
 const state ={
    barData:[],
@@ -15,7 +12,7 @@ const getters ={
 const actions={
 async fetchBarData({commit}){
          
-       const response= await axios.get(`/api${router.currentRoute.value.path}`)
+       const response= await axios.get(`/api`)
 
 
   // console.log("Bar chart data looks like")

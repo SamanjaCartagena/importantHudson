@@ -17,8 +17,8 @@ const store=createStore({
           endingDate:moment().format('MMMM D, YYYY'),
           startDate:moment(),
           endDate:moment(),
-          start:moment().format('DD-MM-YY'),
-                  end:moment().format('DD-MM-YY')
+          start:moment().format('YYYY-MM-DD'),
+                  end:moment().format('YYYY-MM-DD')
 
        
 

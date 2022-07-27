@@ -1,13 +1,10 @@
 import axios from "axios"
-import moment from "moment"
-import router from '../../router'
 
-router.push('/')
+
 const state ={
    lineData:[],
    lineDates:[],
-   startDate:moment(),
-   endDate:moment()
+ 
    
 
 }
@@ -21,23 +18,15 @@ async fetchLineData({commit}){
   
  
     
-        
-        const response= await axios.get(`/api${router.currentRoute.value.path}`)
-        
+    const response= await axios.get(`/api`);
+   // console.table(response.data.apexLineChartData.data)
 
-
+    commit('setLineDates',response.data.apexLineChartData.dates)
    commit('setLineData', response.data.apexLineChartData.data)
 
 
 },
 
-async fetchLineDates({commit}){
-         
-       const response= await axios.get(`/api${router.currentRoute.value.path}`)
-
-    console.table("The dates are "+response.date.apexLineChartData.dates)
-    commit('setLineDates', response.data.apexLineChartData.dates)
-},
 
 }
 const mutations={

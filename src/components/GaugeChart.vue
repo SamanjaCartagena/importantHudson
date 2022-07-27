@@ -6,9 +6,9 @@
     <el-space :fill="fill" wrap>
       <el-card v-for="(item, index) in arr" :key="index" 
       class="box-card" 
-      style="width:35%;height:250px">
+      style="width:250px;height:250px">
     
-        
+        <router-link :to="`/${this.finalNames[index]}`">
           <div class="card-header">
             
                         <span style="font-size:20px; position: relative;
@@ -26,7 +26,7 @@
          </center>
           </div>
         
-        
+        </router-link>
         
       </el-card>
     </el-space>
@@ -103,7 +103,7 @@ console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
   
      this.fetchGaugeData();
 
-     setInterval(()=>{this.fetchGaugeData()},5000)
+     setInterval(()=>{this.fetchGaugeData()},300000)
     console.log("The date is "+this.$store.startingDate)
     console.log("The end date is "+this.$store.endingDate)
    //  console.table(this.allGaugeData)
