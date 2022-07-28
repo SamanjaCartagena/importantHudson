@@ -8,8 +8,7 @@
       class="box-card" 
       style="width:250px;height:250px">
     
-  <router-link :to="`/${this.finalNames[index]}`"> 
-          <div class="card-header">
+          <div class="card-header" @click="selected(this.finalNames[index])">
             
                         <span style="font-size:20px; position: relative;
                         top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
@@ -18,15 +17,15 @@
           
         type="radialBar" width="100%" height="250px" 
         :options="this.radialChartOptions.chartOptions"
-      
+          
          :series="[this.percent[index]]" ></apexchart>
          <center>
-         <span v-if="this.percent[index]>100" style="color:#FD354A">{{this.lastValues[index]}}</span>
-          <span v-else style="color:#009AF9">{{this.lastValues[index]}}</span>
+         <span v-if="this.percent[index]>100" style="color:#FD354A">{{Math.trunc(this.lastValues[index])}}</span>
+          <span v-else style="color:#009AF9">{{Math.trunc(this.lastValues[index])}}</span>
          </center>
           </div>
         
-        </router-link> 
+         
         
       </el-card>
     </el-space>
@@ -41,6 +40,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
+import router from '../../src/router'
 import HomePage from '../components/HomePage.vue';
 export default {
   props:['dateValue', 'daterange','crumbs'],
@@ -63,6 +63,12 @@ export default {
     ...mapActions(['fetchGaugeData']),
      moment: function (value) {
     return moment(value);
+  },
+  selected(val){
+    console.log("The value clicked is "+val);
+    this.$store.state.current+=`/${val}`;
+    this.$router.addRoute({path:`/${val}`, component:HomePage});
+    this.$router.push({path:`/${val}`, component:HomePage})
   },
   clicked(val){
     console.log('this was clicked '+val)
@@ -106,6 +112,8 @@ for(let j=0; j<this.arr[i].dates.length; j++){
      setInterval(()=>{this.fetchGaugeData()},300000)
     console.log("The starting is "+this.$store.state.starting)
     console.log("The ending is "+this.$store.state.ending)
+     console.log(window.location.pathname);
+    console.log(router.currentRoute.value.path)
    //  console.table(this.allGaugeData)
     //console.log("The dates passed from props are "+this.daterange)
      this.newArr=Object.entries(this.allGaugeData)
@@ -150,7 +158,7 @@ for(let i=0; i<this.arr.length; i++){
 
 //     console.log(moment(this.dateValue).format('DD-MM-YYYY'))
      for(let i=0; i<this.arr.length; i++){
-    Math.round(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
+    Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
     
     
      }
@@ -158,7 +166,7 @@ for(let i=0; i<this.arr.length; i++){
      
     // console.log(this.lastValues)
      for(let i=0; i<this.lastValues.length; i++){
-      this.percent.push((this.lastValues[i] *100/400).toFixed())
+      this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
      }
     // console.log(this.percent)
  this.$watch(

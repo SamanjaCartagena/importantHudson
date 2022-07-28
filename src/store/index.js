@@ -15,7 +15,8 @@ const store=createStore({
            
          
           starting:moment().format('YYYY-MM-DD'),
-          ending:moment().format('YYYY-MM-DD')
+          ending:moment().format('YYYY-MM-DD'),
+          current:'/main'
                   
 
               

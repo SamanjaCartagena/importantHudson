@@ -6,8 +6,7 @@ const router=createRouter({
     history: createWebHistory(),
     routes:[{
         path: '/',
-        
-        name:'',
+        redirect:'/main',
    
         component: HomePage,
         
