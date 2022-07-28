@@ -8,7 +8,7 @@
       class="box-card" 
       style="width:250px;height:250px">
     
-          <div class="card-header" @click="selected(this.finalNames[index])">
+          <div class="card-header" >
             
                         <span style="font-size:20px; position: relative;
                         top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import path from 'path'
 import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
 import router from '../../src/router'
@@ -64,12 +65,7 @@ export default {
      moment: function (value) {
     return moment(value);
   },
-  selected(val){
-    console.log("The value clicked is "+val);
-    this.$store.state.current+=`/${val}`;
-    this.$router.addRoute({path:`/${val}`, component:HomePage});
-    this.$router.push({path:`/${val}`, component:HomePage})
-  },
+
   clicked(val){
     console.log('this was clicked '+val)
 
@@ -112,8 +108,11 @@ for(let j=0; j<this.arr[i].dates.length; j++){
      setInterval(()=>{this.fetchGaugeData()},300000)
     console.log("The starting is "+this.$store.state.starting)
     console.log("The ending is "+this.$store.state.ending)
-     console.log(window.location.pathname);
-    console.log(router.currentRoute.value.path)
+     //console.log(window.location.pathname);
+     this.$store.state.currentRoute= this.$router.currentRoute.value.path;
+     console.log("The store variable is "+this.$store.state.currentRoute)
+    console.log(router.currentRoute.value.path);
+    console.log("The meta url is "+document.location.pathname)
    //  console.table(this.allGaugeData)
     //console.log("The dates passed from props are "+this.daterange)
      this.newArr=Object.entries(this.allGaugeData)

@@ -24,22 +24,22 @@
   </div>
 </template>
 
-<script>
+<script >
 import NavBar from './NavBar.vue';
 import BreadCrumb from './BreadCrumb.vue';
 import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
 import BarChart from './BarChart.vue';
-import { defineComponent } from 'vue';
-export default defineComponent({
+export default {
+  name:'HomePage',
 components:{
     NavBar,
     DateComponent,
     GaugeChart, LineChart, BarChart, BreadCrumb
 },
 
-})
+} 
 
 </script>
 
