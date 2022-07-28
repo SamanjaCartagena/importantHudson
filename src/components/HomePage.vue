@@ -30,17 +30,16 @@ import BreadCrumb from './BreadCrumb.vue';
 import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
-import BarChart from './BarChart.vue'
-export default{
+import BarChart from './BarChart.vue';
+import { defineComponent } from 'vue';
+export default defineComponent({
 components:{
     NavBar,
     DateComponent,
     GaugeChart, LineChart, BarChart, BreadCrumb
 },
-created(){
-  console.log(this.$store.state.start)
-}
-}
+
+})
 
 </script>
 

@@ -7,21 +7,19 @@ const router=createRouter({
     routes:[{
         path: '/',
         
+        name:'',
    
         component: HomePage,
         
-        params:{
-            startDate:moment().format(),
-            endDate:moment().format()
-        }
+      
       
     },
     
     {
-        path:'/main_meters/:pageName',
+        path:'/:pageName',
         name:'pageName',
         component:HomePage,
-       
+        
     },
 
       

@@ -14,14 +14,16 @@ async fetchBarData({commit}){
     
       
       const response= await axios.get(`/api`,{
-        withCredentials:true,
-       
-      })
+         params:{
+        startDate:store.state.starting,
+        endDate:store.state.ending
+      }
+    })
     
     
     
 
-
+console.log("The starting from js script is "+store.state.starting)
   // console.log("Bar chart data looks like")
  // console.log(`/api/${state.query}`)
   //  console.table(response.data.apexBarChartData)

@@ -14,11 +14,11 @@ const store=createStore({
     
            
          
-          start:moment(),
-                  end:moment(),
+          starting:moment().format('YYYY-MM-DD'),
+          ending:moment().format('YYYY-MM-DD')
                   
 
-       
+              
 
     },
     getters:{

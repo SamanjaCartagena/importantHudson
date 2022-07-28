@@ -104,10 +104,8 @@ for(let j=0; j<this.arr[i].dates.length; j++){
      this.fetchGaugeData();
 
      setInterval(()=>{this.fetchGaugeData()},300000)
-     this.$store.state.start=moment().format('YYYY-MM-DD')
-     this.$store.state.end=moment().format('YYYY-MM-DD')
-    console.log("The start date is "+this.$store.state.start)
-    console.log("The end date is "+this.$store.state.end)
+    console.log("The starting is "+this.$store.state.starting)
+    console.log("The ending is "+this.$store.state.ending)
    //  console.table(this.allGaugeData)
     //console.log("The dates passed from props are "+this.daterange)
      this.newArr=Object.entries(this.allGaugeData)
@@ -123,8 +121,8 @@ for(let j=0; j<this.arr[i].dates.length; j++){
      for(let i=0; i<this.arr.length;i++){
     //  console.log(this.arr[i].name)
       this.names.push(this.arr[i].name)
-      this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join(''))
-     // console.log(this.finalNames[i])
+      this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
+     console.log(this.finalNames[i])
      }
 
     // console.log(this.names)

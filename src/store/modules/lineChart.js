@@ -18,8 +18,10 @@ async fetchLineData({commit}){
   
         
       const response= await axios.get(`/api`,{
-        withCredentials:true,
-     
+        params:{
+            startDate:store.state.starting,
+            endDate:store.state.ending
+        }
       })
    // console.table(response.data.apexLineChartData.data)
 
