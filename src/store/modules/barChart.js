@@ -12,6 +12,7 @@ const actions={
 async fetchBarData({commit}){
          
     
+
       
       const response= await axios.get(`/api`,{
          params:{

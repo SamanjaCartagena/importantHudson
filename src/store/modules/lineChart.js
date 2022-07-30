@@ -16,7 +16,6 @@ const getters ={
 const actions={
 async fetchLineData({commit}){
   
-        
       const response= await axios.get(`/api`,{
         params:{
             startDate:store.state.starting,

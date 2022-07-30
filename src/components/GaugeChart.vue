@@ -109,7 +109,6 @@ for(let j=0; j<this.arr[i].dates.length; j++){
     console.log("The starting is "+this.$store.state.starting)
     console.log("The ending is "+this.$store.state.ending)
      //console.log(window.location.pathname);
-     this.$store.state.currentRoute= this.$router.currentRoute.value.path;
      console.log("The store variable is "+this.$store.state.currentRoute)
     console.log(router.currentRoute.value.path);
     console.log("The meta url is "+document.location.pathname)

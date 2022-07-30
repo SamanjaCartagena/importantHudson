@@ -4,20 +4,25 @@ import vue from '@vitejs/plugin-vue'
 import store from './src/store'
 export default defineConfig(({mode})=>{
   const env = loadEnv(mode, process.cwd());
-  var a = store.state.currentRoute;
+
   return{
     plugins: [vue()],
+    build:{
+       outDir:"./wwwroot/app/", sourcemap:true
+    },
   server: {
     
     proxy: {
       "^/api": {
-        target:env.VITE_PORT.concat(`/`+a),
+        target:env.VITE_PORT.concat(''+store.getters.currentRoutes),
         
         changeOrigin: true,
         secure: false,
         withCredentials: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ``),
       },
+      
+      
        
       
      

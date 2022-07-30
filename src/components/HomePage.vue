@@ -1,5 +1,6 @@
 <template>
-  <div class="common-layout">
+ 
+  <div class="common-layout" >
     <el-container>
       <el-header>
         <nav-bar></nav-bar>
@@ -31,12 +32,13 @@ import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
 import BarChart from './BarChart.vue';
+import NotFound from './NotFound.vue'
 export default {
   name:'HomePage',
 components:{
     NavBar,
     DateComponent,
-    GaugeChart, LineChart, BarChart, BreadCrumb
+    GaugeChart, LineChart, BarChart, BreadCrumb, NotFound
 },
 
 } 

@@ -16,7 +16,7 @@ const getters ={
 
 const actions={
    async fetchGaugeData({commit}){
-    
+
       const response= await axios.get(`/api`,{
         params:{
           startDate:store.state.starting,
