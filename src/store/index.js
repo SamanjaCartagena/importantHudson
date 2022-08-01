@@ -16,7 +16,7 @@ const store=createStore({
          
           starting:moment().format('YYYY-MM-DD'),
           ending:moment().format('YYYY-MM-DD'),
-          currentRoute:'bm1'
+          currentRoute:'main'
                   
 
               
@@ -28,13 +28,13 @@ const store=createStore({
         }
     },
     actions:{
-      changeRoute ({ commit }) {
-        commit('changeRoute')
+      changeRoute ({ commit },payload) {
+        commit('changeRoute', payload)
       }
     },
     mutations:{
-      changeRoute (state) {
-        state.currentRoute ='main'
+      changeRoute (state,payload) {
+        state.currentRoute =payload
       }
     },
   
