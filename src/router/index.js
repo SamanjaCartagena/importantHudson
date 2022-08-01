@@ -6,7 +6,7 @@ const router=createRouter({
     history: createWebHistory(),
     routes:[{
         path: '/',
-        redirect:'/main',
+      
         component:HomePage,
         
       
@@ -14,7 +14,7 @@ const router=createRouter({
     },
     
     {
-        path:'/:pageName',
+        path:'/pmdashboard/:pageName',
         name:'pageName',
         component:HomePage,
         

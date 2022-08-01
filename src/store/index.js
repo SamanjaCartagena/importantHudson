@@ -16,7 +16,7 @@ const store=createStore({
          
           starting:moment().format('YYYY-MM-DD'),
           ending:moment().format('YYYY-MM-DD'),
-          currentRoute:'/main'
+          currentRoute:'bm1'
                   
 
               
@@ -28,12 +28,14 @@ const store=createStore({
         }
     },
     actions:{
-
+      changeRoute ({ commit }) {
+        commit('changeRoute')
+      }
     },
     mutations:{
-       changeRoute(state, payload){
-        state.currentRoute = payload
-       }
+      changeRoute (state) {
+        state.currentRoute ='main'
+      }
     },
   
   plugins: [new VuexPersistence().plugin]

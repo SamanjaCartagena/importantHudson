@@ -16,11 +16,12 @@ const getters ={
 const actions={
 async fetchLineData({commit}){
   
-      const response= await axios.get(`/api`,{
+      const response= await axios.get(`/api/${store.state.currentRoute}`,{
         params:{
             startDate:store.state.starting,
             endDate:store.state.ending
         }
+        
       })
    // console.table(response.data.apexLineChartData.data)
 

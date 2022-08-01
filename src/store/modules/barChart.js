@@ -14,11 +14,12 @@ async fetchBarData({commit}){
     
 
       
-      const response= await axios.get(`/api`,{
-         params:{
+      const response= await axios.get(`/api/${store.state.currentRoute}`,{
+          params:{
         startDate:store.state.starting,
         endDate:store.state.ending
       }
+      
     })
     
     
