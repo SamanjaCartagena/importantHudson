@@ -7,7 +7,7 @@
       class="box-card" 
       style="width:250px;height:250px">
     
-          <div class="card-header" @click="change" >
+          <div class="card-header" >
             
                         <span style="font-size:20px; position: relative;
                         top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
@@ -65,12 +65,7 @@ export default {
     return moment(value);
   },
 
-  change(){
-    this.$store.dispatch('changeRoute');
-    console.log("Gauge meter clicked")
-    this.$router.push({path:`/pmdashboard/${this.$store.state.currentRoute}`})
-    console.log("The route is "+this.$store.state.currentRoute)
-  },
+ 
 
   clicked(val){
     console.log('this was clicked '+val)
@@ -101,6 +96,7 @@ for(let j=0; j<this.arr[i].dates.length; j++){
   
   },
    computed:{...mapGetters(['allGaugeData']),
+   
  
 
    },

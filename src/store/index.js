@@ -28,13 +28,25 @@ const store=createStore({
         }
     },
     actions:{
-      changeRoute ({ commit },payload) {
-        commit('changeRoute', payload)
-      }
+     async  changeRoute ({ commit },payload) {
+      return Promise.resolve(commit('changeRoute', payload))
+      },
+      async  changeStartDate ({ commit },payload) {
+        return Promise.resolve(commit('changeStartDate', payload))
+        },
+        async  changeEndDate ({ commit },payload) {
+          return Promise.resolve(commit('changeEndDate', payload))
+          }
     },
     mutations:{
       changeRoute (state,payload) {
         state.currentRoute =payload
+      },
+      changeStartDate (state,payload) {
+        state.starting =payload
+      },
+      changeEndDate(state, payload){
+        state.ending=payload
       }
     },
   
