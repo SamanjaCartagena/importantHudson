@@ -5,7 +5,6 @@
       <el-header>
         <nav-bar></nav-bar>
         <br/>
-        <bread-crumb></bread-crumb>
       </el-header>
       <br/>
     <el-main  style="height:auto;width:100%;position:relative;top:100px;">

@@ -1,7 +1,9 @@
 <template>
 <div>
-  <button @click="selectMain($event.target.value)">main</button>
+<input type="submit" v-model="button1" name="Main" @click="selectedbtn1"/>
+
 <select v-model="selectedValue" @change="selected" >
+  <option disabled value="">Please select one</option>
 <option>main</option>
   <option>PM1</option>
   <option>PM2</option>
@@ -21,6 +23,8 @@ export default{
     return{
       selectedValue:'',
       value:'',
+      value1:'',
+      button1:'main'
     }
   },
   methods:{
@@ -32,12 +36,23 @@ export default{
 
       this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
-      this.$store.dispatch('fetchGaugeData')
-      this.$store.dispatch('fetchLineData')
-      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('gaugeChart/fetchGaugeData')
+      this.$store.dispatch('lineChart/fetchLineData')
+      this.$store.dispatch('barChart/fetchBarData' )
+      
     },
-   selectMain(val){
-    console.log("The value selected is "+val)
+   selectedbtn1(){
+    console.log('btn1 has been selected')
+    this.value1 = this.button1.toLowerCase()
+      console.log("The value selected is "+this.value)
+      this.$router.push({path:`/pmdashboard/${this.value1}`})
+      this.$router.go()
+
+      this.$store.dispatch('changeRoute',this.value1)
+      console.log("the route has been changed to "+this.$store.state.currentRoute)
+      this.$store.dispatch('gaugeChart/fetchGaugeData')
+      this.$store.dispatch('lineChart/fetchLineData')
+      this.$store.dispatch('barChart/fetchBarData')
    }
   }
 }

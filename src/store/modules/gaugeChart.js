@@ -5,8 +5,7 @@ import store from "../../store"
 
  const state ={
    gaugeData:[],
-   startDate:moment(),
-   endDate:moment()
+   
    
 }
 const getters ={

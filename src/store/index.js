@@ -4,6 +4,7 @@ import gaugeChart from './modules/gaugeChart.js';
 import lineChart from './modules/lineChart.js';
 import barChart from './modules/barChart.js';
 import moment from 'moment';
+import createPersistedState from 'vuex-persistedstate'
 
 const store=createStore({
   modules:{
@@ -58,7 +59,11 @@ const store=createStore({
       }
     },
   
-  plugins: [new VuexPersistence().plugin]
+  plugins: [new VuexPersistence().plugin, createPersistedState(
+    {
+      storage: window.sessionStorage,
+    }
+  )]
 
 
 })
