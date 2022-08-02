@@ -25,11 +25,19 @@ const store=createStore({
     getters:{
         currentRoutes(state){
            return state.currentRoute
+        },
+        start(state){
+          return state.starting
+        },
+        end(state){
+          return state.ending
         }
     },
     actions:{
-     async  changeRoute ({ commit },payload) {
-      return Promise.resolve(commit('changeRoute', payload))
+      changeRoute ({ commit },payload) {
+        store.dispatch('fetchGaugeData')
+        console.log('Fetch gauge data has been dispatched')
+      commit('changeRoute', payload)
       },
       async  changeStartDate ({ commit },payload) {
         return Promise.resolve(commit('changeStartDate', payload))

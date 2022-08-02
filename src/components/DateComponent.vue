@@ -19,7 +19,6 @@ import { ref } from 'vue'
 import store from '../store';
 import moment from 'moment';
 import {mapGetters, mapActions} from 'vuex';
-
 const value2 = ref('')
 const shortcuts = [
   {
@@ -46,7 +45,6 @@ const shortcuts = [
               console.log(store.state.starting)
             console.log(store.state.ending)
                               store.dispatch('fetchGaugeData')
-
       return [start, end]
     },
   },
@@ -71,7 +69,6 @@ const shortcuts = [
       start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
       store.dispatch('changeStartDate',moment().subtract(30,'days').format('YYYY-MM-DD'))
       store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-
       console.log(store.state.starting)
             console.log(store.state.ending)
       return [start, end]
@@ -87,7 +84,6 @@ const shortcuts = [
     },
   },
 ]
-
 </script>
 
 <style>

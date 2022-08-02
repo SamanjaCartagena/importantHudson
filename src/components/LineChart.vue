@@ -51,7 +51,6 @@ export default {
    },
   
      created(){
-     this.fetchLineData();
            this.$store.dispatch('fetchLineData')
 
           setInterval(()=>{this.fetchLineData()},300000)

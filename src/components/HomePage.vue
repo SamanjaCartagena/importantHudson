@@ -40,8 +40,5 @@ components:{
     DateComponent,
     GaugeChart, LineChart, BarChart, BreadCrumb, NotFound
 },
-
 } 
-
 </script>
-
