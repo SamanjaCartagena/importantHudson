@@ -105,7 +105,7 @@ for(let j=0; j<this.arr[i].dates.length; j++){
    },
    created(){
   
-     this.fetchGaugeData();
+      this.$store.dispatch('fetchGaugeData')
 
      setInterval(()=>{this.fetchGaugeData()},300000)
     console.log("The starting is "+this.$store.state.starting)

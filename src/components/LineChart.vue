@@ -52,6 +52,8 @@ export default {
   
      created(){
      this.fetchLineData();
+           this.$store.dispatch('fetchLineData')
+
           setInterval(()=>{this.fetchLineData()},300000)
   // console.log(this.dataValue)
       for(let i=0; i<this.allLineData.length; i++){

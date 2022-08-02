@@ -34,8 +34,8 @@ const store=createStore({
       async  changeStartDate ({ commit },payload) {
         return Promise.resolve(commit('changeStartDate', payload))
         },
-        async  changeEndDate ({ commit },payload) {
-          return Promise.resolve(commit('changeEndDate', payload))
+      async  changeEndDate ({ commit },payload) {
+        return Promise.resolve(commit('changeEndDate', payload))
           }
     },
     mutations:{

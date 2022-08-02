@@ -49,7 +49,8 @@ export default {
    },
    created(){
     // console.log("The date range is "+this.daterange)
-     this.fetchBarData();
+          this.$store.dispatch('fetchBarData')
+
            setInterval(()=>{this.fetchBarData()},300000)
       this.arr=Object.entries(this.allBarData)
 
@@ -119,12 +120,12 @@ for(let i=0; i<this.dataName.length; i++){
           
           series: [{
            
-            data:[...this.newArr]
+            data:[...this.newArr],
       }],
           chartOptions: {
             chart: {
               type: 'bar',
-              height: 380
+              height: 380,
             },
             xaxis: {
               type: 'date',
