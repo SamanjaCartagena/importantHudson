@@ -17,8 +17,8 @@ const store=createStore({
          
           starting:moment().format('YYYY-MM-DD'),
           ending:moment().format('YYYY-MM-DD'),
-          currentRoute:'main'
-                  
+          currentRoute:'main',
+          arr:[]                  
 
               
 
@@ -32,11 +32,13 @@ const store=createStore({
         },
         end(state){
           return state.ending
+        },
+        arr(state){
+          return state.arr
         }
     },
     actions:{
       changeRoute ({ commit },payload) {
-        store.dispatch('fetchGaugeData')
         console.log('Fetch gauge data has been dispatched')
       commit('changeRoute', payload)
       },
@@ -45,7 +47,10 @@ const store=createStore({
         },
       async  changeEndDate ({ commit },payload) {
         return Promise.resolve(commit('changeEndDate', payload))
-          }
+          },
+          async  changeArr ({ commit },payload) {
+            return Promise.resolve(commit('changeArr', payload))
+              }
     },
     mutations:{
       changeRoute (state,payload) {
@@ -56,14 +61,15 @@ const store=createStore({
       },
       changeEndDate(state, payload){
         state.ending=payload
-      }
+      },
+      changeArr(state, payload){
+        state.arr=payload
+      },
+      
+      
     },
   
-  plugins: [new VuexPersistence().plugin, createPersistedState(
-    {
-      storage: window.sessionStorage,
-    }
-  )]
+  plugins: [new VuexPersistence().plugin, createPersistedState()]
 
 
 })

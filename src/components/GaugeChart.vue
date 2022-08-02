@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import path from 'path'
 import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
 import router from '../../src/router'
@@ -104,17 +103,13 @@ for(let j=0; j<this.arr[i].dates.length; j++){
  
    },
    created(){
-  
+       
       this.$store.dispatch('fetchGaugeData')
 
      setInterval(()=>{this.fetchGaugeData()},300000)
-    console.log("The starting is "+this.$store.state.starting)
-    console.log("The ending is "+this.$store.state.ending)
-     //console.log(window.location.pathname);
-     console.log("The store variable is "+this.$store.state.currentRoute)
-    console.log(router.currentRoute.value.path);
-    console.log("The meta url is "+document.location.pathname)
-   //  console.table(this.allGaugeData)
+
+   console.table("The data for all gauge data is "+this.allGaugeData)
+console.log(router.currentRoute.value.path);
     //console.log("The dates passed from props are "+this.daterange)
      this.newArr=Object.entries(this.allGaugeData)
      //console.log("The new array for gauge is from this.arr is")
@@ -136,10 +131,8 @@ for(let j=0; j<this.arr[i].dates.length; j++){
     // console.log(this.names)
     // console.log("The names are ")
      for(let i=0; i<this.arr.length; i++){
-   
-     
+        console.log(this.arr[i])
 for(let j=0; j<this.arr[i].dates.length; j++){
-
  
 }
 
@@ -163,7 +156,7 @@ for(let i=0; i<this.arr.length; i++){
     
      }
 
-     
+
     // console.log(this.lastValues)
      for(let i=0; i<this.lastValues.length; i++){
       this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
@@ -197,6 +190,7 @@ for(let i=0; i<this.arr.length; i++){
    //  console.log(this.finalDates)
     // console.table(this.newArr)
      //console.log(this.allGaugeData)
+
      this.radialChartOptions={
          
            series:[],

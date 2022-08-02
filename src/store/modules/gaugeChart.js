@@ -21,7 +21,6 @@ const actions={
           startDate:store.getters.start,
           endDate:store.getters.end
         }
-        
       }, )
   //  console.log('fetching gauge data two million times')
     console.table(response.data.apexGaugeChartData)

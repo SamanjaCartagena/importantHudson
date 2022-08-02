@@ -9,6 +9,11 @@
   <option>PM2</option>
   <option>PM3</option>
   <option>PM4</option>
+    <option>BM5</option>
+  <option>BM1</option>
+  <option>LM2</option>
+  <option>CM3</option>
+
 </select>
 
 
@@ -36,9 +41,10 @@ export default{
 
       this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
-      this.$store.dispatch('gaugeChart/fetchGaugeData')
-      this.$store.dispatch('lineChart/fetchLineData')
-      this.$store.dispatch('barChart/fetchBarData' )
+      this.$store.dispatch('fetchGaugeData',{root:true})
+      this.$store.dispatch('fetchLineData',{root:true})
+      this.$store.dispatch('fetchBarData' ,{root:true})
+      
       
     },
    selectedbtn1(){
@@ -49,10 +55,9 @@ export default{
       this.$router.go()
 
       this.$store.dispatch('changeRoute',this.value1)
-      console.log("the route has been changed to "+this.$store.state.currentRoute)
-      this.$store.dispatch('gaugeChart/fetchGaugeData')
-      this.$store.dispatch('lineChart/fetchLineData')
-      this.$store.dispatch('barChart/fetchBarData')
+      this.$store.dispatch('fetchGaugeData',{root:true})
+      this.$store.dispatch('fetchLineData')
+      this.$store.dispatch('fetchBarData')
    }
   }
 }
