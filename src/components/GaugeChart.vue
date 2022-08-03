@@ -3,7 +3,7 @@
                    <el-card class="box-card" style="width:100%">
 
     <el-space :fill="fill" wrap>
-      <el-card v-for="(item, index) in arr" :key="index" 
+      <el-card v-for="(item, index) in allGaugeData" :key="index" 
       class="box-card" 
       style="width:250px;height:250px">
     
@@ -11,16 +11,16 @@
             
                         <span style="font-size:20px; position: relative;
                         top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
-
+                      {{item.value[item.value.length-1]}}
             <apexchart id="gaugeChartApex" 
           
         type="radialBar" width="100%" height="250px" 
         :options="this.radialChartOptions.chartOptions"
           
-         :series="[this.percent[index]]" ></apexchart>
+         :series="[Math.trunc((item.value[item.value.length-1])*100/400).toFixed()]" ></apexchart>
          <center>
-         <span v-if="this.percent[index]>100" style="color:#FD354A">{{Math.trunc(this.lastValues[index])}}</span>
-          <span v-else style="color:#009AF9">{{Math.trunc(this.lastValues[index])}}</span>
+         <span v-if="Math.trunc((item.value[item.value.length-1])*100/400).toFixed()>100" style="color:#FD354A">{{Math.trunc(item.value[item.value.length-1])}}</span>
+          <span v-else style="color:#009AF9">{{Math.trunc(item.value[item.value.length-1])}}</span>
          </center>
           </div>
         
@@ -122,7 +122,7 @@ console.log(router.currentRoute.value.path);
     // console.log("The arr values are ")
      //console.table(this.arr)
      for(let i=0; i<this.arr.length;i++){
-    //  console.log(this.arr[i].name)
+      console.log(this.arr[i].name)
       this.names.push(this.arr[i].name)
       this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
      console.log(this.finalNames[i])
@@ -143,13 +143,9 @@ for(let i=0;i<this.finalDates.lenth;i++){
      }
         
 for(let i=0; i<this.arr.length; i++){
- // console.log(moment(this.arr[i].dates).format('DD-MM-YYYY'))
-}
- //    this.arr[i].dates.forEach((element)=> console.log(this.arr[i].dates))
-     
-  //   console.log("The date is from props")
 
-//     console.log(moment(this.dateValue).format('DD-MM-YYYY'))
+}
+ 
      for(let i=0; i<this.arr.length; i++){
     Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
     

@@ -27,8 +27,6 @@ const state ={
     })
     
   // console.log("Bar chart data looks like")
- // console.log(`/api/${state.query}`)
-  //  console.table(response.data.apexBarChartData)
 
  //   console.log(response.data.apexBarChartData)
 
