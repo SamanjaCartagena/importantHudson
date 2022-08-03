@@ -16,7 +16,6 @@
 
 </select>
 
-
 {{selectedValue}}
 </div>
 </template>
@@ -35,27 +34,29 @@ export default{
   methods:{
     selected(){
       this.value = this.selectedValue.toLowerCase()
+            this.$store.dispatch('changeRoute',this.value)
+
       console.log("The value selected is "+this.value)
       this.$router.push({path:`/pmdashboard/${this.value}`})
-      this.$router.go()
-
-      this.$store.dispatch('changeRoute',this.value)
+     
+     // this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
-      this.$store.dispatch('fetchGaugeData',{root:true})
-      this.$store.dispatch('fetchLineData',{root:true})
-      this.$store.dispatch('fetchBarData' ,{root:true})
+      this.$store.dispatch('fetchGaugeData')
+      this.$store.dispatch('fetchLineData')
+      this.$store.dispatch('fetchBarData')
+      this.$router.go()
+      this.$router.go()
+      this.$router.go()
       
       
     },
    selectedbtn1(){
-    console.log('btn1 has been selected')
-    this.value1 = this.button1.toLowerCase()
-      console.log("The value selected is "+this.value)
-      this.$router.push({path:`/pmdashboard/${this.value1}`})
+   
+      this.$router.push({path:`/pmdashboard/${main}`})
       this.$router.go()
 
-      this.$store.dispatch('changeRoute',this.value1)
-      this.$store.dispatch('fetchGaugeData',{root:true})
+      this.$store.dispatch('changeRoute','main')
+      this.$store.dispatch('fetchGaugeData')
       this.$store.dispatch('fetchLineData')
       this.$store.dispatch('fetchBarData')
    }

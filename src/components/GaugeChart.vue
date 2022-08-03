@@ -191,11 +191,11 @@ for(let i=0; i<this.arr.length; i++){
     // console.table(this.newArr)
      //console.log(this.allGaugeData)
 
-     this.radialChartOptions={
+  this.radialChartOptions={
          
            series:[],
            
-          chartOptions: {
+       chartOptions:{
             chart: {
               type: 'radialBar',
               height:250,

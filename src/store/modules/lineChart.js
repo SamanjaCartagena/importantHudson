@@ -1,7 +1,7 @@
 import axios from "axios"
 import moment from 'moment'
 import store from '../../store'
-const state ={
+ const state ={
    lineData:[],
    lineDates:[],
  
@@ -14,26 +14,31 @@ const getters ={
 
 }
 const actions={
-async fetchLineData({commit}){
-  
-    const response= await axios.get(`/api/${store.getters.currentRoutes}`,{
+ fetchBarData({commit}){
+         
+    axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
         startDate:store.getters.start,
         endDate:store.getters.end
       }
-        
-      })
-   // console.table(response.data.apexLineChartData.data)
-
+    }
+    ).then(response=>{
     commit('setLineDates',response.data.apexLineChartData.dates)
-   commit('setLineData', response.data.apexLineChartData.data)
+        commit('setLineData', response.data.apexLineChartData.data)
 
+    })
+    
+  // console.log("Bar chart data looks like")
+ // console.log(`/api/${state.query}`)
+  //  console.table(response.data.apexBarChartData)
 
-},
+ //   console.log(response.data.apexBarChartData)
 
+}, 
 
+  
 }
-const mutations={
+ const mutations={
     setLineData:(state,lineData) => (state.lineData = lineData),
     setLineDates:(state, lineDates)=>(state.lineDates = lineDates),
 
