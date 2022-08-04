@@ -9,13 +9,13 @@
     
           <div class="card-header" >
             
-                        <span style="font-size:20px; position: relative;
-                        top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
-                      {{item.value[item.value.length-1]}}
+               <span style="font-size:20px; position: relative;
+                top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
+            {{item.value[item.value.length-1]}}
             <apexchart id="gaugeChartApex" 
           
-        type="radialBar" width="100%" height="250px" 
-        :options="this.radialChartOptions.chartOptions"
+          type="radialBar" width="100%" height="250px" 
+          :options="this.radialChartOptions.chartOptions"
           
          :series="[Math.trunc((item.value[item.value.length-1])*100/400).toFixed()]" ></apexchart>
          <center>

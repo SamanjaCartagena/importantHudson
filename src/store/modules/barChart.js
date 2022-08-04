@@ -1,12 +1,16 @@
 import axios from "axios"
-import moment from "moment"
 import store from '../../store'
  const state ={
    barData:[],
+   names:[],
+   values:[]
   
 }
 const getters ={
     allBarData:(state) => state.barData,
+    allNames:(state) => state.names,
+    allValues:(state) => state.values
+    
 }
 const actions={
  fetchBarData({commit}){
@@ -18,13 +22,28 @@ const actions={
       }
     }
     ).then(response=>{
-    commit('setBarData', response.data.apexBarChartData)
+                  console.log("The bar chart data is")
+         var data= Object.entries(response.data.apexBarChartData)     
+         data.sort()
+         var newNames=[];
+          var values=[];
+for(let i=0; i<data.length; i++){
+   console.log(data[i][1])
+   newNames.push(data[i][1].name.slice(6,11).split('_').join(' '))
+  values.push((data[i][1].value[data[i][1].value.length-1]) - (data[i][1].value[0]))
+}
+console.log(values)
+
+         commit('setBarData', data)
+      
+       commit('setName',newNames)
+       commit('setValues',values)
 
     })
     
   // console.log("Bar chart data looks like")
  // console.log(`/api/${state.query}`)
-  //  console.table(response.data.apexBarChartData)
+
 
  //   console.log(response.data.apexBarChartData)
 
@@ -34,6 +53,9 @@ const actions={
 }
 const mutations={
     setBarData:(state,barData) => (state.barData = barData),
+        setName:(state,newNames) => (state.names = newNames),
+                setValues:(state,values) => (state.values = values),
+
 
 }
 
