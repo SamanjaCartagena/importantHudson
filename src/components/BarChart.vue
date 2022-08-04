@@ -1,9 +1,9 @@
 <template>
  
     <div >
-                         <el-card class="box-card" style="width:100%">
+         <el-card class="box-card" style="width:100%">
              
-         <apexchart  id="barChartData" type="bar" height="380" :options="this.barChart.chartOptions" :series="this.barChart.series">
+         <apexchart  id="barChartData" type="bar" height="380" :options="this.chartOptions"  :series="series">
 
          </apexchart> 
       
@@ -19,7 +19,6 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
-
 import moment from 'moment'
 export default {
   data(){
@@ -32,42 +31,15 @@ export default {
       newNames:[],
       finalValues:[],
       datesNow:[],
-      newDates:[]
-      
-    }
-  },
-   methods:{
-    ...mapActions(['fetchBarData','calcData']),
-   
-    
-  },
-   computed:{...mapGetters(['allNames','allValues']),
-   values(){
-    return this.$store.state.values
-   },
-   names(){
-    return this.$store.state.names
-   }
-
-   },
-   created(){
-    // console.log("The date range is "+this.daterange)
-          this.$store.dispatch('fetchBarData')
-                   // this.$store.dispatch('calcData')
+      newDates:[],
 
 
-           setInterval(()=>{this.fetchBarData()},300000)
-   
-      //    console.log("The new bar data is")
-    //  console.log(this.allBarData)
-
-      this.barChart={
       
         
           
           series: [{
            
-            data:[...this.allValues],
+            data:[...this.$store.getters.allValues],
       }],
           chartOptions: {
             chart: {
@@ -78,7 +50,7 @@ export default {
               type: 'date',
               labels:{},
               //categories:[...this.newNames],
-             categories:[...this.allNames]
+             categories:[...this.$store.getters.allNames]
             
             },
            
@@ -88,15 +60,34 @@ export default {
                 color:'#7f7370'
             },
             
-          
-   }
-      }
-   }
+          }
+   
+      
+    }
+    
+  },
+   methods:{
+    ...mapActions(['fetchBarData']),
+  },
+   computed:{...mapGetters(['allNames','allValues','allBarData']),
+   
+   },
+   
+   created(){
+    // console.log("The date range is "+this.daterange)
+          this.$store.dispatch('fetchBarData')
+                   // this.$store.dispatch('calcData')
+           setInterval(()=>{this.fetchBarData()},300000)
 
+           
+      //    console.log("The new bar data is")
+    //  console.log(this.allBarData)
+  
+   },
+   mounted(){
+   }
 }
 </script>
 
 <style>
-
-
 </style>

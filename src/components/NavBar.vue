@@ -44,7 +44,6 @@ export default{
       this.$store.dispatch('fetchGaugeData')
       this.$store.dispatch('fetchLineData')
       this.$store.dispatch('fetchBarData')
-            this.$store.dispatch('calcData')
 
       
       
