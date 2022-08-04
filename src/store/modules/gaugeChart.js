@@ -22,6 +22,7 @@ const state ={
       }
     }
     ).then(response=>{
+    
     commit('setGaugeData', response.data.apexGaugeChartData)
 
     })

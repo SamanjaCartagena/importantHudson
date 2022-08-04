@@ -13,7 +13,7 @@ const getters ={
     
 }
 const actions={
- fetchBarData({commit}){
+ fetchBarData({commit,dispatch}){
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
@@ -23,9 +23,18 @@ const actions={
     }
     ).then(response=>{
                   console.log("The bar chart data is")
-         var data= Object.entries(response.data.apexBarChartData)     
+                  
+         var data= Object.entries(response.data.apexBarChartData)    
          data.sort()
-         var newNames=[];
+           dispatch('calcData',data,{root:true})
+         return Promise.resolve(commit('setBarData', data))
+      
+       
+    })
+},
+calcData({commit},data){
+ console.log(data)
+ var newNames=[];
           var values=[];
 for(let i=0; i<data.length; i++){
    console.log(data[i][1])
@@ -33,23 +42,12 @@ for(let i=0; i<data.length; i++){
   values.push((data[i][1].value[data[i][1].value.length-1]) - (data[i][1].value[0]))
 }
 console.log(values)
+           commit('setValues',values)
 
-         commit('setBarData', data)
+  return Promise.resolve(commit('setName', newNames))
       
-       commit('setName',newNames)
-       commit('setValues',values)
 
-    })
-    
-  // console.log("Bar chart data looks like")
- // console.log(`/api/${state.query}`)
-
-
- //   console.log(response.data.apexBarChartData)
-
-}, 
-
-  
+}
 }
 const mutations={
     setBarData:(state,barData) => (state.barData = barData),

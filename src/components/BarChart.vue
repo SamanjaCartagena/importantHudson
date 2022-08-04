@@ -22,7 +22,6 @@ import {mapGetters, mapActions} from 'vuex';
 
 import moment from 'moment'
 export default {
-   props:['daterange'],
   data(){
     return{
       moment:moment,
@@ -38,16 +37,24 @@ export default {
     }
   },
    methods:{
-    ...mapActions(['fetchBarData']),
+    ...mapActions(['fetchBarData','calcData']),
    
     
   },
-   computed:{...mapGetters(['allBarData','allNames','allValues'])
+   computed:{...mapGetters(['allNames','allValues']),
+   values(){
+    return this.$store.state.values
+   },
+   names(){
+    return this.$store.state.names
+   }
 
    },
    created(){
     // console.log("The date range is "+this.daterange)
           this.$store.dispatch('fetchBarData')
+                   // this.$store.dispatch('calcData')
+
 
            setInterval(()=>{this.fetchBarData()},300000)
    
