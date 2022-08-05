@@ -46,8 +46,7 @@ const shortcuts = [
             store.dispatch('changeStartDate',moment().subtract(1,'days').format('YYYY-MM-DD'))
             
                   store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-              console.log(store.state.starting)
-            console.log(store.state.ending)
+            
                               store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineChart')
                               store.dispatch('fetchBarData')
@@ -65,8 +64,7 @@ const shortcuts = [
          store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineChart')
                               store.dispatch('fetchBarData')
-      console.log(store.state.starting)
-            console.log(store.state.ending)
+      
       return [start, end]
     },
   },

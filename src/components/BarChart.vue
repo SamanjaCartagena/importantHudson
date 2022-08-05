@@ -1,12 +1,13 @@
 <template>
  
     <div >
-         <el-card class="box-card" style="width:100%">
-             
+         <el-card class="box-card" style="width:100%">\
+          <a href="">
          <apexchart  id="barChartData" type="bar" height="380" :options="this.chartOptions"  :series="series">
 
          </apexchart> 
-      
+
+          </a>
                          </el-card>
   </div>
    
@@ -32,11 +33,9 @@ export default {
       finalValues:[],
       datesNow:[],
       newDates:[],
-
-
       
         
-          
+       
           series: [{
            
             data:[...this.$store.getters.allValues],
@@ -62,7 +61,7 @@ export default {
             
           }
    
-      
+          
     }
     
   },
@@ -78,7 +77,6 @@ export default {
           this.$store.dispatch('fetchBarData')
                    // this.$store.dispatch('calcData')
            setInterval(()=>{this.fetchBarData()},300000)
-
            
       //    console.log("The new bar data is")
     //  console.log(this.allBarData)

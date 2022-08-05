@@ -41,6 +41,8 @@ export default{
      
      // this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
+            this.$store.dispatch('fetchBarData')
+
       this.$store.dispatch('fetchGaugeData')
       this.$store.dispatch('fetchLineData')
       this.$store.dispatch('fetchBarData')
