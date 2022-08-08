@@ -17,8 +17,8 @@ const actions={
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
-        startDate:store.getters.start,
-        endDate:store.getters.end
+        startDate:store.state.starting,
+        endDate:store.state.ending
       }
     }
     ).then(response=>{
@@ -57,6 +57,9 @@ for(let i=0; i<data.length; i++){
 
 }
   return Promise.resolve(commit('setValues', values))
+},
+renderChart({commit}){
+  
 }
 }
 const mutations={

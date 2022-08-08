@@ -22,6 +22,7 @@
 <script>
 import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
+
 export default{
   data(){
     return{
@@ -41,11 +42,13 @@ export default{
      
      // this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
-            this.$store.dispatch('fetchBarData')
-
-      this.$store.dispatch('fetchGaugeData')
-      this.$store.dispatch('fetchLineData')
       this.$store.dispatch('fetchBarData')
+       
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
 
       
       
@@ -54,13 +57,14 @@ export default{
    selectedbtn1(){
    
       this.$router.push({path:`/pmdashboard/${main}`})
-      this.$router.go()
 
       this.$store.dispatch('changeRoute','main')
       this.$store.dispatch('fetchGaugeData')
       this.$store.dispatch('fetchLineData')
       this.$store.dispatch('fetchBarData')
    }
+  }, mounted(){
+        
   }
 }
 </script>

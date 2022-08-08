@@ -1,5 +1,4 @@
 import axios from "axios"
-import moment from "moment"
 import store from "../../store"
 
 const state ={
@@ -17,8 +16,8 @@ const state ={
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
-        startDate:store.getters.start,
-        endDate:store.getters.end
+        startDate:store.state.starting,
+        endDate:store.state.ending
       }
     }
     ).then(response=>{

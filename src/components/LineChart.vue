@@ -54,6 +54,7 @@ export default {
            this.$store.dispatch('fetchLineData')
 
           setInterval(()=>{this.fetchLineData()},300000)
+
   // console.log(this.dataValue)
       for(let i=0; i<this.allLineData.length; i++){
       //  console.table(this.allLineData[i])
@@ -183,6 +184,10 @@ this.lineCharts={
             },
           }
    }
+},
+mounted(){
+        this.$store.dispatch('fetchLineData')
+
 }
 
 

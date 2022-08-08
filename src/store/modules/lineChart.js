@@ -1,5 +1,4 @@
 import axios from "axios"
-import moment from 'moment'
 import store from '../../store'
  const state ={
    lineData:[],
@@ -14,7 +13,7 @@ const getters ={
 
 }
 const actions={
- fetchBarData({commit}){
+ fetchLineData({commit}){
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{

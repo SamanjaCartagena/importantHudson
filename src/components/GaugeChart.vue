@@ -41,8 +41,8 @@ import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
 import router from '../../src/router'
 import HomePage from '../components/HomePage.vue';
+import AppVue from '../App.vue';
 export default {
-  props:['dateValue', 'daterange','crumbs'],
   data(){
    return{
      newArr:[],
@@ -100,12 +100,15 @@ for(let j=0; j<this.arr[i].dates.length; j++){
 
    },
    mounted(){
- 
+        this.$store.dispatch('fetchGaugeData')
+
    },
+
+   
    created(){
        
       this.$store.dispatch('fetchGaugeData')
-
+      
      setInterval(()=>{this.fetchGaugeData()},300000)
 
    console.table("The data for all gauge data is "+this.allGaugeData)

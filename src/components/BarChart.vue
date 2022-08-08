@@ -1,9 +1,9 @@
 <template>
  
     <div >
-         <el-card class="box-card" style="width:100%">\
+         <el-card class="box-card" style="width:100%">
           <a href="">
-         <apexchart  id="barChartData" type="bar" height="380" :options="this.chartOptions"  :series="series">
+         <apexchart ref="demoChart" id="barChart" type="bar" height="380" :options="chartOptions"  :series="series">
 
          </apexchart> 
 
@@ -42,6 +42,7 @@ export default {
       }],
           chartOptions: {
             chart: {
+              id:'barChart',
               type: 'bar',
               height: 380,
             },
@@ -61,12 +62,14 @@ export default {
             
           }
    
-          
+       
     }
     
   },
    methods:{
     ...mapActions(['fetchBarData']),
+   
+    
   },
    computed:{...mapGetters(['allNames','allValues','allBarData']),
    
@@ -74,15 +77,15 @@ export default {
    
    created(){
     // console.log("The date range is "+this.daterange)
-          this.$store.dispatch('fetchBarData')
+        this.$store.dispatch('fetchBarData')
                    // this.$store.dispatch('calcData')
            setInterval(()=>{this.fetchBarData()},300000)
-           
-      //    console.log("The new bar data is")
-    //  console.log(this.allBarData)
-  
-   },
+          
+                
+    },
    mounted(){
+               this.$store.dispatch('fetchBarData')
+
    }
 }
 </script>
