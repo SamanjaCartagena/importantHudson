@@ -8,7 +8,8 @@
       </el-header>
       <br/>
     <el-main  style="height:auto;width:100%;position:relative;top:100px;">
-    {{this.$route.params.pageName}}
+    <h3 style="position:relative; left:25px;">{{page}} Dashboard</h3>
+
       <date-component style="float: right;"></date-component>
       <br/>
       <br/>
@@ -39,5 +40,12 @@ components:{
     DateComponent,
     GaugeChart, LineChart, BarChart, BreadCrumb, NotFound
 },
+computed:{
+  page(){
+    return this.$route.params.pageName.toUpperCase()
+    },
+   
+  }
+
 } 
 </script>

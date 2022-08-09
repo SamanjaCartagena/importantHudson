@@ -30,6 +30,11 @@ const shortcuts = [
                   store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
                   console.log("Start is "+start)
                   console.log("End is "+end)
+                   setTimeout(()=>{  
+        store.dispatch('changeStartDate',start),
+              store.dispatch('changeEndDate',end)
+
+},1000)
                      store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineData')
                               store.dispatch('fetchBarData')
@@ -43,13 +48,21 @@ const shortcuts = [
       const end =moment().format('YYYY-MM-DD')
       const start = moment().subtract(1,'days').format('YYYY-MM-DD')
     //  start.setTime(start.getTime())
-            store.dispatch('changeStartDate',moment().subtract(1,'days').format('YYYY-MM-DD'))
+            store.dispatch('changeStartDate',start)
             
-                  store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-            
-                              store.dispatch('fetchGaugeData')
+                  store.dispatch('changeEndDate',end)
+             setTimeout(()=>{  
+        store.dispatch('changeStartDate',start),
+              store.dispatch('changeEndDate',end), 
+                store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineData')
                               store.dispatch('fetchBarData')
+               store.dispatch('fetchGaugeData')
+                              store.dispatch('fetchLineData')
+                              store.dispatch('fetchBarData')
+
+},1000)
+                            
                         
       return [start, end]
     },
@@ -62,9 +75,18 @@ const shortcuts = [
      // start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
       store.dispatch('changeStartDate',start)
       store.dispatch('changeEndDate', end)
-         store.dispatch('fetchGaugeData')
+        store.dispatch('fetchGaugeData')
                 store.dispatch('fetchLineData')
                 store.dispatch('fetchBarData')
+       setTimeout(()=>{  
+        store.dispatch('changeStartDate',start),
+              store.dispatch('changeEndDate',end),
+                store.dispatch('fetchGaugeData')
+                              store.dispatch('fetchLineData')
+                              store.dispatch('fetchBarData')
+
+},1000)
+       
                 
       
       return [start, end]
@@ -78,6 +100,14 @@ const shortcuts = [
      // start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
       store.dispatch('changeStartDate',start)
       store.dispatch('changeEndDate',end)
+      setTimeout(()=>{  
+        store.dispatch('changeStartDate',start),
+              store.dispatch('changeEndDate',end),
+                store.dispatch('fetchGaugeData')
+                              store.dispatch('fetchLineData')
+                              store.dispatch('fetchBarData')
+
+},1000)
          store.dispatch('fetchGaugeData')
            store.dispatch('fetchLineData')
            store.dispatch('fetchBarData')

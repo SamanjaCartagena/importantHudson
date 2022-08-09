@@ -5,13 +5,12 @@
     <el-space :fill="fill" wrap>
       <el-card v-for="(item, index) in allGaugeData" :key="index" 
       class="box-card" 
-      style="width:250px;height:250px">
-    
-          <div class="card-header" >
+      style="width:100%;height:250px">
+      {{}}
+          <div class="card-header" >              
             
-               <span style="font-size:20px; position: relative;
+            <span style="font-size:20px; position: relative;
                 top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
-            {{item.value[item.value.length-1]}}
             <apexchart id="gaugeChartApex" 
           
           type="radialBar" width="100%" height="250px" 
@@ -19,7 +18,7 @@
           
          :series="[Math.trunc((item.value[item.value.length-1])*100/400).toFixed()]" ></apexchart>
          <center>
-         <span v-if="Math.trunc((item.value[item.value.length-1])*100/400).toFixed()>100" style="color:#FD354A">{{Math.trunc(item.value[item.value.length-1])}}</span>
+         <span v-if="Math.trunc((item.value[item.value.length-1])*100/400).toFixed()>100" style="color:#FD354A;">{{Math.trunc(item.value[item.value.length-1])}}</span>
           <span v-else style="color:#009AF9">{{Math.trunc(item.value[item.value.length-1])}}</span>
          </center>
           </div>
@@ -247,8 +246,8 @@ for(let i=0; i<this.arr.length; i++){
                     
                     fontSize: "15px",
                     show: true,
-                     offsetY: -50
-                   
+                     offsetY: -30, 
+                     
                   },
                   total:{
                     formatter:function(){
@@ -280,7 +279,7 @@ for(let i=0; i<this.arr.length; i++){
             },
             labels:[],
            colors: [function({ value }) {
-  if (value > 100) {
+             if (value > 100) {
       return "#FD354A"
   } else {
       return "#009AF9"

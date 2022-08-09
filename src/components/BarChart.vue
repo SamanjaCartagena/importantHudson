@@ -2,12 +2,12 @@
  
     <div >
          <el-card class="box-card" style="width:100%">
-          <a href="">
-         <apexchart ref="demoChart" id="barChart" type="bar" height="380" :options="this.chartOptions"  :series="this.series">
-
+         <apexchart ref="demoChart" id="barChart" type="bar" height="380" :options="this.chartOptions"  :series="this.series"
+         @click="selected"
+         >
+          
          </apexchart> 
 
-          </a>
                          </el-card>
   </div>
    
@@ -20,11 +20,11 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
-import moment from 'moment'
+
+
 export default {
   data(){
     return{
-      moment:moment,
       arr:[],
       dataValue:[],
       dataName:[],
@@ -73,8 +73,10 @@ export default {
         this.updateChart()
       },3000)
     },
+    selectedBar(){
+     console.log("The bar chart clicked is "+this.$refs.demoChart.value)
+    },
     updateChart(){
-      console.log('data is being pulled')
         
          
           this.series=[{
@@ -86,10 +88,23 @@ export default {
               id:'barChart',
               type: 'bar',
               height: 380,
+              dataLabels:{
+                
+      fontSize: '40px',
+      
+              
             },
+            
             xaxis: {
               type: 'date',
-              labels:{},
+               style: {
+      fontSize: '100px',
+      fontFamily: 'Helvetica, Arial, sans-serif',
+      fontWeight: 'bold',
+      colors: undefined
+  },
+              labels:{
+              },
               //categories:[...this.newNames],
              categories:[...this.$store.getters.allNames]
             

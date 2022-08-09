@@ -1,6 +1,5 @@
 <template>
 <div>
-<input type="submit" v-model="button1" name="Main" @click="selectedbtn1"/>
 
 <select v-model="selectedValue" @change="selected" >
   <option disabled value="">Please select one</option>
@@ -38,7 +37,7 @@ export default{
       this.value = this.selectedValue.toLowerCase()
       
             this.$store.dispatch('changeRoute',this.value)
-            setInterval(()=>{this.$store.dispatch('changeRoute',this.value)},3000)
+            setInterval(()=>{this.$store.dispatch('changeRoute',this.value)},1000)
       console.log("The value selected is "+this.value)
       this.$router.push({path:`/pmdashboard/${this.value}`})
      
