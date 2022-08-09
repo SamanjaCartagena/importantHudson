@@ -3,7 +3,7 @@
     <div >
          <el-card class="box-card" style="width:100%">
           <a href="">
-         <apexchart ref="demoChart" id="barChart" type="bar" height="380" :options="chartOptions"  :series="series">
+         <apexchart ref="demoChart" id="barChart" type="bar" height="380" :options="this.chartOptions"  :series="this.series">
 
          </apexchart> 
 
@@ -68,6 +68,42 @@ export default {
   },
    methods:{
     ...mapActions(['fetchBarData']),
+    setBarChart(){
+      setInterval(()=>{
+        this.updateChart()
+      },3000)
+    },
+    updateChart(){
+      console.log('data is being pulled')
+        
+         
+          this.series=[{
+           
+            data:[...this.$store.getters.allValues],
+      }],
+        this.chartOptions={
+              chart: {
+              id:'barChart',
+              type: 'bar',
+              height: 380,
+            },
+            xaxis: {
+              type: 'date',
+              labels:{},
+              //categories:[...this.newNames],
+             categories:[...this.$store.getters.allNames]
+            
+            },
+           
+           
+            title: {
+                text: 'Energy (kW)',
+                color:'#7f7370'
+            },
+        }
+          
+      
+    }
    
     
   },
@@ -85,6 +121,7 @@ export default {
     },
    mounted(){
                this.$store.dispatch('fetchBarData')
+                      this.setBarChart();
 
    }
 }

@@ -33,6 +33,7 @@ const shortcuts = [
                      store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineData')
                               store.dispatch('fetchBarData')
+
       return [start, end]
     },
   },
@@ -49,6 +50,7 @@ const shortcuts = [
                               store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineData')
                               store.dispatch('fetchBarData')
+                        
       return [start, end]
     },
   },
@@ -61,8 +63,9 @@ const shortcuts = [
       store.dispatch('changeStartDate',start)
       store.dispatch('changeEndDate', end)
          store.dispatch('fetchGaugeData')
-                              store.dispatch('fetchLineData')
-                              store.dispatch('fetchBarData')
+                store.dispatch('fetchLineData')
+                store.dispatch('fetchBarData')
+                
       
       return [start, end]
     },

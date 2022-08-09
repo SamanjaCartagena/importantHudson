@@ -32,18 +32,22 @@ export default{
       button1:'main'
     }
   },
+    
   methods:{
     selected(){
       this.value = this.selectedValue.toLowerCase()
+      
             this.$store.dispatch('changeRoute',this.value)
-
+            setInterval(()=>{this.$store.dispatch('changeRoute',this.value)},3000)
       console.log("The value selected is "+this.value)
       this.$router.push({path:`/pmdashboard/${this.value}`})
      
      // this.$store.dispatch('changeRoute',this.value)
       console.log("the route has been changed to "+this.$store.state.currentRoute)
       this.$store.dispatch('fetchBarData')
-       
+      this.$store.dispatch('changeStartDate',this.$store.getters.start)
+            this.$store.dispatch('changeEndDate',this.$store.getters.end)
+
       this.$store.dispatch('fetchGaugeData')
       
       
@@ -64,7 +68,14 @@ export default{
       this.$store.dispatch('fetchBarData')
    }
   }, mounted(){
-        
+         this.$store.dispatch('fetchBarData')
+       
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
   }
 }
 </script>

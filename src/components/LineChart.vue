@@ -21,7 +21,6 @@ import {mapGetters, mapActions} from 'vuex';
 //import dateFormat from "dateformat";
 import moment from 'moment';
 export default {
-  props:['dateValue','daterange'],
   data(){
     return{
             moment:moment,
@@ -42,9 +41,7 @@ export default {
        this.refValue=this.$refs.textInside.value;
     }
    
-
   },
-
    computed:{...mapGetters(['allLineData', 'allLineDates']),
      
   
@@ -52,26 +49,21 @@ export default {
   
      created(){
            this.$store.dispatch('fetchLineData')
-
           setInterval(()=>{this.fetchLineData()},300000)
-
   // console.log(this.dataValue)
       for(let i=0; i<this.allLineData.length; i++){
-      //  console.table(this.allLineData[i])
-     //   console.log(this.allLineData[i].name)
-     //   console.log(this.allLineData[i].data)
+  
         this.names.push(this.allLineData[i])
         this.data.push(this.allLineData[i].data)
+        console.log("The data is "+this.data)
       }
        for(let i=0; i<this.allLineDates.length; i++){
          this.dates.push(this.allLineDates[i])
          
        }
     //    console.log("The first date is suppsed to be"+this.dates[0])
-
      //console.log("Line dates are");
    
-
 // console.log(...this.dates)
         for(let i=0; i<this.dates.length; i++){
         //  console.log(this.dates[i])
@@ -79,22 +71,9 @@ export default {
        
         }
         
-
    
        
-       // const m = moment(this.dates[0])
-           //  console.log(m.format('ddd MMM  YYY'))
-
-        //console.log("The ISO string date is "+this.dates[0])
-       // console.log(...this.dates.toString())
-   //   console.log("The first date value is "+this.allLineDates[0])
-    //  for(let i=0; i<this.allLineDates.length;i++){
-      //  this.dates.push(this.allLineDates[i])
-      //}
-      
-//console.log(this.dates.toLocaleString('default',{month:'long'})+" "
-    //  +" "+this.dates.getHours()+":"+this.dates.getSeconds())
-
+       
 this.lineCharts={
         series:[
           {name:'',data:[]}
@@ -130,18 +109,15 @@ this.lineCharts={
               
             },
             
-
             legend:{
                 fontSize:'16px',
               labels:{
                               colors:['#8eb77e', '#ebbe4f', '#80d3e4', '#f0944a', '#FF9800','orange'],
                               
               }
-
             },
             markers:{
                             colors:['#8eb77e', '#ebbe4f', '#80d3e4', '#f0944a', '#FF9800']
-
             },
           
             xaxis: {
@@ -173,7 +149,6 @@ this.lineCharts={
                        x: { format: "dd MMM yyyy HH:mm" },
                        theme: 'light',
                    colors: ["#7EB26D", "#E9B839", "#6ED0E0", "#EF853C"],
-
             },
              tooltip: {
                enabled: true,
@@ -187,13 +162,9 @@ this.lineCharts={
 },
 mounted(){
         this.$store.dispatch('fetchLineData')
-
 }
-
-
 }
 </script>
 
 <style>
-
 </style>
