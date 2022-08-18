@@ -1,24 +1,26 @@
 <template>
 <div class="sidebar" :style="{width: sidebarWidth}">
     
-    <div v-if="collapsed">
+    <div v-if="!collapsed">
         <br/>
         <br/>
-        <sidebar-link to="/" icon="fas fa-home">Home</sidebar-link>
-    <sidebar-link to="/dashboard" icon="fas fa-columns">Dashboard</sidebar-link>
-    <sidebar-link to="/analytics" icon="fas fa-chart-bar">Analytics</sidebar-link>
-    <sidebar-link to="/friends" icon="fas fa-users"></sidebar-link>
-    <sidebar-link to="/images" icon="fas fa-image"></sidebar-link>
+           <a href="/pmdashboard"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
+
+    <a href="#"><i class="material-icons">settings</i><span class="icon-text">Settings</span></a>
+
+       <a href="#"><i class="material-icons">help_outline</i><span class="icon-text">Help</span></a>
+
 
     </div>
     <div v-else >
     <br/>
     <br/>
-    <sidebar-link to="/" icon="fas fa-home" ></sidebar-link>
-    <sidebar-link to="/dashboard" icon="fas fa-columns"></sidebar-link>
-    <sidebar-link to="/analytics" icon="fas fa-chart-bar"></sidebar-link>
-    <sidebar-link to="/friends" icon="fas fa-users"></sidebar-link>
-    <sidebar-link to="/images" icon="fas fa-image"></sidebar-link>
+           <a href="/pmdashboard"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
+
+    <a href="#"><i class="material-icons">settings</i><span class="icon-text">Settings</span></a>
+
+       <a href="#"><i class="material-icons">help_outline</i><span class="icon-text">Help</span></a>
+
 </div>
     
 <span
@@ -47,37 +49,137 @@ export default {
 }
 </script>
 
-<style>
-:root {
-  --sidebar-bg-color: #212529;
-  --sidebar-item-hover: grey;
-  --sidebar-item-active: #212529;
-}
-</style>
-
 <style scoped>
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f3f3f4;
+  padding: 0px 0px 0px 0px;
+}
+
+/* SIDEBAR <--------------------- */
+
+/* Fixed sidenav, full height */
+/* #212529 - NAV DARK */
 .sidebar {
-  color: white;
-  background-color: var(--sidebar-bg-color);
-  float: left;
+  height: 100%;
+  width: 55px;
   position: fixed;
-  z-index: 3;
+  z-index: 1;
   top: 0;
   left: 0;
-  
-  bottom: 0;
-  padding: 2em;
-  transition: 0.3s ease;
-  display: flex;
-  
-  flex-direction: column;
+  background-color: #111111;
+  transition: 0.3s;
+  overflow-x: hidden;
+  padding-top: 40px;
+  white-space: nowrap;
+  margin-top: 55px;
 }
-.sidebar h1 {
-  height: 2.5em;
+
+/* Style the sidenav links and the dropdown button */
+.sidebar a,
+.dropdown-btn {
+  padding: 6px 8px 6px 20px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #c0bfbf;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
 }
+
+/* On mouse-over */
+.sidebar a:hover,
+.dropdown-btn:hover {
+  color: #f1f1f1;
+  background-color: #212529;
+  border-left: 2px solid red;
+  padding: 6px 8px 6px 18px;
+}
+
+/* Add an active class to the active dropdown button
+.active {
+  background-color: red;
+  color: white;
+} */
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: rgb(22, 22, 22);
+  padding-left: 55px;
+}
+
+/* Optional: Style the caret down icon
+.fa-caret-down {
+  float: right;
+  padding-right: 1px;
+} */
+
+/* SIDEBAR ---------------------> */
+
+/* ICONS <--------------------- */
+.material-icons,
+.icon-text {
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.material-icons {
+  padding-bottom: 3px;
+  margin-right: 20px;
+}
+/* ICONS ---------------------> */
+
+/* Main content */
+
+#main {
+  /*  position: absolute; */
+  /*  top: 30px; */
+  /*  right: 25px; */
+
+  padding: 56px 0px 10px 10px;
+  /* font-size: 20px; */
+  margin-left: 45px;
+  transition: margin-left 0.3s;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+/* Botton Print to PDF */
+.button-pdf {
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 2px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button-pdf:hover {
+  background-color: #777;
+}
+
 .collapse-icon {
   position: absolute;
-  top: 0;
+  bottom: 0;
   padding: 0.75em;
   color: rgba(255, 255, 255, 0.7);
   transition: 0.2s linear;

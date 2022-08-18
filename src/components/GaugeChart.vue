@@ -105,12 +105,7 @@ export default {
      for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
 {
- // if((moment(this.arr[i].dates[j]).format('DD-MM-YYYY') >=this.$store.state.startDate )
-   // && (moment(this.arr[i].dates[j]).format('DD-MM-YYYY') <= this.$store.state.endDate ))
-  //{
-//console.log(moment(this.arr[i].dates[j]).format('DD-MM-YYYY'));
 
-  //}
 }
  
 }

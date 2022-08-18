@@ -1,6 +1,7 @@
 <template>
 
 <div>
+  <nav-bar></nav-bar>
   <side-bar />
   <div :style="{ 'margin-left': sidebarWidth }">
 
@@ -13,13 +14,12 @@
 //import axios from 'axios'
 import BreadCrumb from './components/BreadCrumb.vue'
 import { useRoute } from 'vue-router'
-
+import NavBar from './components/NavBar.vue'
 import SideBar from './components/SideBar.vue'
 import {sidebarWidth} from './components/state'
 export default {
   setup(){
         const route = useRoute()
-
     return {
       sidebarWidth
     }
@@ -28,7 +28,7 @@ export default {
   
  components:{
   SideBar,
-  BreadCrumb
+  BreadCrumb, NavBar
  },
  data(){
    return{
@@ -41,18 +41,14 @@ export default {
     }
  }
 }
-
-
 </script>
 
 <style>
 * {
   font-family: "Poppins", sans-serif;
 }
-
 body{
     background-color: #f3f3f4;
-
 }
 #nav {
   padding: 30px;
@@ -65,7 +61,6 @@ body{
 #nav a.router-link-exact-active {
   color: grey;
 }
-
 header{
   width:100vw;
   background-color: black;
