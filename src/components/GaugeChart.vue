@@ -2,12 +2,10 @@
   <div>
     <div v-if="this.$store.getters.currentRoutes !='pm4'">
                    <el-card  class="box-card" style="width:100%">
-    <el-space :fill="fill" wrap>
-      <el-card v-for="(item, index) in allGaugeData" :key="index" 
-      class="box-card" 
-      style="width:250px;height:250px">
-          
-          <div class="card-header" >
+  
+          <el-row :gutter="20">
+     <el-col :span="this.gaugeWidth" v-for="(item, index) in arr" :key="index">
+  <div class="card-header" >
                <span style="font-size:20px; position: relative;
                 top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
             <apexchart id="gaugeChartApex"
@@ -20,12 +18,8 @@
           <span v-else style="color:#009AF9">{{Math.trunc(item.value[item.value.length-1])}}</span>
          </center>
 
-         </div>
-               
-      </el-card>
-      
-
-    </el-space>
+         </div>     </el-col>
+  </el-row>
   
                       </el-card >
                      
@@ -69,7 +63,7 @@ import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
 import router from '../../src/router'
 import pm4json from '../../pm4.json'
-
+import { timePanelSharedProps } from 'element-plus/es/components/time-picker/src/props/shared';
 export default {
   name:'GaugeChart',
   data(){
@@ -86,6 +80,7 @@ export default {
      pm4Values1:[],
      slicedDate:[],
      finalNames:[],
+    gaugeWidth:'',
      today:moment().format('MMMM D, YYYY'),
      dateTesting:'May 9, 2022',
    }
@@ -95,28 +90,17 @@ export default {
      moment: function (value) {
     return moment(value);
   },
-
  
-
   clicked(val){
    // console.log('this was clicked '+val)
-
-
      for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
 {
-
 }
  
 }
      }
-
-
-
-
  
-
-
   
   }
   
@@ -124,13 +108,10 @@ for(let j=0; j<this.arr[i].dates.length; j++){
    computed:{...mapGetters(['allGaugeData','allBarData']),
    
  
-
    },
    mounted(){
         this.$store.dispatch('fetchGaugeData')
-
    },
-
    
    created(){
        
@@ -138,8 +119,6 @@ for(let j=0; j<this.arr[i].dates.length; j++){
       
      setInterval(()=>{this.fetchGaugeData()},300000)
     //  console.log(this.pm4)
-
-
      this.newArr=Object.entries(this.allGaugeData)
      this.newArr.sort()
      
@@ -155,20 +134,17 @@ for(let j=0; j<this.arr[i].dates.length; j++){
       this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
      }
 
-    
+this.gaugeWidth= 24/(this.arr.length)
      for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
  
 }
-
 for(let i=0;i<this.finalDates.lenth;i++){
   this.slicedDate.push(this.finalDates[i].slice(' ').join(''))
 }
-
      }
         
 for(let i=0; i<this.arr.length; i++){
-
 }
  
      for(let i=0; i<this.arr.length; i++){
@@ -176,8 +152,6 @@ for(let i=0; i<this.arr.length; i++){
     
     
      }
-
-
      for(let i=0; i<this.lastValues.length; i++){
       this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
      }
@@ -246,7 +220,6 @@ for(let i=0; i<this.arr.length; i++){
                 track: {
                   background: "#e7e7e7",
                   strokeWidth: '97%',
-
                   margin: 5, // margin is in pixels
                   dropShadow: {
                     enabled: true,
@@ -277,7 +250,6 @@ for(let i=0; i<this.arr.length; i++){
                       return 500
                     }
                   }
-
                  
                   
                 }

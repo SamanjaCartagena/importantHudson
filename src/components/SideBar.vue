@@ -1,10 +1,10 @@
 <template>
-<div class="sidebar" :style="{width: sidebarWidth}">
+<div class="sidebar" :style="{width: sidebarWidth}"  @mouseenter="toggleEnter" @mouseleave="toggleSidebar">
     
-    <div v-if="!collapsed">
+    <div v-if="!collapsed" >
         <br/>
         <br/>
-           <a href="/pmdashboard"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
+           <a href="/pmdashboard/main"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
 
     <a href="#"><i class="material-icons">settings</i><span class="icon-text">Settings</span></a>
 
@@ -15,9 +15,9 @@
     <div v-else >
     <br/>
     <br/>
-           <a href="/pmdashboard"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
+           <a href="/pmdashboard/main" @click="selectedSidebar"><i class="material-icons">speed</i><span class="icon-text">Power Meters</span></a>
 
-    <a href="#"><i class="material-icons">settings</i><span class="icon-text">Settings</span></a>
+    <a href=""><i class="material-icons">settings</i><span class="icon-text">Settings</span></a>
 
        <a href="#"><i class="material-icons">help_outline</i><span class="icon-text">Help</span></a>
 
@@ -38,12 +38,28 @@
 
 <script>
 import SidebarLink from './SidebarLink.vue'
-import {collapsed, toggleSidebar, sidebarWidth} from './state'
+import {collapsed, toggleSidebar, sidebarWidth, toggleEnter} from './state'
 export default {
     props:{},
     components:{SidebarLink},
     setup(){
-       return {collapsed, toggleSidebar, sidebarWidth}
+       return {collapsed, toggleSidebar, sidebarWidth, toggleEnter}
+    },
+    methods:{
+      selectedSidebar(){
+           this.$store.dispatch('changeRoute','main')
+                       setInterval(()=>{this.$store.dispatch('changeRoute','main')},1000)
+                             this.$router.push({path:`/pmdashboard/${this.value}`})
+
+                     this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('changeStartDate',this.$store.getters.start)
+            this.$store.dispatch('changeEndDate',this.$store.getters.end)
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+      }
     }
 
 }
@@ -100,6 +116,9 @@ body {
   background-color: #212529;
   border-left: 2px solid red;
   padding: 6px 8px 6px 18px;
+}
+.sidebar :hover{
+
 }
 
 /* Add an active class to the active dropdown button

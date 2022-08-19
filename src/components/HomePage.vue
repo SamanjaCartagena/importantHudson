@@ -18,7 +18,7 @@
       <br/>
       <bar-chart></bar-chart>
       <br/>
-      <equipment-page v-if="this.$store.getters.currentRoutes=='pm1'"></equipment-page>
+      <equipment-page></equipment-page>
     </el-main>
 
 
@@ -60,14 +60,10 @@ computed:{
     //p.forEach(element =>n.push(element[1]))
    // console.log(n)
    return this.$route.params.pageName
-
 },
     
-
-
   }
 }
 </script>
 <style scoped>
-
 </style>

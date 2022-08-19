@@ -18,116 +18,23 @@
           </li>
           <!-- Full Screen -->
           <li class="nav-item">
-            <a id="btnFullscreen" class="nav-link active" aria-current="page" href="#"><i id="menuIcon"
+            <a id="btnFullscreen" class="nav-link active" aria-current="page" href="#" @click="showFullScreen"><i id="menuIcon"
                 class="material-icons">fullscreen</i><span class="icon-text"></span></a>
           </li>
 
           <!-- <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li> -->
           <!-- <li class="nav-item"><a class="nav-link" href="#"> About </a></li> -->
-          <li class="nav-item dropdown" id="myDropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Power Meters </a>
-            <ul class="dropdown-menu">
-              <li> <a class="dropdown-item" href="/pmdashboard"> Main Meters </a></li>
-              <li> <a class="dropdown-item" href="/pmdashboard/pm1"> PM 1 &raquo; </a>
-                <ul class="submenu dropdown-menu">
-                  <li><a class="dropdown-item" href="/pmdashboard/bm1">BM 1 &raquo; </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="/pmdashboard/lm19">LM 19</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm20">LM 20</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm21">LM 21</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm23">LM 23</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm24">LM 24</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="/pmdashboard/bm2">BM 2 &raquo; </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="/pmdashboard/lm13">LM 13</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm14">LM 14</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="dropdown-item" href="/pmdashboard/pm2"> PM 2 &raquo; </a>
-                <ul class="submenu dropdown-menu">
-                  <li><a class="dropdown-item" href="/pmdashboard/bm3">BM 3</a></li>
-                  <li><a class="dropdown-item" href="/pmdashboard/bm8">BM 8 &raquo; </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="/pmdashboard/lm7">LM 7</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm8">LM 8</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a class="dropdown-item" href="/pmdashboard/pm3"> PM 3  &raquo; </a>
-                <ul class="submenu dropdown-menu">
-                  <li><a class="dropdown-item" href="/pmdashboard/bm4">BM 4</a></li>
-                  <li><a class="dropdown-item" href="/pmdashboard/bm5">BM 5</a></li>
-                </ul>
-              </li>
-              <li><a class="dropdown-item" href="/pmdashboard/pm4"> PM 4 &raquo; </a>
-                <ul class="submenu dropdown-menu">
-                  <li><a class="dropdown-item" href="/pmdashboard/cm2">CM 2 &raquo; </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="/pmdashboard/lm26">LM 26</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm27">LM 27</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm28">LM 28</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm30">LM 30</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm32">LM 32</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm35">LM 35</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm36">LM 36</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm37">LM 37</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm42">LM 42</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm43">LM 43</a></li>
-                    </ul>
-                  </li>
-                  <li><a class="dropdown-item" href="/pmdashboard/cm3">CM 3 &raquo; </a>
-                    <ul class="submenu dropdown-menu">
-                      <li><a class="dropdown-item" href="/pmdashboard/cm6">CM 6 &raquo; </a>
-                        <ul class="submenu dropdown-menu">
-                          <li><a class="dropdown-item" href="/pmdashboard/bm9">BM 9</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm10">BM 10</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm11">BM 11</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm12">BM 12</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm7">CM 7</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm8">CM 8 &raquo; </a>
-                        <ul class="submenu dropdown-menu">
-                          <li><a class="dropdown-item" href="/pmdashboard/bm13">BM 13</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm14">BM 14</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm9">CM 9 &raquo; </a>
-                        <ul class="submenu dropdown-menu">
-                          <li><a class="dropdown-item" href="/pmdashboard/bm19">BM 19</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm20">BM 20</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm21">BM 21</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm10">CM 10 &raquo; </a>
-                        <ul class="submenu dropdown-menu">
-                          <li><a class="dropdown-item" href="/pmdashboard/bm25">BM 25</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm26">BM 26</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm11">CM 11 &raquo; </a>
-                        <ul class="submenu dropdown-menu">
-                          <li><a class="dropdown-item" href="/pmdashboard/bm27">BM 27</a></li>
-                          <li><a class="dropdown-item" href="/pmdashboard/bm28">BM 28</a></li>
-                        </ul>
-                      </li>
-                      <li><a class="dropdown-item" href="/pmdashboard/cm12">CM 12</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm1">LM 1</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm2">LM 2</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm3">LM 3</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm4">LM 4</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm5">LM 5</a></li>
-                      <li><a class="dropdown-item" href="/pmdashboard/lm6">LM 6</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+          <li class="nav-item">
+          <div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Link 1</a></li>
+      <li><a class="dropdown-item" href="#">Link 2</a></li>
+      <li><a class="dropdown-item" href="#">Link 3</a></li>
+    </ul>
+  </div>
           </li>
         </ul>
         <form class="d-flex">
@@ -156,41 +63,9 @@ export default{
        return {collapsed, toggleSidebar, sidebarWidth}
     },
     created(){
+
         // NAVBAR TREE VIEW DROPDOWN MENU -------------
-    document.addEventListener("DOMContentLoaded", function () {
-      // make it as accordion for smaller screens
-      if (window.innerWidth < 992) {
-
-        // close all inner dropdowns when parent is closed
-        document.querySelectorAll('.navbar .dropdown').forEach(function (everydropdown) {
-          everydropdown.addEventListener('hidden.bs.dropdown', function () {
-            // after dropdown is hidden, then find all submenus
-            this.querySelectorAll('.submenu').forEach(function (everysubmenu) {
-              // hide every submenu as well
-              everysubmenu.style.display = 'none';
-            });
-          })
-        });
-
-        document.querySelectorAll('.dropdown-menu a').forEach(function (element) {
-          element.addEventListener('click', function (e) {
-            let nextEl = this.nextElementSibling;
-            if (nextEl && nextEl.classList.contains('submenu')) {
-              // prevent opening link if link needs to open dropdown
-              e.preventDefault();
-              if (nextEl.style.display == 'block') {
-                nextEl.style.display = 'none';
-              } else {
-                nextEl.style.display = 'block';
-              }
-
-            }
-          });
-        })
-      }
-      // end if innerWidth
-    });
-  // DOMContentLoaded  end
+   
     },
   methods:{
     
@@ -238,10 +113,7 @@ export default{
 <style scoped>
  /* ============ desktop view ============ */
     @media all and (min-width: 992px) {
-      .dropdown-menu li {
-        position: relative;
-      }
-
+     
       .nav-item .submenu {
         display: none;
         position: absolute;
@@ -254,25 +126,12 @@ export default{
         left: auto;
       }
 
-      .dropdown-menu>li:hover {
-        background-color: #f1f1f1
-      }
-
-      .dropdown-menu>li:hover>.submenu {
-        display: block;
-      }
     }
 
     /* ============ desktop view .end// ============ */
 
     /* ============ small devices ============ */
-    @media (max-width: 991px) {
-      .dropdown-menu .dropdown-menu {
-        margin-left: 0.7rem;
-        margin-right: 0.7rem;
-        margin-bottom: .5rem;
-      }
-    }
+   
     @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -334,6 +193,7 @@ body {
   text-align: left;
   cursor: pointer;
   outline: none;
+  z-index: 3;
 }
 
 /* On mouse-over */
@@ -352,11 +212,7 @@ body {
 } */
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-  background-color: rgb(22, 22, 22);
-  padding-left: 55px;
-}
+
 
 /* Optional: Style the caret down icon
 .fa-caret-down {
