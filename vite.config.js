@@ -13,7 +13,7 @@ export default defineConfig(({mode})=>{
     
     proxy: {
       "^/api": {
-        target:`http://172.19.85.60:3080`,
+        target:env.VITE_PORT,
         
         changeOrigin: true,
         secure: false,

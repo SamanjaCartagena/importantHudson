@@ -28,11 +28,9 @@ const shortcuts = [
     value: () => {
       const end =moment().format('YYYY-MM-DD')
       const start = moment().format('YYYY-MM-DD')
-    //  start.setTime(start.getTime())
             store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
                   store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-               //   console.log("Start is "+start)
-                 // console.log("End is "+end)
+               
                      store.dispatch('fetchGaugeData')
                               store.dispatch('fetchLineData')
                               store.dispatch('fetchBarData')
@@ -45,7 +43,6 @@ const shortcuts = [
     value: () => {
       const end =moment().subtract(1,'days').format('YYYY-MM-DD')
       const start = moment().subtract(1,'days').format('YYYY-MM-DD')
-    //  start.setTime(start.getTime())
             store.dispatch('changeStartDate',start)
             
                   store.dispatch('changeEndDate',end)
@@ -63,7 +60,6 @@ const shortcuts = [
     value: () => {
       const end = moment().format('YYYY-MM-DD')
       const start = moment().subtract(6,'days').format('YYYY-MM-DD')
-     // start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
       store.dispatch('changeStartDate',start)
       store.dispatch('changeEndDate', end)
          store.dispatch('fetchGaugeData')
@@ -79,14 +75,12 @@ const shortcuts = [
     value: () => {
       const end = moment().format('YYYY-MM-DD')
       const start = moment().subtract(30,'days').format('YYYY-MM-DD')
-     // start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
       store.dispatch('changeStartDate',start)
       store.dispatch('changeEndDate',end)
          store.dispatch('fetchGaugeData')
            store.dispatch('fetchLineData')
            store.dispatch('fetchBarData')
-     // console.log(store.state.starting)
-       //     console.log(store.state.ending)
+    
       return [start, end]
     },
   },

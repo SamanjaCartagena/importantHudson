@@ -55,12 +55,27 @@ components:{
 },
 computed:{
   page(){
-  //  var p = Object.entries(this.$route.params.pageName)
-    //var n=[]
-    //p.forEach(element =>n.push(element[1]))
-   // console.log(n)
-   return this.$route.params.pageName
+   var a= Object.entries(this.$route.params.pageName)
+   console.log(a)
+   let b=[];
+    for(let i=0; i<a.length; i++){
+      b.push(a[i])
+    }
+    var s=[]
+    b.forEach(element => s.push(element[1]))
+    var t = s.join('')
+    var u = t.toUpperCase()
+    console.log(u)
+
+   return u
 },
+pageNums(){
+
+  
+}, 
+created(){
+  console.log(this.$route.params.pageName)
+}
     
   }
 }

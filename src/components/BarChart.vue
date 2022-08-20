@@ -158,18 +158,15 @@ export default {
     setBarChart(){
       setInterval(()=>{
         this.updateChart()
-      },1000)
+      },500)
     }, 
     setPmChart(){
  setInterval(()=>{
         this.updatepmChart()
-      },1000)
+      },500)
     },
    
-    selectedpmBar(){
-    var meters1=this.$store.state.met
-    console.log("The value clicked on apex chart is  "+this.$store.state.met)    
-    },
+   
     selectedBar(){
      
   var meter= this.$store.getters.allNames[this.$store.state.dat]
@@ -208,14 +205,12 @@ export default {
    events: {
        click: function (event, chartContext, config) {
         if(config.dataPointIndex <0){
-                //  console.log("The data is "+event.target.firstChild.data)
-                  store.state.met= event.target.firstChild.data
+
+        store.state.met= event.target.firstChild.data
                   var meters1 = store.state.met
-                  console.log("The meters are "+meters1)
-                  console.log(meters1.length)
+                 
                  
                   var s=Object.entries(meters1)
-                 // var s= meters1.slice(2,3).join('')
                   delete s[2]
                   var t=[]
                           s.forEach(element => t.push(element[1]))
@@ -231,7 +226,6 @@ export default {
                  
         }
         else{
-                  //  console.log(config.globals.labels[config.dataPointIndex])
                     store.state.met=config.globals.labels[config.dataPointIndex]
                   console.log("The value of a is "+store.state.met)
         }
@@ -317,22 +311,15 @@ export default {
    created(){
         this.$store.dispatch('fetchBarData')
           setInterval(()=>{this.fetchBarData()},300000)
-                         //   console.log("The met is "+thi.$store.state.dat)
 
         for(let i=0; i<this.pm4.length; i++){
           this.pm4Names.push(this.pm4[i].name)
           this.pm4Values.push(this.pm4[i].value)
         }
         this.$store.dispatch('changePmName',this.pm4Names)
-       // console.log("The pm 4 names are "+this.$store.state.pmName)
-        this.$store.dispatch('changePmValues',this.pm4Values)
+
+this.$store.dispatch('changePmValues',this.pm4Values)
      
-
-//var list=document.getElementsByClassName('apexcharts-tooltip-title')
-//for(var i=0;i<list.length;i++){
-//list[i].click()
-//console.log(list[i]+" was clicked")
-
     
    
     },

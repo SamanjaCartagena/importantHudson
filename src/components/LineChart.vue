@@ -134,7 +134,7 @@ export default {
    setLineChart(){
       setInterval(()=>{
         this.updateChart()
-      },1000)
+      },500)
     },
     updateChart(){
       this.lineCharts={
@@ -232,31 +232,16 @@ export default {
      created(){
            this.$store.dispatch('fetchLineData')
           setInterval(()=>{this.fetchLineData()},300000)
-  // console.log(this.dataValue)
- // console.log("The data is"+this.allLineData)
+  
       for(let i=0; i<this.allLineData.length; i++){
   
         this.names.push(this.allLineData[i])
         this.data.push(this.allLineData[i].data)
-      //  console.log("The data is "+this.data)
       }
        for(let i=0; i<this.allLineDates.length; i++){
          this.dates.push(this.allLineDates[i])
          
        }
-    //    console.log("The first date is suppsed to be"+this.dates[0])
-     //console.log("Line dates are");
-   
-// console.log(...this.dates)
-        for(let i=0; i<this.dates.length; i++){
-        //  console.log(this.dates[i])
-      //   var m = moment(this.dates[i])
-       
-        }
-        
-   
-       
-       
 
 },
 mounted(){

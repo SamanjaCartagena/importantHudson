@@ -63,7 +63,7 @@ import {mapGetters, mapActions} from 'vuex';
 import moment from 'moment'
 import router from '../../src/router'
 import pm4json from '../../pm4.json'
-import { timePanelSharedProps } from 'element-plus/es/components/time-picker/src/props/shared';
+
 export default {
   name:'GaugeChart',
   data(){
@@ -87,22 +87,57 @@ export default {
   },
   methods:{
     ...mapActions(['fetchGaugeData','fetchBarData']),
-     moment: function (value) {
-    return moment(value);
-  },
- 
-  clicked(val){
-   // console.log('this was clicked '+val)
-     for(let i=0; i<this.arr.length; i++){
+     setGaugeChart(){
+      setInterval(()=>{
+        this.updateChart()
+      },500)
+     
+      },
+     updateChart(){
+     this.arr=[];
+      this.newArr=Object.entries(this.allGaugeData)
+     this.newArr.sort()
+         this.newArr.forEach(element => this.arr.push(element[1]))
+   this.names=[];
+   this.finalNames=[];
+   this.finalDates=[];
+     for(let i=0; i<this.arr.length;i++){
+      this.names.push(this.arr[i].name)
+      this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
+     }
+
+       this.gaugeWidth= 24/(this.arr.length)
+           for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
-{
-}
  
+}
+for(let i=0;i<this.finalDates.lenth;i++){
+  this.slicedDate.push(this.finalDates[i].slice(' ').join(''))
 }
      }
+        
+for(let i=0; i<this.arr.length; i++){
+}
+ 
+     for(let i=0; i<this.arr.length; i++){
+    Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
+    
+    
+     }
+     for(let i=0; i<this.lastValues.length; i++){
+      this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
+     }
+ 
+   
+  
+
+     },
+    
+    
+ 
+ 
  
   
-  }
   
   },
    computed:{...mapGetters(['allGaugeData','allBarData']),
@@ -111,6 +146,7 @@ for(let j=0; j<this.arr[i].dates.length; j++){
    },
    mounted(){
         this.$store.dispatch('fetchGaugeData')
+        this.setGaugeChart()
    },
    
    created(){
@@ -118,23 +154,21 @@ for(let j=0; j<this.arr[i].dates.length; j++){
       this.$store.dispatch('fetchGaugeData')
       
      setInterval(()=>{this.fetchGaugeData()},300000)
-    //  console.log(this.pm4)
+   
      this.newArr=Object.entries(this.allGaugeData)
      this.newArr.sort()
      
-    //console.log("The value for new arr is")
-  // console.table(this.newArr)
+ 
    
      this.newArr.forEach(element => this.arr.push(element[1]))
-    // console.log("The arr values are ")
-     //console.table(this.arr)
+   
      for(let i=0; i<this.arr.length;i++){
-     // console.log(this.arr[i].name)
       this.names.push(this.arr[i].name)
       this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
      }
 
 this.gaugeWidth= 24/(this.arr.length)
+
      for(let i=0; i<this.arr.length; i++){
 for(let j=0; j<this.arr[i].dates.length; j++){
  
@@ -155,25 +189,7 @@ for(let i=0; i<this.arr.length; i++){
      for(let i=0; i<this.lastValues.length; i++){
       this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
      }
- this.$watch(
-      () => this.$route.params.pageName,
-      () => {
-             this.fetchGaugeData();
-       if (localStorage.getItem('reloaded')) {
-        // The page was just reloaded. Clear the value from local storage
-        // so that it will reload the next time this page is visited.
-        localStorage.removeItem('reloaded');
-    } else {
-        // Set a flag so that we know not to reload the page twice.
-        localStorage.setItem('reloaded', '1');
-        location.reload();
-    }
-      },
-      // fetch the data when the view is created and the data is
-      // already being observed
-      { immediate: true }
-    )
-   
+ 
    
   this.radialChartOptions={
          
@@ -290,9 +306,7 @@ for(let i=0; i<this.arr.length; i++){
 </script>
 
 <style scoped>
-.vue-apexcharts-tooltip.markers.fillColors{
-  color:red
-}
+
 span{
   font-size: 36px;
   position: relative;

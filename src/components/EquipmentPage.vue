@@ -14,6 +14,11 @@
                    </ul>
 
          </div>
+         <div v-else>
+           <ul style="text-decoration:none">
+                    <li style="font-weight: bold;">{{a}}</li>
+           </ul>
+         </div>
 
          </el-card>
 
