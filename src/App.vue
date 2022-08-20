@@ -46,6 +46,7 @@ export default {
 <style>
 * {
   font-family: "Poppins", sans-serif;
+  color:#676a6c
 }
 body{
     background-color: #f3f3f4;

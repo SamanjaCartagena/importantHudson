@@ -13,8 +13,8 @@
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <!-- Open / Close -->
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" @click="toggleSidebar"><i id="menuIcon"
-                class="material-icons">menu</i><span class="icon-text"></span></a>
+            <a class="nav-link active" aria-current="page" href="#"  @click="toggleSidebar"><i id="menuIcon"
+                class="material-icons" >menu</i><span class="icon-text"  ></span></a>
           </li>
           <!-- Full Screen -->
           <li class="nav-item">
@@ -192,6 +192,7 @@ body {
   outline: none;
   z-index: 3;
 }
+
 
 /* On mouse-over */
 .sidebar a:hover,

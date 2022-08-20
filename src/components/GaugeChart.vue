@@ -7,7 +7,7 @@
      <el-col :span="this.gaugeWidth" v-for="(item, index) in arr" :key="index">
   <div class="card-header" >
                <span style="font-size:20px; position: relative;
-                top:20px">{{item.name.slice(6,11).split('_').join(' ')}}</span>
+                top:20px">{{item.name.slice(6,11).split('_').join(' ').split('0').join('')}}</span>
             <apexchart id="gaugeChartApex"
           type="radialBar" width="100%" height="250px" 
           :options="this.radialChartOptions.chartOptions"

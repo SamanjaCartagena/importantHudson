@@ -1,16 +1,17 @@
 <template>
 
   <div class="common-layout" >
-    <el-container>
-
-      <el-header>
-      </el-header>
-
+    <el-container style="background-color:#f3f3f4;">
     <el-main  style="height:auto;width:100%;position:relative;top:100px;">
+                       <el-card  class="box-card" style="width:100%">
 
-    <h3 style="position:relative; left:25px;">{{page}} Dashboard</h3>
-      <date-component style="float: right;"></date-component>
-
+       <div style="display:flex; position: relative; bottom:30px; z-index:0;
+       height:80px; width:100%; background-color: white;">
+        <h3 style="position:relative; left:25px; z-index:3; top:30px;">{{page}} Dashboard</h3>
+    
+      <date-component style="position: absolute; right:0; top:30px;"></date-component>
+       </div>
+       </el-card>
       <br/>
       <gauge-chart></gauge-chart>
       <br/>

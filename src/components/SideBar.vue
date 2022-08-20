@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar" :style="{width: sidebarWidth}"  @mouseenter="toggleEnter" @mouseleave="toggleSidebar">
+<div class="sidebar" :style="{width: sidebarWidth}" @mouseenter="toggleEnter" @mouseleave="toggleSidebar" >
     
     <div v-if="!collapsed" >
         <br/>
@@ -22,7 +22,6 @@
        <a href="#"><i class="material-icons">help_outline</i><span class="icon-text">Help</span></a>
 
 </div>
-    
 <span
  class="collapse-icon"
  :class="{'rotate-180':collapsed}"
@@ -59,7 +58,9 @@ export default {
       
  
       this.$store.dispatch('fetchLineData')
-      }
+      },
+   
+    
     }
 
 }
