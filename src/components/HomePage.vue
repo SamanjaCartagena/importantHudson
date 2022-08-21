@@ -2,16 +2,22 @@
 
   <div class="common-layout" >
     <el-container style="background-color:#f3f3f4;">
-    <el-main  style="height:auto;width:100%;position:relative;top:100px;">
-                       <el-card  class="box-card" style="width:100%; color:#676a6c">
+     <el-header style=" background-color:transparent; height: 200px; width:98% ">
+        <el-card  class="box-card" style="width:100%; position:relative; top:30px; color:#676a6c">
 
-       <div style="display:flex; position: relative; bottom:30px; z-index:0;
-       height:80px; width:100%; background-color: white;">
-        <h3 style="position:relative; left:25px; z-index:3; top:30px;">{{page}} Dashboard</h3>
+       <div style="display:flex; position: relative; z-index:0;
+       height:100px; width:100%; background-color: white;">
+        <h3 style="position:relative; left:25px; z-index:3; top:25px;">{{page}} Dashboard</h3>
     
-      <date-component style="position: absolute; right:0; top:30px;"></date-component>
+      <date-component style="position: absolute; right:30px; top:25px;"></date-component>
        </div>
        </el-card>
+     </el-header>
+     
+     
+    <el-main  style="height:auto;width:100%;position:relative;top:100px;">
+      <br/>
+      <br/>
       <br/>
       <gauge-chart></gauge-chart>
       <br/>

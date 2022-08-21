@@ -47,16 +47,16 @@
           </div>
               <div v-if="hover3" class="dropdownLink3" @mouseleave="hideLink">
             
-              <a href="#">BM 3</a>
-              <a href="#">BM 8 >></a>
+              <a href="#" @click="bm3Page">BM 3</a>
+              <a href="#" @click="bm8Page">BM 8 >></a>
              
 
             
           </div>
            <div v-if="hover4" class="dropdownLink4" @mouseleave="hideLink">
             
-              <a href="#">CM 2 >></a>
-              <a href="#">CM 3</a>
+              <a href="#" @click="cm2Page">CM 2 >></a>
+              <a href="#" @click="cm3Page">CM 3</a>
              
 
             
@@ -241,6 +241,90 @@ bm2Page(){
 
 
 },
+bm3Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','bm3')
+                  
+             this.$router.push({path:'/pmdashboard/bm3'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+bm8Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','bm8')
+                  
+             this.$router.push({path:'/pmdashboard/bm8'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+cm2Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','cm2')
+                  
+             this.$router.push({path:'/pmdashboard/cm2'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+cm3Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','cm3')
+                  
+             this.$router.push({path:'/pmdashboard/cm3'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
     drop(){
       this.displayBlock=true
       
@@ -393,24 +477,7 @@ body {
   padding: 6px 8px 6px 18px;
 }
 
-/* Add an active class to the active dropdown button
-.active {
-  background-color: red;
-  color: white;
-} */
 
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-
-
-/* Optional: Style the caret down icon
-.fa-caret-down {
-  float: right;
-  padding-right: 1px;
-} */
-
-/* SIDEBAR ---------------------> */
-
-/* ICONS <--------------------- */
 .material-icons,
 .icon-text {
   vertical-align: middle;
@@ -426,9 +493,7 @@ body {
 /* Main content */
 
 #main {
-  /*  position: absolute; */
-  /*  top: 30px; */
-  /*  right: 25px; */
+  
 
   padding: 56px 0px 10px 10px;
   /* font-size: 20px; */
@@ -460,33 +525,18 @@ body {
   margin: 4px 2px;
   cursor: pointer;
 }
-.button-pdf:hover {
-  background-color: #777;
-}
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+
 
 /* The container <div> - needed to position the dropdown content */
 .dropdownHidden {
   position: relative;
   display: inline-block;
+  top:57px;
+  border:.5px solid #e9ecef;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+
 .dropdownHidden  a{
    color: black;
   padding: 12px 16px;
@@ -494,8 +544,7 @@ body {
   display: block;
 }
 .dropdownHidden a:hover{
-   background-color: black;
-   color:white;
+   background-color: #e9ecef;
  
 }
 
@@ -515,8 +564,8 @@ body {
   display: block;
 }
 .dropdownLink1 a:hover{
-   background-color: black;
-   color:white
+   background-color: #e9ecef;
+   
 }
 .dropdownLink2 a{
     color: black;
@@ -525,8 +574,7 @@ body {
   display: block;
 }
 .dropdownLink2 a:hover{
-   background-color: black;
-   color:white
+   background-color: #e9ecef;
 }
 .dropdownLink1 {
   position: relative;
@@ -549,11 +597,12 @@ body {
 .dropdownLink2 {
   position: relative;
   display: inline-block;
+  border:0.5px solid #e9ecef;
 }
 .dropdownLink2{
   display: block;
   position:absolute;
-  left:400px;
+  left:411px;
   top:100px;
   background-color: #f9f9f9;
   min-width:160px;
@@ -563,11 +612,13 @@ body {
 .dropdownLink3 {
   position: relative;
   display: inline-block;
+    border:0.5px solid #e9ecef;
+
 }
 .dropdownLink3{
    display: block;
   position:absolute;
-  left:400px;
+  left:411px;
   top:150px;
   background-color: #f9f9f9;
   min-width:160px;
@@ -582,17 +633,18 @@ body {
   display: block;
 }
 .dropdownLink3 a:hover{
-   background-color: black;
-   color:white
+   background-color: #e9ecef;
 }
 .dropdownLink4 {
   position: relative;
   display: inline-block;
+    border:0.5px solid #e9ecef;
+
 }
 .dropdownLink4{
    display: block;
   position:absolute;
-  left:400px;
+  left:411px;
   top:200px;
   background-color: #f9f9f9;
   min-width:160px;
@@ -607,7 +659,17 @@ body {
   display: block;
 }
 .dropdownLink4 a:hover{
-   background-color: black;
-   color:white
+   background-color: #e9ecef;
+   
+}
+.links{
+  position: relative;
+  top:8px;
+  font-family: "Poppins", sans-serif;
+  font-size: small;
+  color:#676a6c;
+}
+.links:hover{
+  color:white;
 }
 </style>

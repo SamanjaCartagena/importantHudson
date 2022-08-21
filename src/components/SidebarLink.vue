@@ -1,11 +1,11 @@
 <template>
   <router-link :to="to" class="link" :class="{active:isActive}">
    <i class="icon" :class="icon"/>
-   <transition name="fade">
+   <Transition name="slide-fade">
    <span if="!collapsed">
    <slot />
    </span>
-   </transition>
+   </Transition>
   </router-link>
 </template>
 
@@ -28,13 +28,17 @@ export default {
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active{
-    transition: opacity 0.1s;
+.slide-fade-enter-active {
+  transition: all 0.1s ease-out;
 }
-.fade-enter,
-.fade-leave-to{
-    opacity: 0;
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }
 .link{
     display: flex;
