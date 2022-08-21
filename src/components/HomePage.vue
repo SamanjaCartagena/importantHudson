@@ -3,7 +3,7 @@
   <div class="common-layout" >
     <el-container style="background-color:#f3f3f4;">
     <el-main  style="height:auto;width:100%;position:relative;top:100px;">
-                       <el-card  class="box-card" style="width:100%">
+                       <el-card  class="box-card" style="width:100%; color:#676a6c">
 
        <div style="display:flex; position: relative; bottom:30px; z-index:0;
        height:80px; width:100%; background-color: white;">
@@ -57,7 +57,6 @@ components:{
 computed:{
   page(){
    var a= Object.entries(this.$route.params.pageName)
-   console.log(a)
    let b=[];
     for(let i=0; i<a.length; i++){
       b.push(a[i])
@@ -66,17 +65,22 @@ computed:{
     b.forEach(element => s.push(element[1]))
     var t = s.join('')
     var u = t.toUpperCase()
-    console.log(u)
+   this.$store.dispatch('changeRoutePage',t)
+
+    //console.log("The route is "+this.$store.getters.routePage)
+   
+
 
    return u
 },
-pageNums(){
 
-  
-}, 
 created(){
   console.log(this.$route.params.pageName)
-}
+},
+methods:{
+  
+}, 
+
     
   }
 }

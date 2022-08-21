@@ -1,13 +1,14 @@
 <template>
   <div>
     <div v-if="this.$store.getters.currentRoutes !='pm4'">
-                   <el-card  class="box-card" style="width:100%">
+                   <el-card  class="box-card" style="width:100%;color:#676a6c">
   
           <el-row :gutter="20">
-     <el-col :span="this.gaugeWidth" v-for="(item, index) in arr" :key="index">
-  <div class="card-header" >
+          <el-col :span="this.gaugeWidth" v-for="(item, index) in arr" :key="index">
+          <div class="card-header" >
                <span style="font-size:20px; position: relative;
                 top:20px">{{item.name.slice(6,11).split('_').join(' ').split('0').join('')}}</span>
+                
             <apexchart id="gaugeChartApex"
           type="radialBar" width="100%" height="250px" 
           :options="this.radialChartOptions.chartOptions"

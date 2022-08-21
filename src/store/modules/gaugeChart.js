@@ -16,8 +16,8 @@ const state ={
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
-        startDate:store.state.starting,
-        endDate:store.state.ending
+        startDate:store.getters.start,
+        endDate:store.getters.end
       }
     }
     ).then(response=>{

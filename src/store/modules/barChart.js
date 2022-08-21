@@ -17,12 +17,11 @@ const actions={
          
     axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
-        startDate:store.state.starting,
-        endDate:store.state.ending
+        startDate:store.getters.start,
+        endDate:store.getters.end
       }
     }
     ).then(response=>{
-                  console.log("The bar chart data is")
                   
          var data= Object.entries(response.data.apexBarChartData)    
          data.sort()

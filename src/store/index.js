@@ -23,7 +23,8 @@ const store=createStore({
           pmName:[],
           pmValues:[], clickIndex:0,
           port:3080,
-          met:''
+          met:'',
+          routePage:''
 
               
 
@@ -46,6 +47,9 @@ const store=createStore({
         },
         pmValue(state){
           return state.pmValues
+        },
+        routePage(state){
+          return state.routePage
         }
     },
     actions:{
@@ -69,7 +73,11 @@ const store=createStore({
                 async changePmValues({commit},payload){
                             return Promise.resolve(commit('changePmValues', payload))
 
+              }, 
+              async changeRoutePage({commit}, payload){
+                return Promise.resolve(commit('changeRoutePage', payload))
               }
+              
     },
     mutations:{
       changeRoute (state,payload) {
@@ -89,6 +97,9 @@ const store=createStore({
       },
       changePmValues(state,payload){
         state.pmValues= payload
+      }, 
+      changeRoutePage(state,payload){
+        state.payload= payload
       }
     },
   

@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar" :style="{width: sidebarWidth}" @mouseenter="toggleEnter" @mouseleave="toggleSidebar" >
+<div class="sidebar" :style="{width: sidebarWidth,color:white}" @mouseenter="toggleEnter" @mouseleave="toggleSidebar" >
     
     <div v-if="!collapsed" >
         <br/>
@@ -38,6 +38,7 @@
 <script>
 import SidebarLink from './SidebarLink.vue'
 import {collapsed, toggleSidebar, sidebarWidth, toggleEnter} from './state'
+import moment from 'moment'
 export default {
     props:{},
     components:{SidebarLink},
@@ -48,14 +49,13 @@ export default {
       selectedSidebar(){
            this.$store.dispatch('changeRoute','main')
                        setInterval(()=>{this.$store.dispatch('changeRoute','main')},1000)
-                             this.$router.push({path:`/pmdashboard/${this.value}`})
 
-                     this.$store.dispatch('fetchBarData')
-      this.$store.dispatch('changeStartDate',this.$store.getters.start)
-            this.$store.dispatch('changeEndDate',this.$store.getters.end)
+      this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
       this.$store.dispatch('fetchGaugeData')
       
-      
+                           this.$store.dispatch('fetchBarData')
+
  
       this.$store.dispatch('fetchLineData')
       },
@@ -95,6 +95,10 @@ body {
 }
 
 /* Style the sidenav links and the dropdown button */
+
+.sidebar{
+  color:white
+}
 .sidebar a,
 .dropdown-btn {
   padding: 6px 8px 6px 20px;

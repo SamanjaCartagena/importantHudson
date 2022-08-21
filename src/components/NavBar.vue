@@ -25,16 +25,42 @@
           <!-- <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li> -->
           <!-- <li class="nav-item"><a class="nav-link" href="#"> About </a></li> -->
           <li class="nav-item">
-          <div class="dropdown">
-    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Link 1</a></li>
-      <li><a class="dropdown-item" href="#">Link 2</a></li>
-      <li><a class="dropdown-item" href="#">Link 3</a></li>
-    </ul>
-  </div>
+         <button class="links" @click="this.displayBlock =! this.displayBlock">Power Meters</button>
+
+          <div v-if="displayBlock" class="dropdownHidden" >
+            
+              <a href="#" @click="mainPage">Main Meters</a>
+              <a href="#" @click="pm1Page" @mouseover="showLink2" >PM 1 >></a>
+              <a href="#" @click="pm2Page" @mouseover="showLink3">PM 2 >></a>
+             <a href="#" @click="pm3Page" @mouseover="showLink4">PM 3 >></a>
+
+            
+          </div>
+        
+            <div v-if="hover2" class="dropdownLink2" @mouseleave="hideLink">
+            
+              <a href="#" @click="bm1Page">BM 1 >></a>
+              <a href="#" @click="bm2Page">BM 2 >></a>
+              
+
+            
+          </div>
+              <div v-if="hover3" class="dropdownLink3" @mouseleave="hideLink">
+            
+              <a href="#">BM 3</a>
+              <a href="#">BM 8 >></a>
+             
+
+            
+          </div>
+           <div v-if="hover4" class="dropdownLink4" @mouseleave="hideLink">
+            
+              <a href="#">CM 2 >></a>
+              <a href="#">CM 3</a>
+             
+
+            
+          </div>
           </li>
         </ul>
         <form class="d-flex">
@@ -49,14 +75,15 @@
 </template>
 <script>
 import {collapsed, toggleSidebar, sidebarWidth} from './state'
-
+import moment from 'moment'
 export default{
   data(){
     return{
       selectedValue:'',
       value:'',
       value1:'',
-      button1:'main'
+      button1:'main',
+      displayBlock:false, hover1:false, hover2:false, hover3:false, hover4:false
     }
   },
      setup(){
@@ -88,6 +115,175 @@ export default{
       
       
     },
+    mainPage(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','main')
+                  
+                   this.$router.push({path:'/pmdashboard/main'})
+       this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+ pm1Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','pm1')
+                  
+             this.$router.push({path:'/pmdashboard/pm1'})
+
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+pm2Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','pm2')
+                  
+             this.$router.push({path:'/pmdashboard/pm2'})
+
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+       this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+pm3Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','pm3')
+                  
+             this.$router.push({path:'/pmdashboard/pm3'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+bm1Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','bm1')
+                  
+             this.$router.push({path:'/pmdashboard/bm1'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+bm2Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','bm2')
+                  
+             this.$router.push({path:'/pmdashboard/bm2'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+    drop(){
+      this.displayBlock=true
+      
+    },
+    showLink1(){
+      this.hover1=true;
+      this.hover2=false;
+      this.hover3=false;
+      this.hover4=false;
+    },
+    showLink2(){
+      this.hover2=true
+      this.hover1=false
+      this.hover3=false
+      this.hover4=false
+    },
+    showLink3(){
+      this.hover3=true
+      this.hover2=false
+      this.hover1=false
+      this.hover4=false
+    },
+    showLink4(){
+      this.hover1=false
+      this.hover2=false
+      this.hover3=false
+      this.hover4=true
+    },
+    hideLink1(){
+      this.hover1=false;
+      this.hover2=false
+    },
+     hideLink2(){
+      this.hover2=false;
+            this.hover1=false;
+
+    },
+    hideLink(){
+      this.hover1=false;
+      this.hover2=false;
+      this.hover3=false;
+      this.hover4=false;
+    },
    selectedbtn1(){
    
       this.$router.push({path:`/pmdashboard/${main}`})
@@ -101,7 +297,7 @@ export default{
        
       this.$store.dispatch('fetchGaugeData')
       
-      
+      this.mainPage()
  
       this.$store.dispatch('fetchLineData')
   }
@@ -129,13 +325,7 @@ export default{
 
     /* ============ small devices ============ */
    
-    @font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/icons.woff2) format('woff2');
-}
-
+ 
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -273,5 +463,151 @@ body {
 .button-pdf:hover {
   background-color: #777;
 }
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
+/* The container <div> - needed to position the dropdown content */
+.dropdownHidden {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdownHidden  a{
+   color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownHidden a:hover{
+   background-color: black;
+   color:white;
+ 
+}
+
+.dropdownHidden{
+  display: block;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+ 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdownLink1 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink1 a:hover{
+   background-color: black;
+   color:white
+}
+.dropdownLink2 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink2 a:hover{
+   background-color: black;
+   color:white
+}
+.dropdownLink1 {
+  position: relative;
+  display: inline-block;
+}
+.links{
+  background-color: transparent;
+  color:white;
+  border:0px;
+}
+.dropdownLink1{
+  display: block;
+  position:absolute;
+  left:400px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdownLink2 {
+  position: relative;
+  display: inline-block;
+}
+.dropdownLink2{
+  display: block;
+  position:absolute;
+  left:400px;
+  top:100px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdownLink3 {
+  position: relative;
+  display: inline-block;
+}
+.dropdownLink3{
+   display: block;
+  position:absolute;
+  left:400px;
+  top:150px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownLink3 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink3 a:hover{
+   background-color: black;
+   color:white
+}
+.dropdownLink4 {
+  position: relative;
+  display: inline-block;
+}
+.dropdownLink4{
+   display: block;
+  position:absolute;
+  left:400px;
+  top:200px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownLink4 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink4 a:hover{
+   background-color: black;
+   color:white
+}
 </style>
