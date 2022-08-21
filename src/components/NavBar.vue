@@ -422,8 +422,7 @@ cm3Page(){
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -moz-font-feature-settings: 'liga';
-  -moz-osx-font-smoothing: grayscale;
+ 
 }
 body {
   font-family: "Roboto", sans-serif;

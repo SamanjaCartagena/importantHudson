@@ -97,4 +97,7 @@ const shortcuts = [
 </script>
 
 <style>
+.demonstration{
+  cursor: pointer;
+}
 </style>

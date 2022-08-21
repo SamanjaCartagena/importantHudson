@@ -75,10 +75,7 @@ body {
   padding: 0px 0px 0px 0px;
 }
 
-/* SIDEBAR <--------------------- */
 
-/* Fixed sidenav, full height */
-/* #212529 - NAV DARK */
 .sidebar {
   height: 100%;
   width: 55px;
@@ -87,11 +84,16 @@ body {
   top: 0;
   left: 0;
   background-color: #111111;
-  transition: 0.3s;
   overflow-x: hidden;
   padding-top: 40px;
   white-space: nowrap;
   margin-top: 55px;
+   -webkit-transform: translate(0px, 0);
+   -webkit-transition: -webkit-transform 0.3s ease;
+   -moz-transform: translate(0px, 0);
+   -moz-transition: -moz-transform 0.3s ease;
+   transform: translate(0px, 0);
+   transition: -webkit-transform 0.3s ease;
 }
 
 /* Style the sidenav links and the dropdown button */

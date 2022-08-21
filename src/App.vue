@@ -51,12 +51,7 @@ export default {
 }
 body{
     background-color: #f3f3f4;
-      -webkit-transform: translate(0px, 0);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transform: translate(0px, 0);
-  -moz-transition: -moz-transform 0.3s ease;
-  transform: translate(0px, 0);
-  transition: -webkit-transform 0.3s ease;
+    
 }
 #nav {
   padding: 30px;
