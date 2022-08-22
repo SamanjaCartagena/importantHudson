@@ -31,16 +31,25 @@ export default {
 
 .slide-fade-enter-active {
   transition: all .3s ease;
-  opacity:1
 }
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  opacity:0
 }
 .slide-fade-enter, .slide-fade-leave-to
-{
+/* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
+}
+@keyframes slide-fade-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 .link{
     display: flex;

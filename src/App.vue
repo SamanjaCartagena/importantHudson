@@ -12,7 +12,6 @@
 
 <script>
 //import axios from 'axios'
-import BreadCrumb from './components/BreadCrumb.vue'
 import { useRoute } from 'vue-router'
 import NavBar from './components/NavBar.vue'
 import SideBar from './components/SideBar.vue'
@@ -28,7 +27,7 @@ export default {
   
  components:{
   SideBar,
-  BreadCrumb, NavBar
+   NavBar
  },
  data(){
    return{
@@ -51,7 +50,12 @@ export default {
 }
 body{
     background-color: #f3f3f4;
-    
+    -webkit-transform: translate(0px, 0);
+   -webkit-transition: -webkit-transform 0.3s ease;
+   -moz-transform: translate(0px, 0);
+   -moz-transition: -moz-transform 0.3s ease;
+   transform: translate(0px, 0);
+   transition: -webkit-transform 0.3s ease;
 }
 #nav {
   padding: 30px;

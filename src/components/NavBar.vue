@@ -1,5 +1,5 @@
 <template>
-<div >
+<div>
  <!-- Nav bar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -24,10 +24,13 @@
 
           <!-- <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li> -->
           <!-- <li class="nav-item"><a class="nav-link" href="#"> About </a></li> -->
-          <li class="nav-item">
-         <button class="links" @click="this.displayBlock =! this.displayBlock">Power Meters</button>
+          <li class="nav-item" >
+         <button class="links" @click="this.displayBlock =! this.displayBlock">Power Meters 
+         <i id="menuIcon"
+                class="material-icons">down</i><span class="icon-text"></span>
+       </button>
 
-          <div v-if="displayBlock" class="dropdownHidden" >
+          <div v-if="displayBlock" class="dropdownHidden" v-click-outside="closeAll">
             
               <a href="#" @click="mainPage">Main Meters</a>
               <a href="#" @click="pm1Page" @mouseover="showLink2" >PM 1 >></a>
@@ -76,6 +79,7 @@
 <script>
 import {collapsed, toggleSidebar, sidebarWidth} from './state'
 import moment from 'moment'
+
 export default{
   data(){
     return{
@@ -83,6 +87,7 @@ export default{
       value:'',
       value1:'',
       button1:'main',
+      
       displayBlock:false, hover1:false, hover2:false, hover3:false, hover4:false
     }
   },
@@ -90,12 +95,18 @@ export default{
        return {collapsed, toggleSidebar, sidebarWidth}
     },
     created(){
-
-        // NAVBAR TREE VIEW DROPDOWN MENU -------------
+     
+   
    
     },
   methods:{
-    
+    closeAll(){
+     this.displayBlock=false
+     this.hover1=false
+     this.hover2=false
+     this.hover3=false
+     this.hover4=false
+    },
     selected(){
       this.value = this.selectedValue.toLowerCase()
       
@@ -178,6 +189,7 @@ pm2Page(){
 
 
 },
+
 pm3Page(){
               this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
             this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))

@@ -35,7 +35,6 @@
 </template>
 
 <script >
-import BreadCrumb from './BreadCrumb.vue';
 import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
@@ -55,7 +54,6 @@ components:{
     GaugeChart,
     LineChart,
     BarChart,
-    BreadCrumb,
     NotFound,
     EquipmentPage,
     
