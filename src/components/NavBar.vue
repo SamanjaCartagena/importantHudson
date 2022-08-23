@@ -3,7 +3,7 @@
  <!-- Nav bar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"><span style="color:red; font-size: 18px;">TEC</span><span
+      <a class="navbar-brand" href="#" @click="hudsonPage"><span style="color:red; font-size: 18px;">TEC</span><span
           style="color:white; font-size: 18px;">Connector</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,6 +126,9 @@ export default{
      this.hover2=false
      this.hover3=false
      this.hover4=false
+    },
+    hudsonPage(){
+      this.$router.push({path:'/hudsonPage', name:'hudson'})
     },
     selected(){
       this.value = this.selectedValue.toLowerCase()

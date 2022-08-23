@@ -1,6 +1,6 @@
 <template>
   <el-breadcrumb separator="/">
-    <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+    <el-breadcrumb-item ><a href="#" @click="home">homepage</a></el-breadcrumb-item>
     <el-breadcrumb-item
       ><a href="/pmdashboard/main" @click="mainPage">main</a></el-breadcrumb-item
     >
