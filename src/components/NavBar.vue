@@ -597,13 +597,19 @@ lm7Page(){
 
     },
     hideLink3(){
+     
+      this.hover2=false
+      this.hover3=false
+      this.hover4=false
+      this.hover5=false
+      this.hover6=false
 
 
     },
     hideLink7(){
       this.hover2=false;
       this.hiver3=false
-      this.hover7=fals4e
+      this.hover7=false
     },
     hideLink(){
       this.hover2=false;
@@ -819,6 +825,11 @@ body {
 .dropdownLink2 a:hover{
    background-color: #e9ecef;
 }
+.dropdownLink5{
+   position: relative;
+  display: inline-block;
+  border:0.5px solid #e9ecef;
+}
 .dropdownLink5 a{
     color: black;
   padding: 12px 16px;
@@ -838,7 +849,11 @@ body {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-
+.dropdownLink6{
+   position: relative;
+  display: inline-block;
+  border:0.5px solid #e9ecef;
+}
 .dropdownLink6 a{
     color: black;
   padding: 12px 16px;
