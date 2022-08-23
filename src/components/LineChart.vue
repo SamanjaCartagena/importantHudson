@@ -137,6 +137,7 @@ export default {
       },500)
     },
     updateChart(){
+      if(this.$store.getters.currentRoutes !='pm4'){
       this.lineCharts={
        series:[
           {name:'',data:[]}
@@ -221,6 +222,7 @@ export default {
             },
           }
     }
+      }
 
     }
   },

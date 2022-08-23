@@ -68,7 +68,7 @@ const store=createStore({
               },
               async changePmName({commit},payload){
                             return Promise.resolve(commit('changePmName', payload))
-
+                            
               },
                 async changePmValues({commit},payload){
                             return Promise.resolve(commit('changePmValues', payload))

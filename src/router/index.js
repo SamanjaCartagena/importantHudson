@@ -1,7 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import HomePage from '../components/HomePage.vue';
 import store from '../store'
-import moment from 'moment'
 const router=createRouter({
     history: createWebHistory(),
     routes:[{

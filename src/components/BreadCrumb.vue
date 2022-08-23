@@ -5,11 +5,11 @@
       ><a href="/pmdashboard/main" @click="mainPage">main</a></el-breadcrumb-item
     >
 <el-breadcrumb-item separator="/" v-if="this.beforeRoute != this.afterRoute" v-for="item in newRoutes" :key="item"
-      ><a href="#" @click="page">{{item}}</a></el-breadcrumb-item>
+      ><a href="#" >{{item}}</a></el-breadcrumb-item>
     
   
  <el-breadcrumb-item v-else
-      ><a href="/pmdashboard/main" @click="mainPage">{{page}}</a></el-breadcrumb-item>
+      ><a href="#" @click="paged">{{page}}</a></el-breadcrumb-item>
     </el-breadcrumb>
 
 </template>
@@ -35,11 +35,22 @@ export default{
           this.$store.dispatch('changeRoute','main')
                   
                    this.$router.push({path:'/pmdashboard/main'})
-       this.displayBlock=false;
-       this.hover1=false;
-       this.hover2=false;
-       this.hover3=false;
-       this.hover4=false;
+      
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+        },
+        paged(){
+               this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute',`${page}`)
+                  
+                   this.$router.push({path:`/pmdashboard/${page}`})
+      
        
       this.$store.dispatch('fetchBarData')
       this.$store.dispatch('fetchGaugeData')
@@ -48,6 +59,7 @@ export default{
  
       this.$store.dispatch('fetchLineData')
         }
+
     },
     created(){
         this.$router.afterEach((to, from) => {

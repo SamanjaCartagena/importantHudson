@@ -16,7 +16,6 @@
    <router-link to="">
     <apexchart  id="barChart" type="bar" height="250" :options="this.pmChart.chartOptions"  
          :series="this.pmChart.series"
-         @click="selectedpmBar"
          >
         
     
@@ -51,9 +50,9 @@ export default {
       pm4:pm4json,
       pm4Names:[],
       pm4Values:[],
-       pmChart:{
+        pmChart:{
          series: [{
-                 name: "Energy (kWh):",
+           
             data:[...this.$store.getters.pmValue],
       }],
         chartOptions: {
@@ -62,31 +61,48 @@ export default {
               type: 'bar',
               height: 250,
               
-           events: {
+   events: {
        click: function (event, chartContext, config) {
         if(config.dataPointIndex <0){
-                //  console.log("The value is "+event.target.firstChild.data)
-                  store.state.met= event.target.firstChild.data
-                 console.log("The met is "+store.state.met)
-                 var meters1 = store.state.met
 
+        store.state.met= event.target.firstChild.data
+                  var meters1 = store.state.met
+                 
+                 
+                  var s=Object.entries(meters1)
+                  delete s[2]
+                  var t=[]
+                          s.forEach(element => t.push(element[1]))
+                 var z= t.join('').toLowerCase()
+                  store.dispatch('changeRoute',z)
+                 store.dispatch('fetchGaugeData')
+               store.dispatch('fetchLineData')
+            store.dispatch('fetchBarData')
+            router.push({path:`${z}`, query:{
+              startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
+            }
+            })
+                 
         }
         else{
-                  //  console.log(config.globals.labels[config.dataPointIndex])
-                    store.state.met = config.globals.labels[config.dataPointIndex]
-                    console.log("The other met is "+store.state.met)
+                    store.state.met=config.globals.labels[config.dataPointIndex]
+                  console.log("The value of a is "+store.state.met)
         }
     }
     },
-            },
-                xaxis: {
+            xaxis: {
     categories: [...this.$store.getters.pmName],
     labels: {
       style: {
-        fontSize: '16px'
+        fontSize: '16px',
+      cssClass: 'apexcharts-xaxis-label',
+
+
       },
     },
   },
+          
+           
            
             title: {
                 text: 'Energy (kW)',
@@ -94,15 +110,18 @@ export default {
             },
              dataLabels: {
    enabled: true,
-  
+          textAnchor: 'start',
    offsetY: 0,
    style: {
      fontSize: '30px',
      colors: ["#d3d3d3"] 
    }
-  },
+  }, 
+    
             
-          }
+            }
+        }
+      
       
       },
         
@@ -158,12 +177,12 @@ export default {
     setBarChart(){
       setInterval(()=>{
         this.updateChart()
-      },500)
+      },1000)
     }, 
     setPmChart(){
  setInterval(()=>{
         this.updatepmChart()
-      },500)
+      },1000)
     },
    
    
@@ -317,9 +336,10 @@ export default {
           this.pm4Values.push(this.pm4[i].value)
         }
         this.$store.dispatch('changePmName',this.pm4Names)
+                  console.log("The names are "+this.$store.getters.pmValue)
 
-this.$store.dispatch('changePmValues',this.pm4Values)
-     
+         this.$store.dispatch('changePmValues',this.pm4Values)
+         console.log("The values are"+this.$store.getters.pmName)
     
    
     },

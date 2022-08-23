@@ -42,19 +42,36 @@
         
             <div v-if="hover2" class="dropdownLink2" @mouseleave="hideLink">
             
-              <a href="#" @click="bm1Page">BM 1 >></a>
-              <a href="#" @click="bm2Page">BM 2 >></a>
+              <a href="#" @click="bm1Page" @mouseover="showLink5">BM 1 >></a>
+              <a href="#" @click="bm2Page" @mouseover="showLink6">BM 2 >></a>
               
 
             
           </div>
-              <div v-if="hover3" class="dropdownLink3" @mouseleave="hideLink">
+           <div v-if="hover5" class="dropdownLink5" @mouseleave="hideLink1">
+            
+              <a href="#" @click="lm19Page">lm19>></a>
+              <a href="#" @click="lm20Page">lm 20 >></a>
+              <a href="#" @click="lm21Page">lm 21 >></a>
+              <a href="#" @click="lm23Page">lm 23 >></a>
+              <a href="#" @click="lm24Page">lm 24 >></a>
+   </div>
+      <div v-if="hover6" class="dropdownLink6" @mouseleave="hideLink2">
+            
+              <a href="#" @click="lm13Page">lm13>></a>
+              <a href="#" @click="lm14Page" >lm 14 >></a>
+             
+   </div>
+           
+              <div v-if="hover3" class="dropdownLink3" @mouseleave="hideLink3">
             
               <a href="#" @click="bm3Page">BM 3</a>
-              <a href="#" @click="bm8Page">BM 8 >></a>
-             
-
+              <a href="#" @click="bm8Page" @mouseover="showLink7">BM 8 >></a>  
+          </div>
+          
+              <div v-if="hover7" class="dropdownLink7" @mouseleave="hideLink7">
             
+              <a href="#" @click="lm7Page">LM 7</a>
           </div>
            <div v-if="hover4" class="dropdownLink4" @mouseleave="hideLink">
             
@@ -88,7 +105,7 @@ export default{
       value1:'',
       button1:'main',
       
-      displayBlock:false, hover1:false, hover2:false, hover3:false, hover4:false
+      displayBlock:false, hover1:false, hover2:false, hover3:false, hover4:false, hover5:false, hover6:false, hover7:false
     }
   },
   components:{
@@ -319,6 +336,25 @@ cm2Page(){
 
 
 },
+lm19Page(){
+     this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm19')
+                  
+             this.$router.push({path:'/pmdashboard/lm19'})
+        this.displayBlock=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       this.hover5=false;
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+},
 cm3Page(){
               this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
             this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
@@ -330,6 +366,157 @@ cm3Page(){
        this.hover2=false;
        this.hover3=false;
        this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+lm20Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm20')
+                  
+             this.$router.push({path:'/pmdashboard/lm20'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+lm21Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm21')
+                  
+             this.$router.push({path:'/pmdashboard/lm21'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+lm23Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm23')
+                  
+             this.$router.push({path:'/pmdashboard/lm23'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+lm24Page(){
+              this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm24')
+                  
+             this.$router.push({path:'/pmdashboard/lm24'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+
+},
+lm13Page(){
+      this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm13')
+                  
+             this.$router.push({path:'/pmdashboard/lm13'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       this.hover5=false;
+       this.hover6=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+
+},
+lm14Page(){
+    this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm14')
+                  
+             this.$router.push({path:'/pmdashboard/lm14'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       this.hover5=false;
+       this.hover6=false;
+       
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      
+      
+ 
+      this.$store.dispatch('fetchLineData')
+},
+lm7Page(){
+   this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute','lm7')
+                  
+             this.$router.push({path:'/pmdashboard/lm7'})
+        this.displayBlock=false;
+       this.hover1=false;
+       this.hover2=false;
+       this.hover3=false;
+       this.hover4=false;
+       this.hover5=false;
+       this.hover6=false;
+       this.hover7=false;
        
       this.$store.dispatch('fetchBarData')
       this.$store.dispatch('fetchGaugeData')
@@ -356,6 +543,7 @@ cm3Page(){
       this.hover3=false
       this.hover4=false
     },
+    
     showLink3(){
       this.hover3=true
       this.hover2=false
@@ -368,20 +556,58 @@ cm3Page(){
       this.hover3=false
       this.hover4=true
     },
-    hideLink1(){
-      this.hover1=false;
+     showLink5(){
+      this.hover2=true
+      this.hover3=false
+      this.hover4=false
+      this.hover5= true
+      this.hover6=false
+    },
+     showLink6(){
+      this.hover2=true
+      this.hover3=false
+      this.hover4=false
+      this.hover5= false
+      this.hover6=true
+      this.displayBlock= true
+    },
+    showLink7(){
+      this.hover7=true;
       this.hover2=false
+      this.hover3=true
+      this.hover4=false
+      this.hover5= false
+      this.hover6=false
+      this.displayBlock= true
+
+    },
+    hideLink1(){
+     this.hover2=true
+     this.hover5=false
+     
+ 
     },
      hideLink2(){
       this.hover2=false;
-            this.hover1=false;
+      this.hover5=false;
+      this.hover6=false;
 
     },
+    hideLink3(){
+
+
+    },
+    hideLink7(){
+      this.hover2=false;
+      this.hiver3=false
+      this.hover7=fals4e
+    },
     hideLink(){
-      this.hover1=false;
       this.hover2=false;
       this.hover3=false;
       this.hover4=false;
+      
+    
     },
    selectedbtn1(){
    
@@ -590,6 +816,46 @@ body {
 .dropdownLink2 a:hover{
    background-color: #e9ecef;
 }
+.dropdownLink5 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink5 a:hover{
+   background-color: #e9ecef;
+}
+.dropdownLink5{
+  display: block;
+  position:absolute;
+  left:570px;
+  top:100px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownLink6 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink6 a:hover{
+   background-color: #e9ecef;
+}
+.dropdownLink6{
+  display: block;
+  position:absolute;
+  left:570px;
+  top:100px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
 .dropdownLink1 {
   position: relative;
   display: inline-block;
@@ -647,6 +913,32 @@ body {
   display: block;
 }
 .dropdownLink3 a:hover{
+   background-color: #e9ecef;
+}
+.dropdownLink7 {
+  position: relative;
+  display: inline-block;
+    border:0.5px solid #e9ecef;
+
+}
+.dropdownLink7{
+   display: block;
+  position:absolute;
+  left:570px;
+  top:200px;
+  background-color: #f9f9f9;
+  min-width:160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownLink7 a{
+    color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink7 a:hover{
    background-color: #e9ecef;
 }
 .dropdownLink4 {
