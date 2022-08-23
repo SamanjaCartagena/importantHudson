@@ -8,9 +8,11 @@
        <div style="display:flex; position: relative; z-index:0;
        height:100px; width:100%; background-color: white;">
         <h3 style="position:relative; left:25px; z-index:3; top:25px;">{{page}} Dashboard</h3>
-    
+
       <date-component style="position: absolute; right:25px; top:25px;"></date-component>
        </div>
+      <bread-crumb style="position: relative; bottom:20px; left:25px" :page="page"></bread-crumb>
+
        </el-card>
      </el-header>
      
@@ -39,23 +41,24 @@ import DateComponent from './DateComponent.vue';
 import GaugeChart from './GaugeChart.vue';
 import LineChart from './LineChart.vue';
 import BarChart from './BarChart.vue';
-import NotFound from './NotFound.vue';
 import EquipmentPage from './EquipmentPage.vue';
+import BreadCrumb from './BreadCrumb.vue';
 export default {
   name:'HomePage',
   data(){
    return {
-    t:[]
+    
    }
   },
+ 
+  
 components:{
-    
     DateComponent,
     GaugeChart,
     LineChart,
     BarChart,
-    NotFound,
     EquipmentPage,
+    BreadCrumb
     
 },
 computed:{
@@ -76,18 +79,16 @@ computed:{
 
 
    return u
+}
 },
-
 created(){
   console.log(this.$route.params.pageName)
 },
-methods:{
-  
-}, 
+
 
     
   }
-}
+
 </script>
 <style scoped>
 </style>

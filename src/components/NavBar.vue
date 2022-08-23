@@ -91,6 +91,9 @@ export default{
       displayBlock:false, hover1:false, hover2:false, hover3:false, hover4:false
     }
   },
+  components:{
+    
+  },
      setup(){
        return {collapsed, toggleSidebar, sidebarWidth}
     },
