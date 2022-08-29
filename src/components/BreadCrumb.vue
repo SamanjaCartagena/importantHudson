@@ -1,13 +1,17 @@
 <template>
   <el-breadcrumb separator="/">
     <el-breadcrumb-item ><a href="#" @click="home">homepage</a></el-breadcrumb-item>
-    <el-breadcrumb-item
+    <el-breadcrumb-item     
       ><a href="/pmdashboard/main" @click="mainPage">main</a></el-breadcrumb-item
     >
-<el-breadcrumb-item separator="/" v-if="this.beforeRoute != this.afterRoute" v-for="item in newRoutes" :key="item"
-      ><a href="#" >{{item}}</a></el-breadcrumb-item>
+    <div v-if="this.beforeRoute != this.afterRoute">
+    <el-breadcrumb-item 
+    :to="{ path: `/pmdashboard/${item}` }"
+    @click="clicked(item)"
+    separator="/" v-for="item in newRoutes" :key="item"
+      ><a href="#">{{item}}</a></el-breadcrumb-item>
     
-  
+  </div>
  <el-breadcrumb-item v-else
       ><a href="#" @click="paged">{{page}}</a></el-breadcrumb-item>
     </el-breadcrumb>
@@ -33,9 +37,19 @@ export default{
                this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
             this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
           this.$store.dispatch('changeRoute','main')
-                  
                    this.$router.push({path:'/pmdashboard/main'})
-      
+      this.$store.dispatch('fetchBarData')
+      this.$store.dispatch('fetchGaugeData')
+      this.$store.dispatch('fetchLineData')
+        },
+        clicked(item){
+         console.log(item+" item was clicked")
+         this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
+            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
+          this.$store.dispatch('changeRoute',`${item}`)
+                  
+                   this.$router.push({path:`/pmdashboard/${item}`})
+           this.$router.go()
        
       this.$store.dispatch('fetchBarData')
       this.$store.dispatch('fetchGaugeData')
@@ -77,9 +91,7 @@ export default{
             }
 })
 
-if((this.beforeRoute != this.afterRoute)){
-    this.routeractive= true
-}
+
     }
 }
 

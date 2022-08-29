@@ -235,16 +235,8 @@ export default {
            this.$store.dispatch('fetchLineData')
           setInterval(()=>{this.fetchLineData()},300000)
   
-      for(let i=0; i<this.allLineData.length; i++){
-  
-        this.names.push(this.allLineData[i])
-        this.data.push(this.allLineData[i].data)
-      }
-       for(let i=0; i<this.allLineDates.length; i++){
-         this.dates.push(this.allLineDates[i])
-         
-       }
-
+     
+    
 },
 mounted(){
         this.$store.dispatch('fetchLineData')
