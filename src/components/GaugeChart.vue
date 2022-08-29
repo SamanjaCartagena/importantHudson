@@ -61,7 +61,6 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
-import moment from 'moment'
 import router from '../../src/router'
 import pm4json from '../../pm4.json'
 
@@ -72,17 +71,12 @@ export default {
      newArr:[],
      arr:[],
      lastValues:[],
-     finalDates:[],
      newDate:'',
-     percent:[],
-     names:[],
      pm4:pm4json,
      pm4Values:[],
      pm4Values1:[],
-     slicedDate:[],
-     finalNames:[],
+   
     gaugeWidth:'',
-     today:moment().format('MMMM D, YYYY'),
      dateTesting:'May 9, 2022',
    }
   },
@@ -91,7 +85,7 @@ export default {
      setGaugeChart(){
       setInterval(()=>{
         this.updateChart()
-      },500)
+      },50)
      
       },
      updateChart(){
@@ -99,35 +93,21 @@ export default {
       this.newArr=Object.entries(this.allGaugeData)
      this.newArr.sort()
          this.newArr.forEach(element => this.arr.push(element[1]))
-   this.names=[];
-   this.finalNames=[];
-   this.finalDates=[];
-     for(let i=0; i<this.arr.length;i++){
-      this.names.push(this.arr[i].name)
-      this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
-     }
-
+   
        this.gaugeWidth= 24/(this.arr.length)
-           for(let i=0; i<this.arr.length; i++){
-for(let j=0; j<this.arr[i].dates.length; j++){
- 
-}
-for(let i=0;i<this.finalDates.lenth;i++){
-  this.slicedDate.push(this.finalDates[i].slice(' ').join(''))
-}
-     }
+
         
 for(let i=0; i<this.arr.length; i++){
 }
  
-     for(let i=0; i<this.arr.length; i++){
-    Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
+   //  for(let i=0; i<this.arr.length; i++){
+ //   Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
     
     
-     }
-     for(let i=0; i<this.lastValues.length; i++){
-      this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
-     }
+  //   }
+   //  for(let i=0; i<this.lastValues.length; i++){
+  //    this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
+  //   }
  
    
   
@@ -163,33 +143,21 @@ for(let i=0; i<this.arr.length; i++){
    
      this.newArr.forEach(element => this.arr.push(element[1]))
    
-     for(let i=0; i<this.arr.length;i++){
-      this.names.push(this.arr[i].name)
-      this.finalNames.push(this.names[i].toLowerCase().slice(6,11).split('_').join('').split('0').join(''))
-     }
+   
 
 this.gaugeWidth= 24/(this.arr.length)
 
-     for(let i=0; i<this.arr.length; i++){
-for(let j=0; j<this.arr[i].dates.length; j++){
+     
+
  
-}
-for(let i=0;i<this.finalDates.lenth;i++){
-  this.slicedDate.push(this.finalDates[i].slice(' ').join(''))
-}
-     }
-        
-for(let i=0; i<this.arr.length; i++){
-}
- 
-     for(let i=0; i<this.arr.length; i++){
-    Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
+  //   for(let i=0; i<this.arr.length; i++){
+  //  Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
     
     
-     }
-     for(let i=0; i<this.lastValues.length; i++){
-      this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
-     }
+  //   }
+  //   for(let i=0; i<this.lastValues.length; i++){
+  //    this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
+//   }
  
    
   this.radialChartOptions={

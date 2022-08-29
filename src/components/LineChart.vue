@@ -134,7 +134,7 @@ export default {
    setLineChart(){
       setInterval(()=>{
         this.updateChart()
-      },500)
+      },50)
     },
     updateChart(){
       if(this.$store.getters.currentRoutes !='pm4'){

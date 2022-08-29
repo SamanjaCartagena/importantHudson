@@ -171,12 +171,12 @@ export default {
     setBarChart(){
       setInterval(()=>{
         this.updateChart()
-      },1000)
+      },50)
     }, 
       setPmChart(){
       setInterval(()=>{
         this.updatePmChart()
-      },1000)
+      },50)
       },
    
    
