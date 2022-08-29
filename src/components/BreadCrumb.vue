@@ -18,6 +18,7 @@
 
 </template>
 <script>
+  import moment from 'moment'
 export default{
     props:['page'],
     data(){
@@ -47,9 +48,8 @@ export default{
          this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
             this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
           this.$store.dispatch('changeRoute',`${item}`)
-                  
+                  console.log("the current route is "+this.$store.getters.currentRoutes)
                    this.$router.push({path:`/pmdashboard/${item}`})
-           this.$router.go()
        
       this.$store.dispatch('fetchBarData')
       this.$store.dispatch('fetchGaugeData')
