@@ -544,6 +544,7 @@ export default {
       this.hover2 = false;
       this.hover5 = false;
       this.hover6 = false;
+      this.hover6=false;
     },
     hideLink3() {
       this.hover2 = false;
