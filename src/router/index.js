@@ -22,18 +22,6 @@ const router=createRouter({
         component:HomePage,
         
     },
-
-      
-    /**  {
-        path:'/catchAll(.*)',
-          name:'NotFound',
-        component:NotFound
-    }
-    **/
-
-
-    
-  
 ]
 
 });

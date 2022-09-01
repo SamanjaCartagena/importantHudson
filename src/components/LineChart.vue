@@ -26,9 +26,9 @@
 
 <script>
 import {mapGetters, mapActions} from 'vuex';
-//import dateFormat from "dateformat";
 import moment from 'moment';
 import pm4json from '../../pm4.json'
+import store from '../store';
 
 export default {
   data(){
@@ -52,8 +52,25 @@ export default {
               type: 'area',
               width:"100%",
               animations:{
-                enabled:false
+                enabled:true
               },
+              zoom: {
+          enabled: true,
+          type: 'x',  
+          autoScaleYaxis: true,  
+          zoomedArea: {
+            fill: {
+              color: '#90CAF9',
+              opacity: 0.4
+            },
+            stroke: {
+              color: '#0D47A1',
+              opacity: 0.4,
+              width: 1
+            }
+          }
+              }
+          
           
             },
             dataLabels: {
@@ -135,6 +152,7 @@ export default {
       setInterval(()=>{
         this.updateChart()
       },50)
+    
     },
     updateChart(){
       if(this.$store.getters.currentRoutes !='pm4'){
@@ -150,9 +168,39 @@ export default {
               type: 'area',
               width:"100%",
               animations:{
-                enabled:false
+                enabled:true
               },
+              dynamicAnimation: {
+            enabled: true,
+            speed: 350
+        },
+              
+              
+                events: {
+                mouseMove: function(event, chartContext, config) {
+                clearInterval(setInterval)
+      }
+    
+    },
+              zoom: {
+          enabled: true,
+          type: 'x',  
+          autoScaleYaxis: true,  
+          zoomedArea: {
+            fill: {
+              color: '#90CAF9',
+              opacity: 0.4
+            },
+            stroke: {
+              color: '#0D47A1',
+              opacity: 0.4,
+              width: 1
+            }
+          }
+              }
           
+              
+        
             },
             dataLabels: {
               enabled: false
@@ -239,9 +287,9 @@ export default {
     
 },
 mounted(){
-        this.$store.dispatch('fetchLineData')
-                              this.setLineChart();
-
+  this.$store.dispatch('fetchLineData')
+    this.setLineChart()
+    
 }
 }
 </script>

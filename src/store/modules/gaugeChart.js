@@ -23,13 +23,7 @@ const state ={
     ).then(response=>{
     
     commit('setGaugeData', response.data.apexGaugeChartData)
-
     })
-    
-  // console.log("Bar chart data looks like")
-
- //   console.log(response.data.apexBarChartData)
-
 }, 
 
   

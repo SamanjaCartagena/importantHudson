@@ -63,31 +63,50 @@
                 <a href="#" @click="pm1Page" @mouseover="showLink2">PM 1 >></a>
                 <a href="#" @click="pm2Page" @mouseover="showLink3">PM 2 >></a>
                 <a href="#" @click="pm3Page" @mouseover="showLink4">PM 3 >></a>
+                <a href="#" @click="pm4Page" @mouseover="showLink5">PM 4 >></a>
+
               </div>
 
-              <div v-if="hover2" class="dropdownLink2" @mouseleave="hideLink">
+              <div 
+              v-click-outside="closeAll"
+
+              v-if="hover2" class="dropdownLink2" @mouseleave="hideLink">
                 <a href="#" @click="bm1Page" @mouseover="showLink5">BM 1 >></a>
                 <a href="#" @click="bm2Page" @mouseover="showLink6">BM 2 >></a>
               </div>
-              <div v-if="hover5" class="dropdownLink5" @mouseleave="hideLink1">
-                <a href="#" @click="lm19Page">lm19>></a>
-                <a href="#" @click="lm20Page">lm 20 >></a>
-                <a href="#" @click="lm21Page">lm 21 >></a>
-                <a href="#" @click="lm23Page">lm 23 >></a>
-                <a href="#" @click="lm24Page">lm 24 >></a>
+              <div
+               v-click-outside="closeAll"
+              v-if="hover5" class="dropdownLink5" @mouseleave="hideLink1">
+                <a href="#" @click="lm19Page">lm19</a>
+                <a href="#" @click="lm20Page">lm 20</a>
+                <a href="#" @click="lm21Page">lm 21 </a>
+                <a href="#" @click="lm23Page">lm 23 </a>
+                <a href="#" @click="lm24Page">lm 24 </a>
               </div>
-              <div v-if="hover6" class="dropdownLink6" @mouseleave="hideLink2">
-                <a href="#" @click="lm13Page">lm13>></a>
-                <a href="#" @click="lm14Page">lm 14 >></a>
+              <div 
+              v-click-outside="closeAll"
+              v-if="hover6" class="dropdownLink6" @mouseleave="hideLink2">
+                <a href="#" @click="lm13Page">lm13</a>
+                <a href="#" @click="lm14Page">lm 14</a>
               </div>
 
-              <div v-if="hover3" class="dropdownLink3" @mouseleave="hideLink3">
+              <div 
+              v-click-outside="closeAll"
+              v-if="hover3" class="dropdownLink3" @mouseleave="hideLink3">
                 <a href="#" @click="bm3Page">BM 3</a>
                 <a href="#" @click="bm8Page" @mouseover="showLink7">BM 8 >></a>
               </div>
 
-              <div v-if="hover7" class="dropdownLink7" @mouseleave="hideLink7">
+              <div 
+              v-click-outside="closeAll"
+               v-if="hover7" class="dropdownLink7" @mouseleave="hideLink7">
                 <a href="#" @click="lm7Page">LM 7</a>
+              </div>
+              <div 
+              v-click-outside="closeAll"
+               v-if="hover8" class="dropdownLink8" @mouseleave="hideLink8">
+                <a href="#" @click="bm4Page">BM 4</a>
+                <a href="#" @click="bm5Page">BM 5</a>
               </div>
               <div v-if="hover4" class="dropdownLink4" @mouseleave="hideLink">
                 <a href="#" @click="cm2Page">CM 2 >></a>
@@ -537,7 +556,7 @@ export default {
       this.displayBlock = true;
     },
     hideLink1() {
-      this.hover2 = true;
+      this.hover2 = false;
       this.hover5 = false;
     },
     hideLink2() {
@@ -559,7 +578,6 @@ export default {
       this.hover7 = false;
     },
     hideLink() {
-      this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
     },

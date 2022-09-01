@@ -3,8 +3,6 @@ import store from '../../store'
  const state ={
    lineData:[],
    lineDates:[],
- 
-   
 
 }
 const getters ={
@@ -26,13 +24,6 @@ const actions={
         commit('setLineData', response.data.apexLineChartData.data)
 
     })
-    
-  // console.log("Bar chart data looks like")
- // console.log(`/api/${state.query}`)
-  //  console.table(response.data.apexBarChartData)
-
- //   console.log(response.data.apexBarChartData)
-
 }, 
 
   

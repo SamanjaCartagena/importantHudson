@@ -21,7 +21,7 @@ import { ref } from "vue";
 import store from "../store";
 import moment from "moment";
 
-const value2 = ref("");
+const value2 = ref([moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD')]);
 const datePicked = (event) => {
   console.log("The date was changed from" + event[0] + " and " + event[1]);
   store.dispatch("changeStartDate", event[0]);

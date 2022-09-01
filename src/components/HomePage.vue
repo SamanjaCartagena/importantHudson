@@ -98,7 +98,6 @@ export default {
       var u = t.toUpperCase();
       this.$store.dispatch("changeRoutePage", t);
 
-      //console.log("The route is "+this.$store.getters.routePage)
 
       return u;
     },

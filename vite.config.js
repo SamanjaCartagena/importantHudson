@@ -26,7 +26,7 @@ export default defineConfig(({mode})=>{
       
      
     },
-     port:3080
-  },
+     port:4000
+  }
 }
 })

@@ -23,9 +23,9 @@
                 height="250px"
                 :options="this.radialChartOptions.chartOptions"
                 :series="[
-                  Math.trunc(
+                  Math.round(
                     (item.value[item.value.length - 1] * 100) / 400
-                  ).toFixed(),
+                  )
                 ]"
               ></apexchart>
               <center>
@@ -38,14 +38,14 @@
                       bottom: 70px;
                     "
                     v-if="
-                      Math.trunc(
+                      Math.round(
                         (item.value[item.value.length - 1] * 100) / 400
-                      ).toFixed() > 100
+                      ) > 100
                     "
                     >{{
-                      Math.trunc(
+                      Math.round(
                         (item.value[item.value.length - 1] * 100) / 400
-                      ).toFixed()
+                      )
                     }}%</span
                   >
                   <span
@@ -57,17 +57,17 @@
                     "
                     v-else
                     >{{
-                      Math.trunc(
+                      Math.round(
                         (item.value[item.value.length - 1] * 100) / 400
-                      ).toFixed()
+                      )
                     }}%</span
                   >
                 </center>
                 <span
                   v-if="
-                    Math.trunc(
+                    Math.round(
                       (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed() > 100
+                    )> 100
                   "
                   style="
                     position: relative;
@@ -76,7 +76,7 @@
                     color: #fd354a;
                     bottom: 80px;
                   "
-                  >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
+                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
                 >
                 <span
                   v-else
@@ -87,7 +87,7 @@
                     color: #009af9;
                     bottom: 80px;
                   "
-                  >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
+                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
                 >
               </center>
             </div>
@@ -162,21 +162,13 @@ export default {
 
       this.gaugeWidth = 24 / this.arr.length;
 
-      for (let i = 0; i < this.arr.length; i++) {}
-
-      //  for(let i=0; i<this.arr.length; i++){
-      //   Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
-
-      //   }
-      //  for(let i=0; i<this.lastValues.length; i++){
-      //    this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
-      //   }
+      
     },
   },
   computed: { ...mapGetters(["allGaugeData", "allBarData"]) },
   mounted() {
     this.$store.dispatch("fetchGaugeData");
-    this.setGaugeChart();
+    this.setGaugeChart()
   },
 
   created() {
@@ -192,14 +184,6 @@ export default {
     this.newArr.forEach((element) => this.arr.push(element[1]));
 
     this.gaugeWidth = 24 / this.arr.length;
-
-    //   for(let i=0; i<this.arr.length; i++){
-    //  Math.trunc(this.lastValues.push(this.arr[i].value[this.arr[i].value.length-1]))
-
-    //   }
-    //   for(let i=0; i<this.lastValues.length; i++){
-    //    this.percent.push(Math.trunc(this.lastValues[i] *100/400).toFixed())
-    //   }
 
     this.radialChartOptions = {
       series: [],

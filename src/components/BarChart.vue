@@ -71,7 +71,6 @@ export default {
             xaxis: {
               type: 'date',
               labels:{},
-              //categories:[...this.newNames],
              categories:[...this.$store.getters.allNames]
             
             },
@@ -106,30 +105,32 @@ export default {
               
           events: {
        click: function (event, chartContext, config) {
-        if(config.dataPointIndex <0){
-        store.state.met= event.target.firstChild.data
-                  var meters1 = store.state.met
+        console.log(config)
+   //     if(config.dataPointIndex <0){
+    //      console.log(config.dataPointIndex)
+     //   store.state.met= event.target.firstChild.data
+      //            var meters1 = store.state.met
                  
                  
-                  var s=Object.entries(meters1)
-                  delete s[2]
-                  var t=[]
-                          s.forEach(element => t.push(element[1]))
-                 var z= t.join('').toLowerCase()
-                  store.dispatch('changeRoute',z)
-                 store.dispatch('fetchGaugeData')
-               store.dispatch('fetchLineData')
-            store.dispatch('fetchBarData')
-            router.push({path:`${z}`, query:{
-              startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
-            }
-            })
+        //          var s=Object.entries(meters1)
+          //        delete s[2]
+          //        var t=[]
+            //              s.forEach(element => t.push(element[1]))
+            //     var z= t.join('').toLowerCase()
+             //     store.dispatch('changeRoute',z)
+             //    store.dispatch('fetchGaugeData')
+             //  store.dispatch('fetchLineData')
+          //  store.dispatch('fetchBarData')
+         //   router.push({path:`${z}`, query:{
+           //   startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
+         //   }
+          //  })
                  
-        }
-        else{
-                    store.state.met=config.globals.labels[config.dataPointIndex]
-                  console.log("The value of a is "+store.state.met)
-        }
+       // }
+       // else{
+         //           store.state.met=config.globals.labels[config.dataPointIndex]
+           //       console.log("The value of a is "+store.state.met)
+      //  }
     }
     },
             },
@@ -180,29 +181,29 @@ export default {
       },
    
    
-    selectedBar(){
+  //  selectedBar(){
      
-  var meter= this.$store.getters.allNames[this.$store.state.dat]
+ // var meter= this.$store.getters.allNames[this.$store.state.dat]
   
    
-    var m = Object.entries(meter)
+ //   var m = Object.entries(meter)
       
-    delete m[2]
-   var s=[];
+ //   delete m[2]
+ //  var s=[];
    
-        m.forEach(element => s.push(element[1]))
-        if(s[2]=='0')
-        delete s[2]
-           var a= s.join('').toLowerCase()
-            this.$store.dispatch('changeRoute',a)
-      this.$store.dispatch('fetchGaugeData')
-      this.$store.dispatch('fetchLineData')
-            this.$store.dispatch('fetchBarData')
-            this.$router.push({path:`${a}`, query:{
-              startDate:`${this.$store.state.starting}`,endDate:`${this.$store.state.ending}`
-            }
-            })
-},
+   //     m.forEach(element => s.push(element[1]))
+  //      if(s[2]=='0')
+   //     delete s[2]
+     //      var a= s.join('').toLowerCase()
+     //       this.$store.dispatch('changeRoute',a)
+     // this.$store.dispatch('fetchGaugeData')
+   //   this.$store.dispatch('fetchLineData')
+       //     this.$store.dispatch('fetchBarData')
+        //    this.$router.push({path:`${a}`, query:{
+        //      startDate:`${this.$store.state.starting}`,endDate:`${this.$store.state.ending}`
+          //  }
+          //  })
+//},
 updatePmChart(){
       this.pmChart={
                 series: [{
@@ -217,31 +218,26 @@ updatePmChart(){
               
           events: {
        click: function (event, chartContext, config) {
-        if(config.dataPointIndex <0){
-        store.state.met= event.target.firstChild.data
-                  var meters1 = store.state.met
-                 
-                 
-                  var s=Object.entries(meters1)
-                  delete s[2]
+                 console.log(config.dataPointIndex)
+                console.log(event.target.firstChild.data)
+                var meters1 = event.target.firstChild.data
+                 var s=Object.entries(meters1)
+                 console.log(s)
+                delete s[2]
+                delete s[3]
                   var t=[]
-                          s.forEach(element => t.push(element[1]))
+                         s.forEach(element => t.push(element[1]))
                  var z= t.join('').toLowerCase()
-                  store.dispatch('changeRoute',z)
+                 store.dispatch('changeRoute',z)
                  store.dispatch('fetchGaugeData')
                store.dispatch('fetchLineData')
             store.dispatch('fetchBarData')
             router.push({path:`${z}`, query:{
-              startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
-            }
-            })
-                 
-        }
-        else{
-                    store.state.met=config.globals.labels[config.dataPointIndex]
-                  console.log("The value of a is "+store.state.met)
-        }
-    }
+             startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
+                },
+                })
+              }
+    
     },
             },
             xaxis: {
@@ -265,12 +261,8 @@ updatePmChart(){
      fontSize: '30px',
      colors: ["#d3d3d3"] 
    }
-  },
-            
+  },      
           },
-          
-       
-    
           }
           
 
@@ -290,11 +282,27 @@ updatePmChart(){
               type: 'bar',
               height: 250,
             events: {
-              dataPointSelection: function(event, chartContext, config) {
-              store.state.dat=config.dataPointIndex
+              click: function(event, chartContext, config) {
+                 console.log(config.dataPointIndex)
+                console.log(event.target.firstChild.data)
+                var meters1 = event.target.firstChild.data
+                 var s=Object.entries(meters1)
+                 console.log(s)
+                delete s[2]
+                delete s[3]
+                  var t=[]
+                         s.forEach(element => t.push(element[1]))
+                 var z= t.join('').toLowerCase()
+                 store.dispatch('changeRoute',z)
+                 store.dispatch('fetchGaugeData')
+               store.dispatch('fetchLineData')
+            store.dispatch('fetchBarData')
+            router.push({path:`${z}`, query:{
+             startDate:`${store.state.starting}`,endDate:`${store.state.ending}`
                 },
-                
-            },
+                })
+              }
+            }
           
             },
             xaxis: {
