@@ -6,7 +6,8 @@
           <el-col
             :span="this.gaugeWidth"
             v-for="(item, index) in arr"
-            :key="index">
+            :key="index"
+          >
             <div class="card-header">
               <span style="font-size: 20px; position: relative; top: 20px">{{
                 item.name.slice(6, 11).split("_").join(" ").split("0").join("")
@@ -25,50 +26,54 @@
                 ]"
               ></apexchart>
               <center>
-              
+                <center>
                 <span
                   style="
-                    fontSize: 17px;
-                    position: relative;
-                    bottom: 89px;
-                    left: 10%;
+                    fontSize:17px;
                     color: #fd354a;
+                    position:relative;
+                    bottom:70px;
                   "
                   v-if="
                     Math.trunc(
                       (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed() > 100"
+                    ).toFixed() > 100
+                  "
                   >{{
                     Math.trunc(
                       (item.value[item.value.length - 1] * 100) / 400
                     ).toFixed()
-                  }}</span
+                  }}%</span
                 >
                 <span
                   style="
-                    fontSize: 17px;
+                   fontSize:17px;
+                    color: #009af9;
                     position: relative;
-                    bottom: 89px;
-                    left: 10%;
-                    color: #009af9;"
+                    bottom:70px;
+                  "
                   v-else
                   >{{
                     Math.trunc(
                       (item.value[item.value.length - 1] * 100) / 400
                     ).toFixed()
-                  }}</span>
-
+                  }}%</span
+                >
+                </center>
                 <span
                   v-if="
                     Math.trunc(
                       (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed() > 100"
-                  style="position:relative; right:10px;color: #fd354a"
+                    ).toFixed() > 100
+                  "
+                  style=" position:relative;color: #fd354a; bottom:80px"
                   >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
                 >
-                <span v-else style="color: #009af9">{{
-                  Math.trunc(item.value[item.value.length - 1])
-                }}</span>
+                <span
+                  v-else
+                  style=" position:relative;color: #009af9; bottom:80px"
+                  >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
+                >
               </center>
             </div>
           </el-col>
