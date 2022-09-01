@@ -1,7 +1,10 @@
 <template>
   <div>
     <div v-if="this.$store.getters.currentRoutes != 'pm4'">
-      <el-card class="box-card" style="width: 100%; color: #676a6c">
+      <el-card
+        class="box-card"
+        style="width: 100%; color: #676a6c; background-color: white"
+      >
         <el-row :gutter="20">
           <el-col
             :span="this.gaugeWidth"
@@ -9,7 +12,7 @@
             :key="index"
           >
             <div class="card-header">
-              <span style="font-size: 20px; position: relative; top: 20px">{{
+              <span style="font-size: 16px; position: relative; top: 20px">{{
                 item.name.slice(6, 11).split("_").join(" ").split("0").join("")
               }}</span>
 
@@ -27,38 +30,38 @@
               ></apexchart>
               <center>
                 <center>
-                <span
-                  style="
-                    fontSize:17px;
-                    color: #fd354a;
-                    position:relative;
-                    bottom:70px;
-                  "
-                  v-if="
-                    Math.trunc(
-                      (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed() > 100
-                  "
-                  >{{
-                    Math.trunc(
-                      (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed()
-                  }}%</span
-                >
-                <span
-                  style="
-                   fontSize:17px;
-                    color: #009af9;
-                    position: relative;
-                    bottom:70px;
-                  "
-                  v-else
-                  >{{
-                    Math.trunc(
-                      (item.value[item.value.length - 1] * 100) / 400
-                    ).toFixed()
-                  }}%</span
-                >
+                  <span
+                    style="
+                      font-size: 17px;
+                      color: #fd354a;
+                      position: relative;
+                      bottom: 70px;
+                    "
+                    v-if="
+                      Math.trunc(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      ).toFixed() > 100
+                    "
+                    >{{
+                      Math.trunc(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      ).toFixed()
+                    }}%</span
+                  >
+                  <span
+                    style="
+                      font-size: 17px;
+                      color: #009af9;
+                      position: relative;
+                      bottom: 70px;
+                    "
+                    v-else
+                    >{{
+                      Math.trunc(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      ).toFixed()
+                    }}%</span
+                  >
                 </center>
                 <span
                   v-if="
@@ -66,12 +69,24 @@
                       (item.value[item.value.length - 1] * 100) / 400
                     ).toFixed() > 100
                   "
-                  style=" position:relative;color: #fd354a; bottom:80px"
+                  style="
+                    position: relative;
+                    font-weight: bold;
+                    font-size: 33px;
+                    color: #fd354a;
+                    bottom: 80px;
+                  "
                   >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
                 >
                 <span
                   v-else
-                  style=" position:relative;color: #009af9; bottom:80px"
+                  style="
+                    position: relative;
+                    font-size: 33px;
+                    font-weight: bold;
+                    color: #009af9;
+                    bottom: 80px;
+                  "
                   >{{ Math.trunc(item.value[item.value.length - 1]) }}</span
                 >
               </center>
@@ -87,7 +102,7 @@
             v-for="(item, index) in pm4"
             :key="index"
             class="box-card"
-            style="width: 250px; height: 250px"
+            style="width: 250px; height: 150px"
           >
             <div class="card-header">
               <span style="font-size: 20px; position: relative; top: 20px">{{
@@ -190,14 +205,18 @@ export default {
       series: [],
 
       chartOptions: {
+     
         chart: {
           type: "radialBar",
-          height: 250,
+          height: 200,
           offsetY: -20,
+         
+      
           animations: {
             enabled: false,
             easing: "linear",
             speed: 12800,
+
           },
           sparkline: {
             enabled: true,
@@ -223,46 +242,27 @@ export default {
             },
             startAngle: -90,
             endAngle: 90,
-            offsetY: 0,
             offsetX: 0,
-            width: 150,
-            track: {
-              background: "#e7e7e7",
-              strokeWidth: "97%",
-              margin: 5, // margin is in pixels
-              dropShadow: {
-                enabled: true,
-                top: 2,
-                left: 0,
-                color: "#999",
-                opacity: 1,
-                blur: 2,
-              },
-            },
+            offsetY: 0,
+
             dataLabels: {
               showOn: "always",
               name: {
                 offsetY: 0,
                 show: false,
 
-                fontSize: "35px",
+                fontSize: "30px",
               },
               value: {
                 fontSize: "15px",
                 show: false,
-                offsetY: -30,
-              },
-              total: {
-                formatter: function () {
-                  return 500;
-                },
               },
             },
           },
         },
         grid: {
           padding: {
-            top: -10,
+            top: -20,
           },
         },
         fill: {

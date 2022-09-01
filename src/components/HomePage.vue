@@ -11,6 +11,7 @@
             position: relative;
             top: 30px;
             color: #676a6c;
+            background-color:white;
             z-index: 0;
           "
         >
@@ -90,7 +91,10 @@ export default {
       }
       var s = [];
       b.forEach((element) => s.push(element[1]));
+      console.log(s[s.length-1])
+    
       var t = s.join("");
+     
       var u = t.toUpperCase();
       this.$store.dispatch("changeRoutePage", t);
 
