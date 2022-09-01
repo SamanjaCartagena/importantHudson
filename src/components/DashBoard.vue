@@ -1,7 +1,8 @@
 <template>
+<div>
   <h1>The sidebar is {{collapsed? 'open':'closed'}}</h1>
    <button @click="toggleSidebar">Toggle Sidebar</button>
-  
+</div>
 </template>
 
 <script>

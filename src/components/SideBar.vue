@@ -37,7 +37,7 @@
 
 <script>
 import SidebarLink from './SidebarLink.vue'
-import {collapsed, toggleSidebar, sidebarWidth, toggleEnter} from './state'
+import {collapsed, toggleSidebar, sidebarWidth, toggleEnter} from './state.js'
 import moment from 'moment'
 export default {
     props:{},

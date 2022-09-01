@@ -1,132 +1,124 @@
 <template>
   <div>
-    {{value2[0]}}
-    {{value2[1]}}
-    
-  <div class="block">
-    <span class="demonstration">Date Range<br/></span>
-    <el-date-picker
-      v-model="value2"
-      type="datetimerange"
-      :shortcuts="shortcuts"
-      range-separator="To"
-      start-placeholder="Start date"
-      end-placeholder="End date"
-      value-format="YYYY-MM-DD"
-      @change="datePicked($event)"
-    />
-  </div>
+    <div class="block">
+      <span class="demonstration">Date Range<br /></span>
+      <el-date-picker
+        v-model="value2"
+        type="datetimerange"
+        :shortcuts="shortcuts"
+        range-separator="To"
+        start-placeholder="Start date"
+        end-placeholder="End date"
+        value-format="YYYY-MM-DD"
+        @change="datePicked($event)"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import store from '../store';
-import moment from 'moment';
-    
-    const value2 = ref([
-      moment().format('YYYY-MM-DD'),
-      moment().format('YYYY-MM-DD')
-    ])
-    const datePicked=(event)=>{console.log('The date was changed from'+event[0]+" and "+event[1])
-    store.dispatch('changeStartDate',event[0])
-      store.dispatch('changeEndDate', event[1])
-         store.dispatch('fetchGaugeData')
-                store.dispatch('fetchLineData')
-                store.dispatch('fetchBarData')
-  }
+import { ref } from "vue";
+import store from "../store";
+import moment from "moment";
+
+const value2 = ref("");
+const datePicked = (event) => {
+  console.log("The date was changed from" + event[0] + " and " + event[1]);
+  store.dispatch("changeStartDate", event[0]);
+  store.dispatch("changeEndDate", event[1]);
+  store.dispatch("fetchGaugeData");
+  store.dispatch("fetchLineData");
+  store.dispatch("fetchBarData");
+};
 const shortcuts = [
   {
-    text: 'Today',
+    text: "Today",
     value: () => {
-      const end =moment().format('YYYY-MM-DD')
-      const start = moment().format('YYYY-MM-DD')
-      
-            store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
-                  store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-               
-                     store.dispatch('fetchGaugeData')
-                              store.dispatch('fetchLineData')
-                              store.dispatch('fetchBarData')
-        
-      return [start, end]
-    },
-  },
-  {
-    text: 'Yesterday',
-    value: () => {
-      const end =moment().subtract(1,'days').format('YYYY-MM-DD')
-      const start = moment().subtract(1,'days').format('YYYY-MM-DD')
+      const end = moment().format("YYYY-MM-DD");
+      const start = moment().format("YYYY-MM-DD");
 
-      console.log("The start is "+start)
-      console.log("The end is "+end)
-            store.dispatch('changeStartDate',start)
-            
-                  store.dispatch('changeEndDate',end)
-            
-            
-                              store.dispatch('fetchGaugeData')
-                              store.dispatch('fetchLineData')
-                              store.dispatch('fetchBarData')
-                        
-      return [start, end]
+      store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
+      store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
+
+      store.dispatch("fetchGaugeData");
+      store.dispatch("fetchLineData");
+      store.dispatch("fetchBarData");
+
+      return [start, end];
     },
   },
   {
-    text: 'Last week',
+    text: "Yesterday",
     value: () => {
-      const end = moment().format('YYYY-MM-DD')
-      const start = moment().subtract(6,'days').format('YYYY-MM-DD')
-      
-      store.dispatch('changeStartDate',start)
-      store.dispatch('changeEndDate', end)
-         store.dispatch('fetchGaugeData')
-                store.dispatch('fetchLineData')
-                store.dispatch('fetchBarData')
-                
-      
-      return [start, end]
+      const end = moment().subtract(1, "days").format("YYYY-MM-DD");
+      const start = moment().subtract(1, "days").format("YYYY-MM-DD");
+
+      console.log("The start is " + start);
+      console.log("The end is " + end);
+      store.dispatch("changeStartDate", start);
+
+      store.dispatch("changeEndDate", end);
+
+      store.dispatch("fetchGaugeData");
+      store.dispatch("fetchLineData");
+      store.dispatch("fetchBarData");
+
+      return [start, end];
     },
   },
   {
-    text: 'Last month',
+    text: "Last week",
     value: () => {
-      const end = moment().format('YYYY-MM-DD')
-      const start = moment().subtract(30,'days').format('YYYY-MM-DD')
-      store.dispatch('changeStartDate',start)
-      store.dispatch('changeEndDate',end)
-         store.dispatch('fetchGaugeData')
-           store.dispatch('fetchLineData')
-           store.dispatch('fetchBarData')
-    
-      return [start, end]
+      const end = moment().format("YYYY-MM-DD");
+      const start = moment().subtract(6, "days").format("YYYY-MM-DD");
+
+      store.dispatch("changeStartDate", start);
+      store.dispatch("changeEndDate", end);
+      store.dispatch("fetchGaugeData");
+      store.dispatch("fetchLineData");
+      store.dispatch("fetchBarData");
+
+      return [start, end];
     },
   },
   {
-    text:'Custom Range',
-    
-    
+    text: "Last month",
     value: () => {
-      const end = new Date()
-      const start = new Date()
-      start.setTime(start.getTime())
-      end.setTime(end.getTime())
-      return [start, end]
+      const end = moment().format("YYYY-MM-DD");
+      const start = moment().subtract(30, "days").format("YYYY-MM-DD");
+      store.dispatch("changeStartDate", start);
+      store.dispatch("changeEndDate", end);
+      store.dispatch("fetchGaugeData");
+      store.dispatch("fetchLineData");
+      store.dispatch("fetchBarData");
+
+      return [start, end];
     },
-  
-  
   },
- 
-]
-methods:{
-  
+  {
+    text: "Custom Range",
+  },
+  {
+    text: "This month",
+    value: () => {
+      const end = moment().format("YYYY-MM-DD");
+      const start = moment().subtract(30, "days").format("YYYY-MM-DD");
+      store.dispatch("changeStartDate", start);
+      store.dispatch("changeEndDate", end);
+      store.dispatch("fetchGaugeData");
+      store.dispatch("fetchLineData");
+      store.dispatch("fetchBarData");
+
+      return [start, end];
+    },
+  },
+];
+methods: {
 }
-
-
 </script>
 
 <style>
-.demonstration{
+.demonstration {
   cursor: pointer;
 }
 </style>

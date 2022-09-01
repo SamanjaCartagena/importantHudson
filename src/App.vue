@@ -1,65 +1,65 @@
 <template>
-  <nav-bar></nav-bar>
+  <div>
+    <side-bar/>
+    <nav-bar></nav-bar>
 
-<div>
-  <side-bar />
-  <div :style="{ 'margin-left': sidebarWidth }">
-
-    <router-view />
+      <div>
+        <div :style="{ 'margin-left': sidebarWidth }">
+          <router-view />
+        </div>
+      </div>
   </div>
-</div>
 </template>
 
 <script>
 //import axios from 'axios'
-import { useRoute } from 'vue-router'
-import NavBar from './components/NavBar.vue'
-import SideBar from './components/SideBar.vue'
-import {sidebarWidth} from './components/state'
+import { useRoute } from "vue-router";
+import NavBar from "./components/NavBar.vue";
+import SideBar from "./components/SideBar.vue";
+import { sidebarWidth } from "./components/state.js";
 export default {
-  setup(){
-        const route = useRoute()
+  setup() {
+    const route = useRoute();
     return {
-      sidebarWidth
-    }
+      sidebarWidth,
+    };
   },
-  name: 'App',
-  
- components:{
-  SideBar,
-   NavBar
- },
- data(){
-   return{
-    crumbs:['Home','Category','Sub Category']
-   }
- },
- methods:{
-    selected(crumb){
-      console.log(crumb)
-    }
- }
-}
+  name: "App",
+
+  components: {
+    SideBar,
+    NavBar,
+  },
+  data() {
+    return {
+      crumbs: ["Home", "Category", "Sub Category"],
+    };
+  },
+  methods: {
+    selected(crumb) {
+      console.log(crumb);
+    },
+  },
+};
 </script>
 
 <style>
 * {
   font-family: "Poppins", sans-serif;
-  
-  
 }
-body{
-    background-color: #f3f3f4;
-    -webkit-transform: translate(0px, 0);
-   -webkit-transition: -webkit-transform 0.3s ease;
-   -moz-transform: translate(0px, 0);
-   -moz-transition: -moz-transform 0.3s ease;
-   transform: translate(0px, 0);
-   transition: -webkit-transform 0.3s ease;
+body {
+  background-color: #f3f3f4;
+  -webkit-transform: translate(0px, 0);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -moz-transform: translate(0px, 0);
+  -moz-transition: -moz-transform 0.3s ease;
+  transform: translate(0px, 0);
+  transition: -webkit-transform 0.3s ease;
 }
+
+
 #nav {
   padding: 30px;
-  
 }
 #nav a {
   font-weight: bold;
@@ -68,12 +68,12 @@ body{
 #nav a.router-link-exact-active {
   color: grey;
 }
-header{
-  width:100vw;
+header {
+  width: 100vw;
   background-color: black;
   color: white;
-  top:0;
-  height:50px;
+  top: 0;
+  height: 50px;
   margin-top: 0;
   position: fixed;
   z-index: 2;

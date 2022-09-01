@@ -94,7 +94,6 @@
 </div>
 </template>
 <script>
-import {collapsed, toggleSidebar, sidebarWidth} from './state'
 import moment from 'moment'
 
 export default{
@@ -111,9 +110,7 @@ export default{
   components:{
     
   },
-     setup(){
-       return {collapsed, toggleSidebar, sidebarWidth}
-    },
+     
     created(){
      
    
