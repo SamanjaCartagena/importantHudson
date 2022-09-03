@@ -25,7 +25,7 @@ const store=createStore({
           port:3080,
           met:'',
           routePage:''
-
+         
               
 
     },
@@ -77,6 +77,7 @@ const store=createStore({
               async changeRoutePage({commit}, payload){
                 return Promise.resolve(commit('changeRoutePage', payload))
               }
+            
               
     },
     mutations:{

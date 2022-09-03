@@ -85,9 +85,7 @@
                     font-size: 33px;
                     font-weight: bold;
                     color: #009af9;
-                    bottom: 80px;
-                  "
-                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
+                    bottom: 80px;">{{ Math.round(item.value[item.value.length - 1]) }}</span
                 >
               </center>
             </div>
@@ -102,12 +100,10 @@
             v-for="(item, index) in pm4"
             :key="index"
             class="box-card"
-            style="width: 250px; height: 150px"
-          >
+            style="width: 250px; height: 150px" >
             <div class="card-header">
               <span style="font-size: 20px; position: relative; top: 20px">{{
-                item.name
-              }}</span>
+                item.name}}</span>
               <apexchart
                 id="gaugeChartApex"
                 type="radialBar"
@@ -129,8 +125,8 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import router from "../../src/router";
 import pm4json from "../../pm4.json";
+
 export default {
   name: "GaugeChart",
   data() {

@@ -13,7 +13,7 @@
     
   </div>
  <el-breadcrumb-item v-else
-      ><a href="#" @click="paged">{{page}}</a></el-breadcrumb-item>
+      ><a href="#" @click="paged">{{this.stack}}</a></el-breadcrumb-item>
     </el-breadcrumb>
 
 </template>
@@ -25,7 +25,7 @@ export default{
         return {
          beforeRoute:'',
          afterRoute:'',
-         newRoutes:[],
+         stack:[],
          routeractive:false
         }
     },
@@ -50,13 +50,12 @@ export default{
           this.$store.dispatch('changeRoute',`${item}`)
                   console.log("the current route is "+this.$store.getters.currentRoutes)
                    this.$router.push({path:`/pmdashboard/${item}`})
-       
+                  
+         console.log(this.stack.peek())
       this.$store.dispatch('fetchBarData')
       this.$store.dispatch('fetchGaugeData')
-      
-      
- 
       this.$store.dispatch('fetchLineData')
+       
         },
         paged(){
                this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
@@ -82,12 +81,12 @@ export default{
             this.beforeRoute=from.params.pageName
             console.log("The address after route is "+to.params.pageName)
             this.afterRoute=to.params.pageName
-            this.newRoutes.push(this.afterRoute)
+            this.stack.push(this.afterRoute)
             if(this.afterRoute=='main'){
-                this.newRoutes=[]
+               // this.newRoutes=[]
             }
             if(this.beforeRoute == this.afterRoute){
-                this.newRoutes=[]
+               // this.newRoutes=[]
             }
 })
 
