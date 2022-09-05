@@ -68,7 +68,7 @@ const shortcuts = [
     },
   },
   {
-    text: "Last week",
+    text: "Last 7 days",
     value: () => {
       const end = moment().format("YYYY-MM-DD");
       const start = moment().subtract(6, "days").format("YYYY-MM-DD");
@@ -83,7 +83,7 @@ const shortcuts = [
     },
   },
   {
-    text: "Last month",
+    text: "Last 30 days",
     value: () => {
       const end = moment().format("YYYY-MM-DD");
       const start = moment().subtract(30, "days").format("YYYY-MM-DD");

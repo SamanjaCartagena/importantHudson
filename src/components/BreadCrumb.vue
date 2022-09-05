@@ -1,97 +1,78 @@
 <template>
-  <el-breadcrumb separator="/">
-    <el-breadcrumb-item ><a href="#" @click="home">homepage</a></el-breadcrumb-item>
-    <el-breadcrumb-item     
-      ><a href="/pmdashboard/main" @click="mainPage">main</a></el-breadcrumb-item
-    >
-    <div v-if="this.beforeRoute != this.afterRoute">
-    <el-breadcrumb-item 
-    :to="{ path: `/pmdashboard/${item}` }"
-    @click="clicked(item)"
-    separator="/" v-for="item in newRoutes" :key="item"
-      ><a href="#">{{item}}</a></el-breadcrumb-item>
-    
-  </div>
- <el-breadcrumb-item v-else
-      ><a href="#" @click="paged">{{this.stack}}</a></el-breadcrumb-item>
-    </el-breadcrumb>
+  <div style="display: inline-block">
+    <el-breadcrumb separator="/">
+      <el-breadcrumb-item>
+        <a href="#" @click="home">homepage</a>
+      </el-breadcrumb-item>
+      <el-breadcrumb-item
+        ><a href="/pmdashboard/main" @click="mainPage"
+          >main</a
+        ></el-breadcrumb-item
+      >
 
+      <el-breadcrumb-item v-for="s in stack" :key="s" @click="paged(s)">
+        {{ s }}</el-breadcrumb-item
+      >
+    </el-breadcrumb>
+  </div>
 </template>
 <script>
-  import moment from 'moment'
-export default{
-    props:['page'],
-    data(){
-        return {
-         beforeRoute:'',
-         afterRoute:'',
-         stack:[],
-         routeractive:false
+export default {
+  props: ["page"],
+  data() {
+    return {
+      beforeRoute: "",
+      afterRoute: "",
+      stack: [],
+      a: [],
+    };
+  },
+
+  components: {},
+  methods: {
+    mainPage() {
+      this.$store.dispatch("changeRoute", "main");
+      this.$router.push({ path: "/pmdashboard/main" });
+      this.$store.dispatch("fetchBarData");
+      this.$store.dispatch("fetchGaugeData");
+      this.$store.dispatch("fetchLineData");
+    },
+    paged(val) {
+      console.log("this value was clicked " + val);
+      console.log(this.stack.length);
+
+      for (let i = this.stack.length - 1; i > 0; i--) {
+        if (val == this.stack[i]) {
+          continue;
+        } else {
+          this.stack.pop();
         }
-    },
+      }
+      console.log("The stack that is left is " + this.stack);
+      this.$store.dispatch("changeRoute", `${val}`);
 
-    components:{
-
-    },
-    methods:{
-        mainPage(){
-               this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
-            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-          this.$store.dispatch('changeRoute','main')
-                   this.$router.push({path:'/pmdashboard/main'})
-      this.$store.dispatch('fetchBarData')
-      this.$store.dispatch('fetchGaugeData')
-      this.$store.dispatch('fetchLineData')
+      this.$store.dispatch("fetchBarData");
+      this.$store.dispatch("fetchGaugeData");
+      this.$store.dispatch("fetchLineData");
+      this.$router.push({
+        path: `${val}`,
+        query: {
+          startDate: `${this.$store.getters.start}`,
+          endDate: `${this.$store.getters.end}`,
         },
-        clicked(item){
-         console.log(item+" item was clicked")
-         this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
-            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-          this.$store.dispatch('changeRoute',`${item}`)
-                  console.log("the current route is "+this.$store.getters.currentRoutes)
-                   this.$router.push({path:`/pmdashboard/${item}`})
-                  
-         console.log(this.stack.peek())
-      this.$store.dispatch('fetchBarData')
-      this.$store.dispatch('fetchGaugeData')
-      this.$store.dispatch('fetchLineData')
-       
-        },
-        paged(){
-               this.$store.dispatch('changeStartDate',moment().format('YYYY-MM-DD'))
-            this.$store.dispatch('changeEndDate',moment().format('YYYY-MM-DD'))
-          this.$store.dispatch('changeRoute',`${page}`)
-                  
-                   this.$router.push({path:`/pmdashboard/${page}`})
-      
-       
-      this.$store.dispatch('fetchBarData')
-      this.$store.dispatch('fetchGaugeData')
-      
-      
- 
-      this.$store.dispatch('fetchLineData')
-        }
-
+      });
+      this.stack.pop();
     },
-    created(){
-        this.$router.afterEach((to, from) => {
-            console.log(to)
-            console.log("The address before route is  "+from.params.pageName)
-            this.beforeRoute=from.params.pageName
-            console.log("The address after route is "+to.params.pageName)
-            this.afterRoute=to.params.pageName
-            this.stack.push(this.afterRoute)
-            if(this.afterRoute=='main'){
-               // this.newRoutes=[]
-            }
-            if(this.beforeRoute == this.afterRoute){
-               // this.newRoutes=[]
-            }
-})
-
-
-    }
-}
-
+  },
+  created() {
+    this.$router.afterEach((to, from) => {
+      console.log(to);
+      console.log("The address before route is  " + from.params.pageName);
+      this.beforeRoute = from.params.pageName;
+      console.log("The address after route is " + to.params.pageName);
+      this.afterRoute = to.params.pageName;
+      this.stack.push(this.afterRoute);
+    });
+  },
+};
 </script>

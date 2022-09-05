@@ -284,13 +284,5 @@ export default {
 .apexcharts-tooltip apexcharts-theme-light apexcharts-active{
    background-color: yellow
   }
-  foreignObject:hover #box{
-    display: block;
-  }
-  #box{
-    width:400px;
-    height:400px;
-    background-color: green;
-    display:none
-  }
+ 
 </style>

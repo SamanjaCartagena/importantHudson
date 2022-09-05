@@ -186,7 +186,6 @@ export default {
                 if (config.dataPointIndex < 0) {
                   var meters1 = event.target.firstChild.data;
                   var s = Object.entries(meters1);
-                  var s = Object.entries(meters1);
                   if (s[2].includes(" ")) {
                     delete s[2];
                   }
