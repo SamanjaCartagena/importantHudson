@@ -160,12 +160,12 @@ export default {
     setBarChart() {
       setInterval(() => {
         this.updateChart();
-      }, 50);
+      }, 1);
     },
     setPmChart() {
       setInterval(() => {
         this.updatePmChart();
-      }, 50);
+      }, 1);
     },
     updatePmChart() {
       this.pmChart = {

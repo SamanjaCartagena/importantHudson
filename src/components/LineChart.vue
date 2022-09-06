@@ -2,14 +2,15 @@
   <div>
     <div v-if="this.$store.getters.currentRoutes != 'pm4'">
       <el-card class="box-card" style="width: 100%">
-        <apexchart
+        
+   <apexchart
           width="100%"
           height="250px"
           type="area"
           :options="this.lineCharts.chartOptions"
           :series="[...this.allLineData]"
         >
-        </apexchart>
+        </apexchart> 
         <div id="box">
 
         </div>
@@ -150,7 +151,7 @@ export default {
     setLineChart() {
       setInterval(() => {
         this.updateChart();
-      }, 50);
+      }, 1);
     },
     updateChart() {
       if (this.$store.getters.currentRoutes != "pm4") {

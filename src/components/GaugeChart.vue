@@ -148,7 +148,7 @@ export default {
     setGaugeChart() {
       setInterval(() => {
         this.updateChart();
-      }, 50);
+      }, 1);
     },
     updateChart() {
       this.arr = [];

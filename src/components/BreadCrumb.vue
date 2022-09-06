@@ -9,14 +9,23 @@
           >main</a
         ></el-breadcrumb-item
       >
-
-      <el-breadcrumb-item v-for="s in stack" :key="s" @click="paged(s)">
+      <el-breadcrumb-item v-if="(this.a=='PM1')||(this.a=='PM2')||(this.a=='PM3')||(this.a=='PM4')">
+        {{ page }}</el-breadcrumb-item
+      >
+      <el-breadcrumb-item
+        v-else
+        v-for="s in stack"
+        :key="s"
+        @click="paged(s)"
+      >
         {{ s }}</el-breadcrumb-item
       >
+ 
     </el-breadcrumb>
   </div>
 </template>
 <script>
+import App from "../App.vue";
 export default {
   props: ["page"],
   data() {
@@ -24,11 +33,11 @@ export default {
       beforeRoute: "",
       afterRoute: "",
       stack: [],
-      a: [],
+      a:"",
     };
   },
 
-  components: {},
+  components: { App },
   methods: {
     mainPage() {
       this.$store.dispatch("changeRoute", "main");
@@ -69,9 +78,21 @@ export default {
       console.log(to);
       console.log("The address before route is  " + from.params.pageName);
       this.beforeRoute = from.params.pageName;
+
       console.log("The address after route is " + to.params.pageName);
       this.afterRoute = to.params.pageName;
-      this.stack.push(this.afterRoute);
+      this.a = this.afterRoute.toUpperCase()
+      if (this.beforeRoute != this.afterRoute) {
+        this.stack.push(this.a);
+      } 
+      else if(this.afterRoute=='bm1' || this.afterRoute =='bm2'){
+        this.stack=[]
+        this.stack.push('PM1')
+        this.stack.push(this.a)
+      }
+      else if(this.afterRoute=='main'){
+        this.stack=[]
+      }
     });
   },
 };
