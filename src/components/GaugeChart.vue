@@ -27,7 +27,7 @@
                     (item.value[item.value.length - 1] * 100) / 400
                   )
                 ]"
-              ></apexchart>
+              >{{}}</apexchart>
               <center>
                 <center>
                   <span

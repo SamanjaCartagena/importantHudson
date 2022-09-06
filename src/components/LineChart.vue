@@ -2,18 +2,17 @@
   <div>
     <div v-if="this.$store.getters.currentRoutes != 'pm4'">
       <el-card class="box-card" style="width: 100%">
-        
-   <apexchart
+        <apexchart
           width="100%"
           height="250px"
           type="area"
           :options="this.lineCharts.chartOptions"
           :series="[...this.allLineData]"
+          @mouseover="values"
+          @mouseleave="setAgain"
         >
-        </apexchart> 
-        <div id="box">
-
-        </div>
+        </apexchart>
+        <div id="box"></div>
       </el-card>
     </div>
     <div v-else>
@@ -41,6 +40,7 @@ export default {
       names: [],
       data: [],
       dates: [],
+      interval: "",
       d: [],
       pm4: pm4json,
       lineCharts: {
@@ -145,11 +145,17 @@ export default {
   },
   methods: {
     ...mapActions(["fetchLineData", "fetchLineDates"]),
-    moment: function (value) {
-      return moment(value);
-    },
+
     setLineChart() {
-      setInterval(() => {
+      this.interval = setInterval(() => {
+        this.updateChart();
+      }, 1);
+    },
+    values() {
+      clearInterval(this.interval);
+    },
+    setAgain() {
+      this.interval = setInterval(() => {
         this.updateChart();
       }, 1);
     },
@@ -172,9 +178,7 @@ export default {
               },
 
               events: {
-                mouseMove: function (event, chartContext, config) {
-                  clearInterval(setInterval);
-                },
+                mouseMove: function (event, chartContext, config) {},
               },
               zoom: {
                 enabled: true,
@@ -282,8 +286,7 @@ export default {
 </script>
 
 <style>
-.apexcharts-tooltip apexcharts-theme-light apexcharts-active{
-   background-color: yellow
-  }
- 
+.apexcharts-tooltip apexcharts-theme-light apexcharts-active {
+  background-color: yellow;
+}
 </style>
