@@ -7,7 +7,7 @@
           height="250px"
           type="area"
           :options="this.lineCharts.chartOptions"
-          :series="[...this.allLineData]"
+          :series="this.lineCharts.chartOptions.series"
           @mouseover="values"
           @mouseleave="setAgain"
         >
@@ -43,104 +43,123 @@ export default {
       interval: "",
       d: [],
       pm4: pm4json,
-      lineCharts: {
-        series: [{ name: "", data: [] }],
-
-        chartOptions: {
-          chart: {
-            height: 250,
-            type: "area",
-            width: "100%",
-            animations: {
-              enabled: true,
-            },
-            zoom: {
-              enabled: true,
-              type: "x",
-              autoScaleYaxis: true,
-              zoomedArea: {
-                fill: {
-                  color: "#90CAF9",
-                  opacity: 0.4,
-                },
-                stroke: {
-                  color: "#0D47A1",
-                  opacity: 0.4,
-                  width: 1,
-                },
+      lineCharts : {
+          chartOptions: {
+            chart: {
+              type: "area",
+              height: 250,
+              width: "100%",
+              animations: {
+                enabled: false,
               },
-            },
-          },
-          dataLabels: {
-            enabled: false,
-          },
-          fill: {
-            colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
-          },
-
-          title: {
-            text: "Power (KW)",
-          },
-          stroke: {
-            curve: "smooth",
-            width: 1.2,
-            colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
-          },
-
-          legend: {
-            fontSize: "16px",
-            labels: {
-              colors: [
-                "#8eb77e",
-                "#ebbe4f",
-                "#80d3e4",
-                "#f0944a",
-                "#FF9800",
-                "orange",
-              ],
-            },
-          },
-          markers: {
-            colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
-          },
-
-          xaxis: {
-            type: "datetime",
-            offsetX: 0,
-            offsetY: 0,
-            labels: {
-              datetimeUTC: false,
-              format: "MMM dd HH:mm",
-              offsetX: 0,
-              offsetY: 0,
-              axisTicks: {
+              toolbar: {
                 show: true,
-                borderType: "solid",
-                color: "#78909C",
-                height: 6,
                 offsetX: 0,
                 offsetY: 0,
-              },
-
-              style: {
-                fontSize: "12px",
+                tools: {
+                  download: true,
+                  selection: true,
+                  zoom: true,
+                  zoomin: true,
+                  zoomout: true,
+                  pan: true,
+                  reset:
+                    true | '<img src="/static/icons/reset.png" width="20">',
+                  customIcons: [],
+                },
+                export: {
+                  csv: {
+                    filename: undefined,
+                    columnDelimiter: ",",
+                    headerCategory: "category",
+                    headerValue: "value",
+                    dateFormatter(timestamp) {
+                      console.log(timestamp);
+                      var dt = new Date(timestamp).toDateString();
+                      var tm = new Date(timestamp).toTimeString();
+                      return dt + " " + tm;
+                    },
+                  },
+                  svg: {
+                    filename: undefined,
+                  },
+                  png: {
+                    filename: undefined,
+                  },
+                },
+                autoSelected: "zoom",
               },
             },
 
-            categories: [...this.$store.getters.allLineDates],
-            enabled: true,
-            x: { format: "dd MMM yyyy HH:mm" },
-            theme: "light",
+            markers: {
+              size: 0,
+            },
+            dataLabels: {
+              enabled: false,
+            },
+            stroke: {
+              width: 1.2,
+            },
+            series: [...this.$store.getters.allLineData],
+            fill: {
+              type: "gradient",
+              gradient: {
+                shadeIntensity: 0.3,
+                opacityFrom: 0.3,
+                opacityTo: 1,
+                stops: [100, 100, 100],
+              },
+            },
+            // format Names of datapoints xAxis under the Date and Time
+            legend: {
+              fontSize: "16px",
+            },
+            // format xAxis
+            xaxis: {
+              categories: [...this.$store.getters.allLineDates],
+              type: "datetime",
+              labels: {
+                datetimeUTC: false,
+                format: "MMM dd HH:mm",
+                style: {
+                  fontSize: "12px",
+                },
+              },
+            },
+            // dialogbox title
+            tooltip: {
+              enabled: true,
+              x: { format: "dd MMM yyyy HH:mm" },
+              theme: "light",
+            },
             colors: ["#7EB26D", "#E9B839", "#6ED0E0", "#EF853C"],
+            yaxis: [
+              {
+                title: {
+                  text: "kW",
+                },
+                labels: {
+                  formatter: function (value) {
+                    return value;
+                  },
+                },
+              },
+            ],
+            // Show NO DATA if no data from DB
+            noData: {
+              text: "No Data",
+              align: "center",
+              verticalAlign: "middle",
+              offsetX: 0,
+              offsetY: 0,
+              style: {
+                color: undefined,
+                fontSize: "18px",
+                fontFamily: undefined,
+              },
+            },
           },
-          tooltip: {
-            enabled: true,
-            x: { format: "dd MMM yyyy HH:mm" },
-            theme: "light",
-            x: {},
-          },
-        },
-      },
+        }
     };
   },
   methods: {
@@ -155,115 +174,124 @@ export default {
       clearInterval(this.interval);
     },
     setAgain() {
-      this.interval = setInterval(() => {
-        this.updateChart();
-      }, 1);
+      this.setLineChart();
     },
     updateChart() {
       if (this.$store.getters.currentRoutes != "pm4") {
         this.lineCharts = {
-          series: [{ name: "", data: [] }],
-
           chartOptions: {
             chart: {
-              height: 250,
               type: "area",
+              height: 250,
               width: "100%",
               animations: {
-                enabled: true,
+                enabled: false,
               },
-              dynamicAnimation: {
-                enabled: true,
-                speed: 350,
-              },
-
-              events: {
-                mouseMove: function (event, chartContext, config) {},
-              },
-              zoom: {
-                enabled: true,
-                type: "x",
-                autoScaleYaxis: true,
-                zoomedArea: {
-                  fill: {
-                    color: "#90CAF9",
-                    opacity: 0.4,
+              toolbar: {
+                show: true,
+                offsetX: 0,
+                offsetY: 0,
+                tools: {
+                  download: true,
+                  selection: true,
+                  zoom: true,
+                  zoomin: true,
+                  zoomout: true,
+                  pan: true,
+                  reset:
+                    true | '<img src="/static/icons/reset.png" width="20">',
+                  customIcons: [],
+                },
+                export: {
+                  csv: {
+                    filename: undefined,
+                    columnDelimiter: ",",
+                    headerCategory: "category",
+                    headerValue: "value",
+                    dateFormatter(timestamp) {
+                      console.log(timestamp);
+                      var dt = new Date(timestamp).toDateString();
+                      var tm = new Date(timestamp).toTimeString();
+                      return dt + " " + tm;
+                    },
                   },
-                  stroke: {
-                    color: "#0D47A1",
-                    opacity: 0.4,
-                    width: 1,
+                  svg: {
+                    filename: undefined,
+                  },
+                  png: {
+                    filename: undefined,
                   },
                 },
+                autoSelected: "zoom",
               },
+            },
+
+            markers: {
+              size: 0,
             },
             dataLabels: {
               enabled: false,
             },
-            fill: {
-              colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
-            },
-
-            title: {
-              text: "Power (KW)",
-            },
             stroke: {
-              curve: "smooth",
               width: 1.2,
-              colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
             },
-
-            legend: {
-              fontSize: "16px",
-              labels: {
-                colors: [
-                  "#8eb77e",
-                  "#ebbe4f",
-                  "#80d3e4",
-                  "#f0944a",
-                  "#FF9800",
-                  "orange",
-                ],
+            series: [...this.allLineData],
+            fill: {
+              type: "gradient",
+              gradient: {
+                shadeIntensity: 0.3,
+                opacityFrom: 0.3,
+                opacityTo: 1,
+                stops: [100, 100, 100],
               },
             },
-            markers: {
-              colors: ["#8eb77e", "#ebbe4f", "#80d3e4", "#f0944a", "#FF9800"],
+            // format Names of datapoints xAxis under the Date and Time
+            legend: {
+              fontSize: "16px",
             },
-
+            // format xAxis
             xaxis: {
+              categories: [...this.$store.getters.allLineDates],
               type: "datetime",
-              offsetX: 0,
-              offsetY: 0,
               labels: {
                 datetimeUTC: false,
                 format: "MMM dd HH:mm",
-                offsetX: 0,
-                offsetY: 0,
-                axisTicks: {
-                  show: true,
-                  borderType: "solid",
-                  color: "#78909C",
-                  height: 6,
-                  offsetX: 0,
-                  offsetY: 0,
-                },
-
                 style: {
                   fontSize: "12px",
                 },
               },
-
-              categories: [...this.allLineDates],
-              enabled: true,
-              x: { format: "dd MMM yyyy HH:mm" },
-              theme: "light",
-              colors: ["#7EB26D", "#E9B839", "#6ED0E0", "#EF853C"],
             },
+            // dialogbox title
             tooltip: {
               enabled: true,
               x: { format: "dd MMM yyyy HH:mm" },
               theme: "light",
-              x: {},
+            },
+            colors: ["#7EB26D", "#E9B839", "#6ED0E0", "#EF853C"],
+            yaxis: [
+              {
+                title: {
+                  text: "kW",
+                },
+                labels: {
+                  formatter: function (value) {
+                    return value;
+                  },
+                },
+              },
+            ],
+            // Show NO DATA if no data from DB
+            noData: {
+              text: "No Data",
+              align: "center",
+              verticalAlign: "middle",
+              offsetX: 0,
+              offsetY: 0,
+              style: {
+                color: undefined,
+                fontSize: "18px",
+                fontFamily: undefined,
+              },
             },
           },
         };
