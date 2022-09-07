@@ -80,7 +80,7 @@
                 v-click-outside="closeAll"
                 v-if="hover5"
                 class="dropdownLink5"
-                @mouseleave="hideLink1"
+                @mouseleave="hideLink"
               >
                 <a href="#" @click="lm19Page">lm19</a>
                 <a href="#" @click="lm20Page">lm 20</a>
@@ -119,15 +119,36 @@
               <div
                 v-click-outside="closeAll"
                 v-if="hover4"
+                
                 class="dropdownLink4"
                 @mouseleave="hideLink8"
               >
                 <a href="#" @click="bm4Page">BM 4</a>
                 <a href="#" @click="bm5Page">BM 5</a>
               </div>
-              <div v-if="hover8" class="dropdownLink8" @mouseleave="hideLink">
+              <div v-if="hover8" class="dropdownLink8"
+              @mouseover="showLinkLM26"
+              v-click-outside="closeAll"
+
+              @mouseleave="hideLink9">
                 <a href="#" @click="cm2Page">CM 2 >></a>
                 <a href="#" @click="cm3Page">CM 3</a>
+              </div>
+              <div v-if="hover9" class="dropdownLink9"
+               @mouseover="showLinkLM27"
+               v-click-outside="closeAll"
+
+               @mouseleave="hideLink10">
+                <a href="#" @click="lm26Page">LM 26 >></a>
+                <a href="#" @click="lm27Page">LM 27</a>
+                <a href="#" @click="lm28Page">LM 28</a>
+                <a href="#" @click="lm30Page">LM 30</a>
+                <a href="#" @click="lm32Page">LM 32</a>
+                <a href="#" @click="lm35Page">LM 35</a>
+                <a href="#" @click="lm36Page">LM 36</a>
+                <a href="#" @click="lm37Page">LM 37</a>
+                <a href="#" @click="lm42Page">LM 42</a>
+                <a href="#" @click="lm43Page">LM 43</a>
               </div>
             </li>
           </ul>
@@ -171,6 +192,8 @@ export default {
       hover5: false,
       hover6: false,
       hover7: false,
+      hover8:false,
+      hover9:false
     };
   },
   components: {},
@@ -186,6 +209,21 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
+    },
+    showLinkLM26(){
+        this.hover9=true;
+        this.displayBlock=true;
+        this.hover8=true;
+        this.hover1=false;
+        this.hover2=false;
+        this.hover3=false;
+        this.hover4=false;
+        
+    },
+    showLinkLM27(){
+     this.hover8=true;
+     this.hover9=true;
+     this.displayBlock=true;
     },
     hudsonPage() {
       this.$router.push({ path: "/hudsonPage", name: "hudson" });
@@ -417,7 +455,21 @@ export default {
 
       this.$store.dispatch("fetchGaugeData");
     },
-    lm23Page() {
+    lm26Page()
+{    this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeRoute", "lm26");
+
+      this.$router.push({ path: "/pmdashboard/lm26" });
+      this.displayBlock = false;
+      this.hover1 = false;
+      this.hover2 = false;
+      this.hover3 = false;
+      this.hover4 = false;
+
+      this.$store.dispatch("fetchGaugeData");
+
+},   lm23Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeRoute", "lm23");
@@ -553,6 +605,16 @@ export default {
       this.hover5 = false;
       this.hover8=false;
     },
+    hideLink8(){
+      this.hover2=false;
+      this.displayBlock=true;
+      this.hover9=true;
+    },
+    hideLink9(){
+      this.hover8=true;
+      this.hover9=true;
+      this.displayBlock=true;
+    },
     hideLink2() {
       this.hover2 = false;
       this.hover5 = false;
@@ -574,6 +636,17 @@ export default {
     hideLink() {
       this.hover3 = false;
       this.hover4 = false;
+      this.hover7=false;
+      this.hover8=false;
+      this.hover9=false;
+      this.hover4=false;
+      this.hover5=false;
+      
+    },
+    hideLink10(){
+     this.hover9=false;
+     this.hover8=false;
+     
     },
     selectedbtn1() {
       this.$router.push({ path: `/pmdashboard/${main}` });
@@ -931,7 +1004,7 @@ body {
   display: block;
   position: absolute;
   left: 411px;
-  top: 200px;
+  top: 250px;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -945,6 +1018,31 @@ body {
   display: block;
 }
 .dropdownLink8 a:hover {
+  background-color: #e9ecef;
+}
+.dropdownLink9 {
+  position: relative;
+  display: inline-block;
+  border: 0.5px solid #e9ecef;
+}
+.dropdownLink9 {
+  display: block;
+  position: absolute;
+  left: 570px;
+  top: 250px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownLink9 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink9 a:hover {
   background-color: #e9ecef;
 }
 .links {

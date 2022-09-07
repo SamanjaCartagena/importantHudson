@@ -124,7 +124,24 @@ export default {
         this.stack.push("PM4");
 
         this.stack.push(this.a);
-      } else if (this.afterRoute == "main") {
+      } 
+      else if (this.afterRoute == "lm26" ||
+       this.afterRoute == "lm27" ||
+       this.afterRoute=='lm28'|| 
+       this.afterRoute=='lm30' ||
+       this.afterRoute=='lm32' ||
+       this.afterRoute=='lm35' ||
+       this.afterRoute=='lm36' ||
+       this.afterRoute=='lm37'||
+       this.afterRoute=='lm42' ||
+       this.afterRoute=='lm43') {
+        this.stack = [];
+        this.stack.push("PM4");
+
+        this.stack.push(this.a);
+      
+      }
+      else if (this.afterRoute == "main") {
         this.stack = [];
       }
     });
