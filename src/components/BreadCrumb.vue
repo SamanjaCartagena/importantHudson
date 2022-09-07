@@ -9,18 +9,19 @@
           >main</a
         ></el-breadcrumb-item
       >
-      <el-breadcrumb-item v-if="(this.a=='PM1')||(this.a=='PM2')||(this.a=='PM3')||(this.a=='PM4')">
+      <el-breadcrumb-item
+        v-if="
+          this.a == 'PM1' ||
+          this.a == 'PM2' ||
+          this.a == 'PM3' ||
+          this.a == 'PM4'
+        "
+      >
         {{ page }}</el-breadcrumb-item
       >
-      <el-breadcrumb-item
-        v-else
-        v-for="s in stack"
-        :key="s"
-        @click="paged(s)"
-      >
+      <el-breadcrumb-item v-else v-for="s in stack" :key="s" @click="paged(s)">
         {{ s }}</el-breadcrumb-item
       >
- 
     </el-breadcrumb>
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
       beforeRoute: "",
       afterRoute: "",
       stack: [],
-      a:"",
+      a: "",
     };
   },
 
@@ -77,17 +78,54 @@ export default {
 
       console.log("The address after route is " + to.params.pageName);
       this.afterRoute = to.params.pageName;
-      this.a = this.afterRoute.toUpperCase()
+      this.a = this.afterRoute.toUpperCase();
       if (this.beforeRoute != this.afterRoute) {
         this.stack.push(this.a);
-      } 
-      else if(this.afterRoute=='bm1' || this.afterRoute =='bm2'){
-        this.stack=[]
-        this.stack.push('PM1')
-        this.stack.push(this.a)
-      }
-      else if(this.afterRoute=='main'){
-        this.stack=[]
+      } else if (this.afterRoute == "bm1" || this.afterRoute == "bm2") {
+        this.stack = [];
+        this.stack.push("PM1");
+        this.stack.push(this.a);
+      } else if (
+        this.afterRoute == "lm19" ||
+        this.afterRoute == "lm20" ||
+        this.afterRoute == "lm21" ||
+        this.afterRoute == "lm23" ||
+        this.afterRoute == "lm24"
+      ) {
+        this.stack = [];
+        this.stack.push("PM1");
+        this.stack.push("BM1");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "lm13" || this.afterRoute == "lm14") {
+        this.stack = [];
+        this.stack.push("PM1");
+        this.stack.push("BM2");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "bm3" || this.afterRoute == "bm8") {
+        this.stack = [];
+        this.stack.push("PM2");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "lm7") {
+        this.stack = [];
+        this.stack.push("PM2");
+        this.stack.push("BM8");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "bm4" || this.afterRoute == "bm5") {
+        this.stack = [];
+        this.stack.push("PM3");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "cm2" || this.afterRoute == "cm3") {
+        this.stack = [];
+        this.stack.push("PM4");
+
+        this.stack.push(this.a);
+      } else if (this.afterRoute == "main") {
+        this.stack = [];
       }
     });
   },

@@ -26,7 +26,8 @@
                 class="nav-link active"
                 aria-current="page"
                 href="#"
-                @click="toggleSidebar"><i id="menuIcon" class="material-icons">menu</i
+                @click="toggleSidebar"
+                ><i id="menuIcon" class="material-icons">menu</i
                 ><span class="icon-text"></span
               ></a>
             </li>
@@ -64,51 +65,67 @@
                 <a href="#" @click="pm2Page" @mouseover="showLink3">PM 2 >></a>
                 <a href="#" @click="pm3Page" @mouseover="showLink4">PM 3 >></a>
                 <a href="#" @click="pm4Page" @mouseover="showLink5">PM 4 >></a>
-
               </div>
 
-              <div 
-              v-click-outside="closeAll"
-
-              v-if="hover2" class="dropdownLink2" @mouseleave="hideLink">
+              <div
+                v-click-outside="closeAll"
+                v-if="hover2"
+                class="dropdownLink2"
+                @mouseleave="hideLink"
+              >
                 <a href="#" @click="bm1Page" @mouseover="showLink5">BM 1 >></a>
                 <a href="#" @click="bm2Page" @mouseover="showLink6">BM 2 >></a>
               </div>
               <div
-               v-click-outside="closeAll"
-              v-if="hover5" class="dropdownLink5" @mouseleave="hideLink1">
+                v-click-outside="closeAll"
+                v-if="hover5"
+                class="dropdownLink5"
+                @mouseleave="hideLink1"
+              >
                 <a href="#" @click="lm19Page">lm19</a>
                 <a href="#" @click="lm20Page">lm 20</a>
                 <a href="#" @click="lm21Page">lm 21 </a>
                 <a href="#" @click="lm23Page">lm 23 </a>
                 <a href="#" @click="lm24Page">lm 24 </a>
               </div>
-              <div 
-              v-click-outside="closeAll"
-              v-if="hover6" class="dropdownLink6" @mouseleave="hideLink2">
+              <div
+                v-click-outside="closeAll"
+                v-if="hover6"
+                class="dropdownLink6"
+                @mouseleave="hideLink2"
+              >
                 <a href="#" @click="lm13Page">lm13</a>
                 <a href="#" @click="lm14Page">lm 14</a>
               </div>
 
-              <div 
-              v-click-outside="closeAll"
-              v-if="hover3" class="dropdownLink3" @mouseleave="hideLink3">
+              <div
+                v-click-outside="closeAll"
+                v-if="hover3"
+                class="dropdownLink3"
+                @mouseleave="hideLink3"
+              >
                 <a href="#" @click="bm3Page">BM 3</a>
                 <a href="#" @click="bm8Page" @mouseover="showLink7">BM 8 >></a>
               </div>
 
-              <div 
-              v-click-outside="closeAll"
-               v-if="hover7" class="dropdownLink7" @mouseleave="hideLink7">
+              <div
+                v-click-outside="closeAll"
+                v-if="hover7"
+                class="dropdownLink7"
+                @mouseleave="hideLink7"
+              >
                 <a href="#" @click="lm7Page">LM 7</a>
               </div>
-              <div 
-              v-click-outside="closeAll"
-               v-if="hover8" class="dropdownLink8" @mouseleave="hideLink8">
+              <div
+                v-click-outside="closeAll"
+                v-if="hover4"
+                class="dropdownLink4"
+                @mouseleave="hideLink8"
+              >
                 <a href="#" @click="bm4Page">BM 4</a>
                 <a href="#" @click="bm5Page">BM 5</a>
               </div>
-              <div v-if="hover4" class="dropdownLink4" @mouseleave="hideLink">
+              <div v-if="hover8" class="dropdownLink8" @mouseleave="hideLink">
                 <a href="#" @click="cm2Page">CM 2 >></a>
                 <a href="#" @click="cm3Page">CM 3</a>
               </div>
@@ -160,8 +177,8 @@ export default {
 
   created() {},
   methods: {
-    toggleSidebar(){
-      toggleSidebar
+    toggleSidebar() {
+      toggleSidebar;
     },
     closeAll() {
       this.displayBlock = false;
@@ -185,8 +202,6 @@ export default {
       this.$store.dispatch("changeStartDate", this.$store.getters.start);
       this.$store.dispatch("changeEndDate", this.$store.getters.end);
       this.$store.dispatch("fetchGaugeData");
-      
-
     },
     mainPage() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -201,7 +216,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     pm1Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -216,7 +230,20 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
       this.$store.dispatch("fetchGaugeData");
+    },
+    bm5Page() {
+      this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeRoute", "bm5");
 
+      this.$router.push({ path: "/pmdashboard/bm5" });
+
+      this.displayBlock = false;
+      this.hover1 = false;
+      this.hover2 = false;
+      this.hover3 = false;
+      this.hover4 = false;
+      this.$store.dispatch("fetchGaugeData");
     },
     pm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -232,15 +259,29 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
-
     },
-
-    pm3Page() {
+    pm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
-      this.$store.dispatch("changeRoute", "pm3");
+      this.$store.dispatch("changeRoute", "pm2");
 
-      this.$router.push({ path: "/pmdashboard/pm3" });
+      this.$router.push({ path: "/pmdashboard/pm2" });
+
+      this.$store.dispatch("fetchGaugeData");
+
+      this.displayBlock = false;
+      this.hover1 = false;
+      this.hover2 = false;
+      this.hover3 = false;
+      this.hover4 = false;
+    },
+
+    bm4Page() {
+      this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
+      this.$store.dispatch("changeRoute", "bm4");
+
+      this.$router.push({ path: "/pmdashboard/bm4" });
       this.displayBlock = false;
       this.hover1 = false;
       this.hover2 = false;
@@ -248,7 +289,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     bm1Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -263,7 +303,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     bm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -278,7 +317,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     bm3Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -293,7 +331,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     bm8Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -308,7 +345,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     cm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -321,9 +357,9 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
+      this.hover8=false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm19Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -337,7 +373,6 @@ export default {
       this.hover4 = false;
       this.hover5 = false;
       this.$store.dispatch("fetchGaugeData");
-
     },
     cm3Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -350,9 +385,9 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
+      this.hover8=false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm20Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -367,7 +402,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm21Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -382,7 +416,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm23Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -397,7 +430,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm24Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -412,7 +444,6 @@ export default {
       this.hover4 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm13Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -429,7 +460,6 @@ export default {
       this.hover6 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm14Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -446,7 +476,6 @@ export default {
       this.hover6 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     lm7Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -464,7 +493,6 @@ export default {
       this.hover7 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
     },
     drop() {
       this.displayBlock = true;
@@ -493,13 +521,15 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = true;
+      this.hover8 = false;
     },
     showLink5() {
-      this.hover2 = true;
+      this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
-      this.hover5 = true;
+      this.hover5 = false;
       this.hover6 = false;
+      this.hover8=true;
     },
     showLink6() {
       this.hover2 = true;
@@ -521,12 +551,13 @@ export default {
     hideLink1() {
       this.hover2 = false;
       this.hover5 = false;
+      this.hover8=false;
     },
     hideLink2() {
       this.hover2 = false;
       this.hover5 = false;
       this.hover6 = false;
-      this.hover6=false;
+      this.hover6 = false;
     },
     hideLink3() {
       this.hover2 = false;
@@ -551,11 +582,9 @@ export default {
     },
   },
   mounted() {
-
     this.$store.dispatch("fetchGaugeData");
 
     this.mainPage();
-
   },
 };
 </script>
@@ -891,6 +920,31 @@ body {
   display: block;
 }
 .dropdownLink4 a:hover {
+  background-color: #e9ecef;
+}
+.dropdownLink8 {
+  position: relative;
+  display: inline-block;
+  border: 0.5px solid #e9ecef;
+}
+.dropdownLink8 {
+  display: block;
+  position: absolute;
+  left: 411px;
+  top: 200px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownLink8 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdownLink8 a:hover {
   background-color: #e9ecef;
 }
 .links {
