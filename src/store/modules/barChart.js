@@ -54,9 +54,7 @@ for(let i=0; i<data.length; i++){
 }
   return Promise.resolve(commit('setValues', values))
 },
-renderChart({commit}){
-  
-}
+
 }
 const mutations={
     setBarData:(state,barData) => (state.barData = barData),

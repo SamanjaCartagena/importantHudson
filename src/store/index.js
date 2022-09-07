@@ -1,15 +1,13 @@
 import {createStore} from 'vuex';
 import VuexPersistence from 'vuex-persist'
 import gaugeChart from './modules/gaugeChart.js';
-import lineChart from './modules/lineChart.js';
-import barChart from './modules/barChart.js';
-import moment from 'moment';
+import moment from 'moment'
 import createPersistedState from 'vuex-persistedstate'
 
 const store=createStore({
   modules:{
     nameSpaced:true,
-     gaugeChart, lineChart, barChart
+     gaugeChart
   },
     state:{
     

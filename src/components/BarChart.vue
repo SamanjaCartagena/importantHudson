@@ -27,14 +27,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import moment from "moment";
 import store from "../store";
 import router from "../router";
 import pm4json from "../../pm4.json";
 export default {
   data() {
     return {
-      moment: moment,
       count: 0,
       arr: [],
       dataValue: [],
@@ -118,8 +116,6 @@ export default {
                   var z = t.join("").toLowerCase();
                   store.dispatch("changeRoute", z);
                   store.dispatch("fetchGaugeData");
-                  store.dispatch("fetchLineData");
-                  store.dispatch("fetchBarData");
                   router.push({
                     path: `${z}`,
                     query: {
@@ -156,7 +152,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchBarData"]),
+    ...mapActions(["fetchGaugeData"]),
     setBarChart() {
       setInterval(() => {
         this.updateChart();
@@ -198,8 +194,6 @@ export default {
                   var z = t.join("").toLowerCase();
                   store.dispatch("changeRoute", z);
                   store.dispatch("fetchGaugeData");
-                  store.dispatch("fetchLineData");
-                  store.dispatch("fetchBarData");
                   router.push({
                     path: `${z}`,
                     query: {
@@ -222,8 +216,6 @@ export default {
                   var z = t.join("").toLowerCase();
                   store.dispatch("changeRoute", z);
                   store.dispatch("fetchGaugeData");
-                  store.dispatch("fetchLineData");
-                  store.dispatch("fetchBarData");
                   router.push({
                     path: `${z}`,
                     query: {
@@ -297,8 +289,6 @@ export default {
                   var z = t.join("").toLowerCase();
                   store.dispatch("changeRoute", z);
                   store.dispatch("fetchGaugeData");
-                  store.dispatch("fetchLineData");
-                  store.dispatch("fetchBarData");
                   router.push({
                     path: `${z}`,
                     query: {
@@ -322,8 +312,6 @@ export default {
                   var z = t.join("").toLowerCase();
                   store.dispatch("changeRoute", z);
                   store.dispatch("fetchGaugeData");
-                  store.dispatch("fetchLineData");
-                  store.dispatch("fetchBarData");
                   router.push({
                     path: `${z}`,
                     query: {
@@ -351,9 +339,9 @@ export default {
   computed: { ...mapGetters(["allNames", "allValues", "allBarData"]) },
 
   created() {
-    this.$store.dispatch("fetchBarData");
+    this.$store.dispatch("fetchGaugeData");
     setInterval(() => {
-      this.fetchBarData();
+      this.fetchGaugeData();
     }, 300000);
 
     for (let i = 0; i < this.pm4.length; i++) {
@@ -367,7 +355,7 @@ export default {
     console.log("The values are" + this.$store.getters.pmName);
   },
   mounted() {
-    this.$store.dispatch("fetchBarData");
+    this.$store.dispatch("fetchGaugeData");
     this.setBarChart();
     this.setPmChart();
   },

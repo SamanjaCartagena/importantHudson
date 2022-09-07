@@ -182,12 +182,11 @@ export default {
       }, 1000);
       this.$router.push({ path: `/pmdashboard/${this.value}` });
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("changeStartDate", this.$store.getters.start);
       this.$store.dispatch("changeEndDate", this.$store.getters.end);
       this.$store.dispatch("fetchGaugeData");
+      
 
-      this.$store.dispatch("fetchLineData");
     },
     mainPage() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -201,10 +200,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     pm1Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -218,10 +215,8 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     pm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -230,7 +225,6 @@ export default {
 
       this.$router.push({ path: "/pmdashboard/pm2" });
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
       this.displayBlock = false;
@@ -239,7 +233,6 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchLineData");
     },
 
     pm3Page() {
@@ -254,10 +247,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     bm1Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -271,10 +262,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     bm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -288,10 +277,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     bm3Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -305,10 +292,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     bm8Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -322,10 +307,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     cm2Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -339,10 +322,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm19Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -355,10 +336,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
       this.hover5 = false;
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     cm3Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -372,10 +351,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm20Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -389,10 +366,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm21Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -406,10 +381,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm23Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -423,10 +396,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm24Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -440,10 +411,8 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm13Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -459,10 +428,8 @@ export default {
       this.hover5 = false;
       this.hover6 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm14Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -478,10 +445,8 @@ export default {
       this.hover5 = false;
       this.hover6 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     lm7Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
@@ -498,10 +463,8 @@ export default {
       this.hover6 = false;
       this.hover7 = false;
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
 
-      this.$store.dispatch("fetchLineData");
     },
     drop() {
       this.displayBlock = true;
@@ -585,18 +548,14 @@ export default {
       this.$router.push({ path: `/pmdashboard/${main}` });
       this.$store.dispatch("changeRoute", "main");
       this.$store.dispatch("fetchGaugeData");
-      this.$store.dispatch("fetchLineData");
-      this.$store.dispatch("fetchBarData");
     },
   },
   mounted() {
-    this.$store.dispatch("fetchBarData");
 
     this.$store.dispatch("fetchGaugeData");
 
     this.mainPage();
 
-    this.$store.dispatch("fetchLineData");
   },
 };
 </script>

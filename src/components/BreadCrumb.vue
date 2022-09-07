@@ -42,9 +42,7 @@ export default {
     mainPage() {
       this.$store.dispatch("changeRoute", "main");
       this.$router.push({ path: "/pmdashboard/main" });
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
-      this.$store.dispatch("fetchLineData");
     },
     paged(val) {
       console.log("this value was clicked " + val);
@@ -60,9 +58,7 @@ export default {
       console.log("The stack that is left is " + this.stack);
       this.$store.dispatch("changeRoute", `${val}`);
 
-      this.$store.dispatch("fetchBarData");
       this.$store.dispatch("fetchGaugeData");
-      this.$store.dispatch("fetchLineData");
       this.$router.push({
         path: `${val}`,
         query: {

@@ -30,13 +30,11 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import moment from "moment";
 import pm4json from "../../pm4.json";
 import store from "../store";
 export default {
   data() {
     return {
-      moment: moment,
       names: [],
       data: [],
       dates: [],
@@ -163,7 +161,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["fetchLineData", "fetchLineDates"]),
+    ...mapActions(["fetchGaugeData"]),
 
     setLineChart() {
       this.interval = setInterval(() => {
@@ -301,13 +299,13 @@ export default {
   computed: { ...mapGetters(["allLineData", "allLineDates"]) },
 
   created() {
-    this.$store.dispatch("fetchLineData");
+    this.$store.dispatch("fetchGaugeData");
     setInterval(() => {
-      this.fetchLineData();
+      this.fetchGaugeData();
     }, 300000);
   },
   mounted() {
-    this.$store.dispatch("fetchLineData");
+    this.$store.dispatch("fetchGaugeData");
     this.setLineChart();
   },
 };

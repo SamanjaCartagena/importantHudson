@@ -20,15 +20,15 @@
 import { ref } from "vue";
 import store from "../store";
 import moment from "moment";
-const value2 = ref([moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD')]);
+const value2 = ref([
+  moment().format("YYYY-MM-DD"),
+  moment().format("YYYY-MM-DD"),
+]);
 const datePicked = (event) => {
   console.log("The date was changed from" + event[0] + " and " + event[1]);
   store.dispatch("changeStartDate", event[0]);
   store.dispatch("changeEndDate", event[1]);
   store.dispatch("fetchGaugeData");
-  store.dispatch("fetchLineData");
-  store.dispatch("fetchBarData");
-
 };
 
 const shortcuts = [
@@ -42,8 +42,6 @@ const shortcuts = [
       store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
 
       store.dispatch("fetchGaugeData");
-      store.dispatch("fetchLineData");
-      store.dispatch("fetchBarData");
 
       return [start, end];
     },
@@ -61,8 +59,6 @@ const shortcuts = [
       store.dispatch("changeEndDate", end);
 
       store.dispatch("fetchGaugeData");
-      store.dispatch("fetchLineData");
-      store.dispatch("fetchBarData");
 
       return [start, end];
     },
@@ -76,8 +72,6 @@ const shortcuts = [
       store.dispatch("changeStartDate", start);
       store.dispatch("changeEndDate", end);
       store.dispatch("fetchGaugeData");
-      store.dispatch("fetchLineData");
-      store.dispatch("fetchBarData");
 
       return [start, end];
     },
@@ -90,8 +84,6 @@ const shortcuts = [
       store.dispatch("changeStartDate", start);
       store.dispatch("changeEndDate", end);
       store.dispatch("fetchGaugeData");
-      store.dispatch("fetchLineData");
-      store.dispatch("fetchBarData");
 
       return [start, end];
     },
@@ -107,8 +99,6 @@ const shortcuts = [
       store.dispatch("changeStartDate", start);
       store.dispatch("changeEndDate", end);
       store.dispatch("fetchGaugeData");
-      store.dispatch("fetchLineData");
-      store.dispatch("fetchBarData");
 
       return [start, end];
     },
