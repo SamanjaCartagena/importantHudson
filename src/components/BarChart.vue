@@ -45,9 +45,7 @@ export default {
       pm4: pm4json,
       pm4Names: [],
       pm4Values: [],
-
       a: "",
-
       series: [
         {
           data: [...this.$store.getters.allValues],
@@ -58,26 +56,18 @@ export default {
           id: "barChart",
           type: "bar",
           height: 250,
-
-          events: {
-            dataPointSelection: function (event, chartContext, config) {
-              store.state.dat = config.dataPointIndex;
-            },
-          },
         },
         xaxis: {
           type: "date",
           labels: {},
           categories: [...this.$store.getters.allNames],
         },
-
         title: {
           text: "Energy (kW)",
           color: "#7f7370",
         },
         dataLabels: {
           enabled: true,
-
           offsetY: 0,
           style: {
             fontSize: "30px",
@@ -85,7 +75,6 @@ export default {
           },
         },
       },
-
       pmChart: {
         series: [
           {
@@ -97,7 +86,6 @@ export default {
             id: "barChart",
             type: "bar",
             height: 250,
-
             events: {
               click: function (event, chartContext, config) {
                 console.log(config);
@@ -133,14 +121,12 @@ export default {
             //categories:[...this.newNames],
             categories: [...this.$store.getters.pmName],
           },
-
           title: {
             text: "Energy (kW)",
             color: "#7f7370",
           },
           dataLabels: {
             enabled: true,
-
             offsetY: 0,
             style: {
               fontSize: "30px",
@@ -156,12 +142,12 @@ export default {
     setBarChart() {
       setInterval(() => {
         this.updateChart();
-      }, 1);
+      }, 0.05);
     },
     setPmChart() {
       setInterval(() => {
         this.updatePmChart();
-      }, 1);
+      }, 0.05);
     },
     updatePmChart() {
       this.pmChart = {
@@ -175,7 +161,6 @@ export default {
             id: "barChart",
             type: "bar",
             height: 250,
-
             events: {
               click: function (event, chartContext, config) {
                 console.log(config.dataPointIndex);
@@ -233,10 +218,8 @@ export default {
             //categories:[...this.newNames],
             categories: [...this.$store.getters.pmName],
           },
-
           dataLabels: {
             enabled: true,
-
             offsetY: 0,
             style: {
               fontSize: "30px",
@@ -249,7 +232,6 @@ export default {
           },
           dataLabels: {
             enabled: true,
-
             offsetY: 0,
             style: {
               fontSize: "30px",
@@ -259,7 +241,6 @@ export default {
         },
       };
     },
-
     updateChart() {
       (this.series = [
         {
@@ -328,7 +309,14 @@ export default {
             labels: {},
             categories: [...this.$store.getters.allNames],
           },
-
+          dataLabels: {
+            enabled: true,
+            offsetY: 0,
+            style: {
+              fontSize: "30px",
+              colors: ["#d3d3d3"],
+            },
+          },
           title: {
             text: "Energy (kW)",
             color: "#7f7370",
@@ -336,21 +324,18 @@ export default {
         });
     },
   },
-  computed: { ...mapGetters(["allNames", "allValues", "allBarData"]) },
-
+  computed: { ...mapGetters(["allNames", "allValues"]) },
   created() {
     this.$store.dispatch("fetchGaugeData");
     setInterval(() => {
       this.fetchGaugeData();
     }, 300000);
-
     for (let i = 0; i < this.pm4.length; i++) {
       this.pm4Names.push(this.pm4[i].name);
       this.pm4Values.push(this.pm4[i].value);
     }
     this.$store.dispatch("changePmName", this.pm4Names);
     console.log("The names are " + this.$store.getters.pmValue);
-
     this.$store.dispatch("changePmValues", this.pm4Values);
     console.log("The values are" + this.$store.getters.pmName);
   },

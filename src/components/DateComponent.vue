@@ -38,8 +38,8 @@ const shortcuts = [
       const end = moment().format("YYYY-MM-DD");
       const start = moment().format("YYYY-MM-DD");
 
-      store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
-      store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
+      store.dispatch("changeStartDate", start);
+      store.dispatch("changeEndDate", end);
 
       store.dispatch("fetchGaugeData");
 

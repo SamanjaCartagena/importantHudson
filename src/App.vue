@@ -1,13 +1,13 @@
 <template>
   <div>
-    <side-bar/>
+    <side-bar />
     <nav-bar></nav-bar>
 
-      <div>
-        <div :style="{ 'margin-left': sidebarWidth }">
-          <router-view />
-        </div>
+    <div>
+      <div :style="{ 'margin-left': sidebarWidth }">
+        <router-view />
       </div>
+    </div>
   </div>
 </template>
 
@@ -49,14 +49,7 @@ export default {
 }
 body {
   background-color: #f3f3f4;
-  -webkit-transform: translate(0px, 0);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transform: translate(0px, 0);
-  -moz-transition: -moz-transform 0.3s ease;
-  transform: translate(0px, 0);
-  transition: -webkit-transform 0.3s ease;
 }
-
 
 #nav {
   padding: 30px;
@@ -71,11 +64,12 @@ body {
 header {
   width: 100vw;
   background-color: black;
-  color: white;
+  color: #8b8d8f;
   top: 0;
   height: 50px;
   margin-top: 0;
   position: fixed;
   z-index: 2;
 }
+
 </style>

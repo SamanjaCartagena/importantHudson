@@ -22,7 +22,10 @@ const store=createStore({
           pmValues:[], clickIndex:0,
           port:3080,
           met:'',
-          routePage:''
+          routePage:'',
+          names:[],
+          values:[],
+          
          
               
 
@@ -48,6 +51,12 @@ const store=createStore({
         },
         routePage(state){
           return state.routePage
+        }, 
+        names(state){
+          return state.names
+        },
+        values(state){
+          return state.values
         }
     },
     actions:{
@@ -74,6 +83,12 @@ const store=createStore({
               }, 
               async changeRoutePage({commit}, payload){
                 return Promise.resolve(commit('changeRoutePage', payload))
+              }, 
+              changeNames({commit}, payload){
+                commit('changeNames',payload)
+              },
+               changeValues({commit},payload){
+                commit('changeValues',payload)
               }
             
               
@@ -99,6 +114,12 @@ const store=createStore({
       }, 
       changeRoutePage(state,payload){
         state.payload= payload
+      },
+      changeNames(state,payload){
+        state.names=payload
+      },
+      changeValues(state,payload){
+        state.values=payload
       }
     },
   

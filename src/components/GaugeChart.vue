@@ -1,16 +1,13 @@
 <template>
   <div>
     <div v-if="this.$store.getters.currentRoutes != 'pm4'">
-      <el-card
-        class="box-card"
-        style="width: 100%; color: #676a6c; background-color: white"
-      >
-        <el-row :gutter="20">
-          <el-col
-            :span="this.gaugeWidth"
-            v-for="(item, index) in arr"
-            :key="index"
-          >
+      <el-row :gutter="20">
+        <el-col
+          :span="this.gaugeWidth"
+          v-for="(item, index) in arr"
+          :key="index"
+        >
+          <el-card style="border: 0.02px solid #c7c7c7; border-radius: 0px">
             <div class="card-header">
               <span style="font-size: 16px; position: relative; top: 20px">{{
                 item.name.slice(6, 11).split("_").join(" ").split("0").join("")
@@ -23,11 +20,10 @@
                 height="250px"
                 :options="this.radialChartOptions.chartOptions"
                 :series="[
-                  Math.round(
-                    (item.value[item.value.length - 1] * 100) / 400
-                  )
+                  Math.round((item.value[item.value.length - 1] * 100) / 400),
                 ]"
-              >{{}}</apexchart>
+                >{{}}</apexchart
+              >
               <center>
                 <center>
                   <span
@@ -67,7 +63,7 @@
                   v-if="
                     Math.round(
                       (item.value[item.value.length - 1] * 100) / 400
-                    )> 100
+                    ) > 100
                   "
                   style="
                     position: relative;
@@ -85,40 +81,108 @@
                     font-size: 33px;
                     font-weight: bold;
                     color: #009af9;
-                    bottom: 80px;">{{ Math.round(item.value[item.value.length - 1]) }}</span
+                    bottom: 80px;
+                  "
+                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
                 >
               </center>
             </div>
-          </el-col>
-        </el-row>
-      </el-card>
+            <small>Power (kW) Meter</small>
+          </el-card>
+        </el-col>
+      </el-row>
     </div>
     <div v-else>
-      <el-card class="box-card" style="width: 100%">
-        <el-space :fill="fill" wrap>
-          <el-card
-            v-for="(item, index) in pm4"
-            :key="index"
-            class="box-card"
-            style="width: 250px; height: 150px" >
+      <el-row :gutter="20">
+        <el-col
+          :span="this.gaugeWidth"
+          v-for="(item, index) in pm4"
+          :key="index"
+        >
+          <el-card style="border: 0.02px solid #c7c7c7; border-radius: 0px">
             <div class="card-header">
-              <span style="font-size: 20px; position: relative; top: 20px">{{
-                item.name}}</span>
+              <span style="font-size: 16px; position: relative; top: 20px">{{
+                item.name
+              }}</span>
+
               <apexchart
                 id="gaugeChartApex"
                 type="radialBar"
                 width="100%"
                 height="250px"
                 :options="this.radialChartOptions.chartOptions"
-                :series="[item.value]"
-              ></apexchart>
+                :series="[
+                  item.value,
+                ]"
+                ></apexchart
+              >
               <center>
-                <span style="color: red">No data</span>
+                <center>
+                  <span
+                    style="
+                      font-size: 17px;
+                      color: #fd354a;
+                      position: relative;
+                      bottom: 70px;
+                    "
+                    v-if="
+                      Math.round(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      ) > 100
+                    "
+                    >{{
+                      Math.round(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      )
+                    }}%</span
+                  >
+                  <span
+                    style="
+                      font-size: 17px;
+                      color: #009af9;
+                      position: relative;
+                      bottom: 70px;
+                    "
+                    v-else
+                    >{{
+                      Math.round(
+                        (item.value[item.value.length - 1] * 100) / 400
+                      )
+                    }}%</span
+                  >
+                </center>
+                <span
+                  v-if="
+                    Math.round(
+                      (item.value[item.value.length - 1] * 100) / 400
+                    ) > 100
+                  "
+                  style="
+                    position: relative;
+                    font-weight: bold;
+                    font-size: 33px;
+                    color: #fd354a;
+                    bottom: 80px;
+                  "
+                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
+                >
+                <span
+                  v-else
+                  style="
+                    position: relative;
+                    font-size: 33px;
+                    font-weight: bold;
+                    color: #009af9;
+                    bottom: 80px;
+                  "
+                  >{{ Math.round(item.value[item.value.length - 1]) }}</span
+                >
               </center>
             </div>
+            <small>Power (kW) Meter</small>
           </el-card>
-        </el-space>
-      </el-card>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -148,7 +212,7 @@ export default {
     setGaugeChart() {
       setInterval(() => {
         this.updateChart();
-      }, 1);
+      }, 0.05);
     },
     updateChart() {
       this.arr = [];
@@ -157,14 +221,12 @@ export default {
       this.newArr.forEach((element) => this.arr.push(element[1]));
 
       this.gaugeWidth = 24 / this.arr.length;
-
-      
     },
   },
   computed: { ...mapGetters(["allGaugeData", "allBarData"]) },
   mounted() {
     this.$store.dispatch("fetchGaugeData");
-    this.setGaugeChart()
+    this.setGaugeChart();
   },
 
   created() {
@@ -185,18 +247,15 @@ export default {
       series: [],
 
       chartOptions: {
-     
         chart: {
           type: "radialBar",
           height: 200,
           offsetY: -20,
-         
-      
+
           animations: {
             enabled: false,
             easing: "linear",
             speed: 12800,
-
           },
           sparkline: {
             enabled: true,
@@ -282,5 +341,16 @@ span {
 .meter {
 }
 #gaugeChartApex {
+}
+.box-card {
+  height: 80px;
+}
+.card-header {
+  height: 100px;
+  position: relative;
+  bottom: 20px;
+}
+small {
+  font-size: 12px;
 }
 </style>

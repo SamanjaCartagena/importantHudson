@@ -1,8 +1,8 @@
 <template>
-  <div style="display: inline-block">
+  <div style="display: inline-block;">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item>
-        <a href="#" @click="home">homepage</a>
+        <a href="#" @click="home">Home</a>
       </el-breadcrumb-item>
       <el-breadcrumb-item
         ><a href="/pmdashboard/main" @click="mainPage"
@@ -22,6 +22,8 @@
       <el-breadcrumb-item v-else v-for="s in stack" :key="s" @click="paged(s)">
         {{ s }}</el-breadcrumb-item
       >
+  
+  
     </el-breadcrumb>
   </div>
 </template>
@@ -57,11 +59,12 @@ export default {
         }
       }
       console.log("The stack that is left is " + this.stack);
-      this.$store.dispatch("changeRoute", `${val}`);
+      var value= val.toLowerCase()
+      this.$store.dispatch("changeRoute", `${value}`);
 
       this.$store.dispatch("fetchGaugeData");
       this.$router.push({
-        path: `${val}`,
+        path: `${value}`,
         query: {
           startDate: `${this.$store.getters.start}`,
           endDate: `${this.$store.getters.end}`,
@@ -126,7 +129,7 @@ export default {
         this.stack.push(this.a);
       } 
       else if (this.afterRoute == "lm26" ||
-       this.afterRoute == "lm27" ||
+       this.afterRoute== "lm27" ||
        this.afterRoute=='lm28'|| 
        this.afterRoute=='lm30' ||
        this.afterRoute=='lm32' ||

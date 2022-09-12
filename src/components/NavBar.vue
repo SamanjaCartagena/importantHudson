@@ -44,8 +44,6 @@
               ></a>
             </li>
 
-            <!-- <li class="nav-item active"> <a class="nav-link" href="/">Home </a> </li> -->
-            <!-- <li class="nav-item"><a class="nav-link" href="#"> About </a></li> -->
             <li class="nav-item">
               <button
                 class="links"
@@ -60,33 +58,46 @@
                 class="dropdownHidden"
                 v-click-outside="closeAll"
               >
-                <a href="#" @click="mainPage">Main Meters</a>
-                <a href="#" @click="pm1Page" @mouseover="showLink2">PM 1 >></a>
-                <a href="#" @click="pm2Page" @mouseover="showLink3">PM 2 >></a>
-                <a href="#" @click="pm3Page" @mouseover="showLink4">PM 3 >></a>
-                <a href="#" @click="pm4Page" @mouseover="showLink5">PM 4 >></a>
+                <a
+                  href="#"
+                  v-for="item in first"
+                  :key="item"
+                  @click="firstPage(item)"
+                  @mouseover="showLinks(item)"
+                  @mouseleave="stillShow(item)"
+                  >{{ item }}</a
+                >
               </div>
 
               <div
                 v-click-outside="closeAll"
                 v-if="hover2"
                 class="dropdownLink2"
-                @mouseleave="hideLink"
               >
-                <a href="#" @click="bm1Page" @mouseover="showLink5">BM 1 >></a>
-                <a href="#" @click="bm2Page" @mouseover="showLink6">BM 2 >></a>
+                <a
+                  href="#"
+                  v-for="item in second"
+                  :key="item"
+                  @click="firstPage(item)"
+                  @mouseover="showLinks(item)"
+                  @mouseleave="stillShow(item)"
+                  >{{ item }}</a
+                >
               </div>
               <div
                 v-click-outside="closeAll"
                 v-if="hover5"
                 class="dropdownLink5"
-                @mouseleave="hideLink"
               >
-                <a href="#" @click="lm19Page">lm19</a>
-                <a href="#" @click="lm20Page">lm 20</a>
-                <a href="#" @click="lm21Page">lm 21 </a>
-                <a href="#" @click="lm23Page">lm 23 </a>
-                <a href="#" @click="lm24Page">lm 24 </a>
+                <a
+                  href="#"
+                  v-for="item in third"
+                  :key="item"
+                  @click="firstPage(item)"
+                  @mouseover="showLinks(item)"
+                  @mouseleave="stillShow(item)"
+                  >{{ item }}</a
+                >
               </div>
               <div
                 v-click-outside="closeAll"
@@ -119,26 +130,29 @@
               <div
                 v-click-outside="closeAll"
                 v-if="hover4"
-                
                 class="dropdownLink4"
                 @mouseleave="hideLink8"
               >
                 <a href="#" @click="bm4Page">BM 4</a>
                 <a href="#" @click="bm5Page">BM 5</a>
               </div>
-              <div v-if="hover8" class="dropdownLink8"
-              @mouseover="showLinkLM26"
-              v-click-outside="closeAll"
-
-              @mouseleave="hideLink9">
+              <div
+                v-if="hover8"
+                class="dropdownLink8"
+                @mouseover="showLinkLM26"
+                v-click-outside="closeAll"
+                @mouseleave="hideLink9"
+              >
                 <a href="#" @click="cm2Page">CM 2 >></a>
                 <a href="#" @click="cm3Page">CM 3</a>
               </div>
-              <div v-if="hover9" class="dropdownLink9"
-               @mouseover="showLinkLM27"
-               v-click-outside="closeAll"
-
-               @mouseleave="hideLink10">
+              <div
+                v-if="hover9"
+                class="dropdownLink9"
+                @mouseover="showLinkLM27"
+                v-click-outside="closeAll"
+                @mouseleave="hideLink10"
+              >
                 <a href="#" @click="lm26Page">LM 26 >></a>
                 <a href="#" @click="lm27Page">LM 27</a>
                 <a href="#" @click="lm28Page">LM 28</a>
@@ -183,7 +197,9 @@ export default {
       value: "",
       value1: "",
       button1: "main",
-
+      first: ["main", "PM 1", "PM 2", "PM 3", "PM 4"],
+      second: ["BM 1", "BM 2"],
+      third: ["LM 19", "LM 20", "LM 21", "LM 23", "LM 24"],
       displayBlock: false,
       hover1: false,
       hover2: false,
@@ -192,8 +208,8 @@ export default {
       hover5: false,
       hover6: false,
       hover7: false,
-      hover8:false,
-      hover9:false
+      hover8: false,
+      hover9: false,
     };
   },
   components: {},
@@ -203,6 +219,85 @@ export default {
     toggleSidebar() {
       toggleSidebar;
     },
+
+    allhoversFirst() {
+     // this.hover2 = false;
+      this.hover1 = false;
+      this.hover3 = false;
+      this.hover4 = false;
+      this.hover8 = false;
+    },
+    showLinks(val) {
+      console.log("The hovered item is " + val);
+      if (val == "PM 1") {
+        this.hover2 = true;
+        this.hover1 = false;
+        this.hover3 = false;
+        this.hover4 = false;
+      } else if (val == "PM 2") {
+        this.hover3 = true;
+        this.hover2 = false;
+        this.hover1 = false;
+        this.hover4 = false;
+      } else if (val == "PM 3") {
+        this.hover1 = false;
+        this.hover2 = false;
+        this.hover3 = false;
+        this.hover4 = true;
+        this.hover8 = false;
+      } else if (val == "PM 4") {
+        this.hover2 = false;
+        this.hover3 = false;
+        this.hover4 = false;
+        this.hover5 = false;
+        this.hover6 = false;
+        this.hover8 = true;
+      } else if (val == "BM 1" || val == "BM 2") {
+        this.hover2 = true;
+        this.hover5 = true;
+      } else if (val == "LM 19" || val == "LM 20" || val=="LM 21"|| val=="LM 23" || val == "LM 24") {
+        this.hover2 = true;
+        this.hover5 = true;
+      }
+    },
+    stillShow(val) {
+      this.displayBlock = true;
+      if (val == "PM 1") {
+        this.allhoversFirst();
+        this.hover2 = true;
+      } else if (val == "PM 2") {
+        this.allhoversFirst();
+        this.hover3 = true;
+      } else if (val == "PM 3") {
+        this.allhoversFirst();
+        this.hover4 = true;
+      } else if (val == "PM 4") {
+        this.allhoversFirst();
+        this.hover8 = true;
+      } else if(val =="BM 1" || val=="BM 2"){
+        this.hover5=true;
+      }
+    },
+    firstPage(val) {
+      var s = Object.entries(val);
+      if (s[2].includes(" ")) {
+        delete s[2];
+      }
+      if (s[3].includes("0")) {
+        delete s[3];
+      }
+      console.log(s);
+      var t = [];
+      s.forEach((element) => t.push(element[1]));
+      var z = t.join("").toLowerCase();
+      this.$store.dispatch("changeRoute", z);
+      this.$store.dispatch("fetchGaugeData");
+      this.$router.push({
+        path: `${z}`,
+      });
+      this.displayBlock = false;
+      this.allhoversFirst();
+    },
     closeAll() {
       this.displayBlock = false;
       this.hover1 = false;
@@ -210,20 +305,19 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
     },
-    showLinkLM26(){
-        this.hover9=true;
-        this.displayBlock=true;
-        this.hover8=true;
-        this.hover1=false;
-        this.hover2=false;
-        this.hover3=false;
-        this.hover4=false;
-        
+    showLinkLM26() {
+      this.hover9 = true;
+      this.displayBlock = true;
+      this.hover8 = true;
+      this.hover1 = false;
+      this.hover2 = false;
+      this.hover3 = false;
+      this.hover4 = false;
     },
-    showLinkLM27(){
-     this.hover8=true;
-     this.hover9=true;
-     this.displayBlock=true;
+    showLinkLM27() {
+      this.hover8 = true;
+      this.hover9 = true;
+      this.displayBlock = true;
     },
     hudsonPage() {
       this.$router.push({ path: "/hudsonPage", name: "hudson" });
@@ -328,34 +422,7 @@ export default {
 
       this.$store.dispatch("fetchGaugeData");
     },
-    bm1Page() {
-      this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
-      this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
-      this.$store.dispatch("changeRoute", "bm1");
 
-      this.$router.push({ path: "/pmdashboard/bm1" });
-      this.displayBlock = false;
-      this.hover1 = false;
-      this.hover2 = false;
-      this.hover3 = false;
-      this.hover4 = false;
-
-      this.$store.dispatch("fetchGaugeData");
-    },
-    bm2Page() {
-      this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
-      this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
-      this.$store.dispatch("changeRoute", "bm2");
-
-      this.$router.push({ path: "/pmdashboard/bm2" });
-      this.displayBlock = false;
-      this.hover1 = false;
-      this.hover2 = false;
-      this.hover3 = false;
-      this.hover4 = false;
-
-      this.$store.dispatch("fetchGaugeData");
-    },
     bm3Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
@@ -395,7 +462,7 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
-      this.hover8=false;
+      this.hover8 = false;
 
       this.$store.dispatch("fetchGaugeData");
     },
@@ -423,7 +490,7 @@ export default {
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
-      this.hover8=false;
+      this.hover8 = false;
 
       this.$store.dispatch("fetchGaugeData");
     },
@@ -455,21 +522,23 @@ export default {
 
       this.$store.dispatch("fetchGaugeData");
     },
-    lm26Page()
-{    this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
+    lm26Page() {
+      this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeRoute", "lm26");
-
+      this.$store.dispatch("fetchGaugeData");
       this.$router.push({ path: "/pmdashboard/lm26" });
       this.displayBlock = false;
       this.hover1 = false;
       this.hover2 = false;
       this.hover3 = false;
       this.hover4 = false;
+      this.hover9 = false;
+      this.hover8 = false;
 
       this.$store.dispatch("fetchGaugeData");
-
-},   lm23Page() {
+    },
+    lm23Page() {
       this.$store.dispatch("changeStartDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeEndDate", moment().format("YYYY-MM-DD"));
       this.$store.dispatch("changeRoute", "lm23");
@@ -555,34 +624,7 @@ export default {
       this.hover3 = false;
       this.hover4 = false;
     },
-    showLink2() {
-      this.hover2 = true;
-      this.hover1 = false;
-      this.hover3 = false;
-      this.hover4 = false;
-    },
 
-    showLink3() {
-      this.hover3 = true;
-      this.hover2 = false;
-      this.hover1 = false;
-      this.hover4 = false;
-    },
-    showLink4() {
-      this.hover1 = false;
-      this.hover2 = false;
-      this.hover3 = false;
-      this.hover4 = true;
-      this.hover8 = false;
-    },
-    showLink5() {
-      this.hover2 = false;
-      this.hover3 = false;
-      this.hover4 = false;
-      this.hover5 = false;
-      this.hover6 = false;
-      this.hover8=true;
-    },
     showLink6() {
       this.hover2 = true;
       this.hover3 = false;
@@ -603,17 +645,17 @@ export default {
     hideLink1() {
       this.hover2 = false;
       this.hover5 = false;
-      this.hover8=false;
+      this.hover8 = false;
     },
-    hideLink8(){
-      this.hover2=false;
-      this.displayBlock=true;
-      this.hover9=true;
+    hideLink8() {
+      this.hover2 = false;
+      this.displayBlock = true;
+      this.hover9 = true;
     },
-    hideLink9(){
-      this.hover8=true;
-      this.hover9=true;
-      this.displayBlock=true;
+    hideLink9() {
+      this.hover8 = true;
+      this.hover9 = true;
+      this.displayBlock = true;
     },
     hideLink2() {
       this.hover2 = false;
@@ -636,17 +678,15 @@ export default {
     hideLink() {
       this.hover3 = false;
       this.hover4 = false;
-      this.hover7=false;
-      this.hover8=false;
-      this.hover9=false;
-      this.hover4=false;
-      this.hover5=false;
-      
+      this.hover7 = false;
+      this.hover8 = false;
+      this.hover9 = false;
+      this.hover4 = false;
+      this.hover5 = false;
     },
-    hideLink10(){
-     this.hover9=false;
-     this.hover8=false;
-     
+    hideLink10() {
+      this.hover9 = false;
+      this.hover8 = false;
     },
     selectedbtn1() {
       this.$router.push({ path: `/pmdashboard/${main}` });

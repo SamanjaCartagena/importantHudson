@@ -5,7 +5,6 @@ const state ={
    gaugeData:[],
     lineData:[],
    lineDates:[],
-     barData:[],
    names:[],
    values:[]
    
@@ -15,16 +14,15 @@ const state ={
     allGaugeData:(state) => state.gaugeData,
            allLineData:(state) => state.lineData, 
     allLineDates:(state) => state.lineDates,
-     allBarData:(state) => state.barData,
     allNames:(state) => state.names,
     allValues:(state) => state.values
     
 }
 
  const actions={
- fetchGaugeData({commit}){
+ async fetchGaugeData({commit}){
          
-    axios.get(`/api/${store.getters.currentRoutes}`,{
+  await  axios.get(`/api/${store.getters.currentRoutes}`,{
         params:{
         startDate:store.getters.start,
         endDate:store.getters.end
@@ -35,10 +33,10 @@ const state ={
     commit('setGaugeData', response.data.apexGaugeChartData)
        commit('setLineDates',response.data.apexLineChartData.dates)
         commit('setLineData', response.data.apexLineChartData.data)
-           var data= Object.entries(response.data.apexBarChartData)    
+           var data= Object.entries(response.data.apexBarChartData)   
+           console.log("The data is ")
          data.sort()
            store.dispatch('calcNames',data,{root:true})
-         return Promise.resolve(commit('setBarData', data))
         
     })
 }, 
@@ -75,7 +73,6 @@ const mutations={
     setGaugeData:(state,gaugeData) => (state.gaugeData = gaugeData),
     setLineData:(state,lineData) => (state.lineData = lineData),
     setLineDates:(state, lineDates)=>(state.lineDates = lineDates),
-setBarData:(state,barData) => (state.barData = barData),
         setName:(state,newNames) => (state.names = newNames),
                 setValues:(state,values) => (state.values = values),
 

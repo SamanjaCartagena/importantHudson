@@ -4,48 +4,47 @@
       <el-header
         style="background-color: transparent; height: 200px; width: 98%"
       >
-        <el-card
-          class="box-card"
+        <div
           style="
-            width: 100%;
+            display: flex;
             position: relative;
-            top: 30px;
-            color: #676a6c;
-            background-color:white;
             z-index: 0;
+            top: 50px;
+
+            height: 100px;
+            width: 100%;
+            background-color: white;
+            z-index: 0;
+            border: 0.02px solid #c7c7c7;
           "
         >
-          <div
+          <h3
             style="
-              display: flex;
               position: relative;
-              z-index: 0;
-              height: 100px;
-              width: 100%;
-              background-color: white;
+              left: 25px;
+              z-index: 3;
+              color: #505050;
+              top: 25px;
             "
           >
-            <h3 style="position: relative; left: 25px; z-index: 3; top: 25px">
-              {{ page }} Dashboard
-            </h3>
+            {{ page }} Dashboard
+          </h3>
 
-            <date-component
-              style="position: absolute; right: 25px; top: 25px"
-            ></date-component>
-          </div>
-          <bread-crumb
-            style="position: relative; bottom: 20px; left: 25px"
-            :page="page"
-          ></bread-crumb>
-        </el-card>
+          <date-component
+            style="position: absolute; right: 25px; top: 25px"
+          ></date-component>
+        </div>
+        <bread-crumb
+          style="position: relative; top: 10px; left: 25px"
+          :page="page"
+        ></bread-crumb>
       </el-header>
 
       <el-main
-        style="height: auto; width: 100%; position: relative; top: 100px"
+        style="height: auto; width: 100%; position: relative; top: 130px"
       >
         <br />
-        <br />
-        <br />
+        
         <gauge-chart></gauge-chart>
         <br />
         <line-chart></line-chart>
@@ -82,7 +81,7 @@ export default {
     EquipmentPage,
     BreadCrumb,
   },
-  computed:{
+  computed: {
     page() {
       var a = Object.entries(this.$route.params.pageName);
       let b = [];
@@ -91,13 +90,11 @@ export default {
       }
       var s = [];
       b.forEach((element) => s.push(element[1]));
-      console.log(s[s.length-1])
-    
+
       var t = s.join("");
-     
+
       var u = t.toUpperCase();
       this.$store.dispatch("changeRoutePage", t);
-
 
       return u;
     },
